@@ -38,7 +38,7 @@ import android.view.ViewConfiguration;
 
 import java.util.ArrayList;
 
-import br.com.wsilva.gponline.R;
+import wsilva.com.br.mobileos.R;
 
 /**
  * A TitlePageIndicator is a PageIndicator which displays the title of left view

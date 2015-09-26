@@ -32,7 +32,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
-import br.com.wsilva.gponline.R;
+import wsilva.com.br.mobileos.R;
 
 /**
  * Draws a line for each page. The current page line is colored differently

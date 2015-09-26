@@ -2,10 +2,10 @@ package wsilva.com.br.mobileos.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import org.ksoap2.serialization.SoapObject;
 
-import br.com.wsilva.mobileos.util.Util;
+import wsilva.com.br.mobileos.core.util.Util;
+
 
 public class OrdemServicoVO extends EntityVO implements Serializable 
 {
