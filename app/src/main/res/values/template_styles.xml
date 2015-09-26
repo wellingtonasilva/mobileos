@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="ButtonTemplate">
+        <item name="android:background">@drawable/template_layout_button</item>
+    </style>
+
+</resources>
