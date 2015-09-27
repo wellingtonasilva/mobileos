@@ -2,10 +2,6 @@ package wsilva.com.br.mobileos.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -42,7 +38,7 @@ public class HidrometroSituacaoDAO extends BasicDAO<HidrometroSituacaoVO> {
 	public boolean atualizar(HidrometroSituacaoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -94,8 +90,8 @@ public class HidrometroSituacaoDAO extends BasicDAO<HidrometroSituacaoVO> {
 	public ContentValues obterContentValues(HidrometroSituacaoVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_IDSITUACAOHIDROMETRO, vo.getIdSituacaoHidrometro());
-		values.put(COL_DESCRICAOSITUACAOHIDROMETRO, vo.getDescricaoSituacaoHidrometro());
+		values.put(COL_IDSITUACAOHIDROMETRO, vo.idSituacaoHidrometro);
+		values.put(COL_DESCRICAOSITUACAOHIDROMETRO, vo.descricaoSituacaoHidrometro);
 		
 		return values;
 	}
@@ -121,75 +117,10 @@ public class HidrometroSituacaoDAO extends BasicDAO<HidrometroSituacaoVO> {
 		}
 		
 		HidrometroSituacaoVO vo = new HidrometroSituacaoVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdSituacaoHidrometro(cursor.getInt(cursor.getColumnIndex(COL_IDSITUACAOHIDROMETRO)));
-		vo.setDescricaoSituacaoHidrometro(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOSITUACAOHIDROMETRO)));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idSituacaoHidrometro = cursor.getInt(cursor.getColumnIndex(COL_IDSITUACAOHIDROMETRO));
+		vo.descricaoSituacaoHidrometro = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOSITUACAOHIDROMETRO));
 		
 		return vo;
 	}
-
-	@Override
-	public HidrometroSituacaoVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		HidrometroSituacaoVO vo=new HidrometroSituacaoVO();
-		//C�digo
-		if (values[0].length() > 0) {
-			vo.setIdSituacaoHidrometro(Integer.parseInt(values[0]));
-		}
-		//Descri��o
-		vo.setDescricaoSituacaoHidrometro(values[1]);
-		
-		return vo;
-	}
-
-	@Override
-	public HidrometroSituacaoVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		HidrometroSituacaoVO vo=new HidrometroSituacaoVO();
-		
-		try 
-		{
-			//C�digo
-			if (line.getString("idSituacaoHidrometro").length() > 0) {
-				vo.setIdSituacaoHidrometro(Integer.parseInt(line.getString("idSituacaoHidrometro")));
-			}
-			//Descri��o
-			vo.setDescricaoSituacaoHidrometro(line.getString("descricaoSituacaoHidrometro"));
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-	
-	public void povoaTabelaFromJSON(String url)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/HidrometroSituacaoServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			HidrometroSituacaoVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
-	}
-
 }

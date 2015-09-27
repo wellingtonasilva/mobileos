@@ -42,7 +42,7 @@ public class LogradouroTipoDAO extends BasicDAO<LogradouroTipoVO> {
 	public boolean atualizar(LogradouroTipoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -121,28 +121,9 @@ public class LogradouroTipoDAO extends BasicDAO<LogradouroTipoVO> {
 		}
 		
 		LogradouroTipoVO vo = new LogradouroTipoVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
+		vo._id =  cursor.getInt(cursor.getColumnIndex(COL_ID));
 		vo.idLogradouro= cursor.getInt(cursor.getColumnIndex(COL_IDLOGRADOURO));
 		vo.descricao= cursor.getString(cursor.getColumnIndex(COL_DESCRICAO));
-		
-		return vo;
-	}
-	
-	@Override
-	public LogradouroTipoVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		LogradouroTipoVO vo=new LogradouroTipoVO();
-		//C�digo
-		if (values[0].length() > 0) {
-			vo.idLogradouro=Integer.parseInt(values[0]);
-		}
-		//Descri��o
-		vo.descricao=values[1];
 		
 		return vo;
 	}

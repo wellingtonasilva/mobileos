@@ -4,74 +4,26 @@ import java.util.Date;
 
 import org.ksoap2.serialization.SoapObject;
 
-public class GPSCoordenadasVO extends EntityVO 
+import wsilva.com.br.mobileos.core.entity.EntityVO;
+
+public class GPSCoordenadasVO extends EntityVO
 {
 
 	private static final long serialVersionUID = 1L;
-	
-	private Date data;
-	private String hora;
-	private Double latitude;
-	private Double longitude;
-	private int idEquipe;
-	private int idEquipeExecucao;
-	private String descricaoEquipeExecucao;
-	private int indicadorEnvio;
+	public Date data;
+	public String hora;
+	public Double latitude;
+	public Double longitude;
+	public int idEquipe;
+	public int idEquipeExecucao;
+	public String descricaoEquipeExecucao;
+	public int indicadorEnvio;
 	
 	public GPSCoordenadasVO() {
 	}
 	
 	public GPSCoordenadasVO(SoapObject object) {
 		serialize(object);
-	}
-	
-	public Date getData() {
-		return data;
-	}
-	public void setData(Date data) {
-		this.data = data;
-	}
-	public String getHora() {
-		return hora;
-	}
-	public void setHora(String hora) {
-		this.hora = hora;
-	}
-	public Double getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(Double latitude) {
-		this.latitude = latitude;
-	}
-	public Double getLongitude() {
-		return longitude;
-	}
-	public void setLongitude(Double longitude) {
-		this.longitude = longitude;
-	}
-	public int getIdEquipe() {
-		return idEquipe;
-	}
-	public void setIdEquipe(int idEquipe) {
-		this.idEquipe = idEquipe;
-	}
-	public int getIdEquipeExecucao() {
-		return idEquipeExecucao;
-	}
-	public void setIdEquipeExecucao(int idEquipeExecucao) {
-		this.idEquipeExecucao = idEquipeExecucao;
-	}
-	public String getDescricaoEquipeExecucao() {
-		return descricaoEquipeExecucao;
-	}
-	public void setDescricaoEquipeExecucao(String descricaoEquipeExecucao) {
-		this.descricaoEquipeExecucao = descricaoEquipeExecucao;
-	}
-	public int getIndicadorEnvio() {
-		return indicadorEnvio;
-	}
-	public void setIndicadorEnvio(int indicadorEnvio) {
-		this.indicadorEnvio = indicadorEnvio;
 	}
 
 	private void serialize(SoapObject object)
@@ -85,6 +37,4 @@ public class GPSCoordenadasVO extends EntityVO
 			//this.idEquipe=Integer.parseInt(object.getProperty("").toString());
 		}
 	}
-	
-	
 }

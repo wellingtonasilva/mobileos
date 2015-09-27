@@ -107,7 +107,7 @@ public class ConfiguracoesDAO extends BasicDAO<ConfiguracoesVO>
 	public boolean atualizar(ConfiguracoesVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -220,7 +220,7 @@ public class ConfiguracoesDAO extends BasicDAO<ConfiguracoesVO>
 		vo.dispositivoPastaDownload=cursor.getString(cursor.getColumnIndex(COL_DISPOSITIVO_PASTA_DOWNLOAD));
 		vo.dispositivoPastaUpload=cursor.getString(cursor.getColumnIndex(COL_DISPOSITIVO_PASTA_UPLOAD));
 		vo.dispositivoPastaImage=cursor.getString(cursor.getColumnIndex(COL_DISPOSITIVO_PASTA_IMAGE));
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
 		vo.enviarArquivosAposExportacao=cursor.getInt(cursor.getColumnIndex(COL_ENVIAR_APOS_EXPORTACAO));
 		vo.enviarFotosViaFTP=cursor.getInt(cursor.getColumnIndex(COL_ENVIAR_FOTOS_VIA_FTP));
 		vo.ftpIP=cursor.getString(cursor.getColumnIndex(COL_FTPIP));
@@ -249,54 +249,5 @@ public class ConfiguracoesDAO extends BasicDAO<ConfiguracoesVO>
 		vo.logomarca=cursor.getInt(cursor.getColumnIndex(COL_LOGOMARCA));
 		
 		return vo;
-	}
-	
-	@Override
-	public String obterLinhaCSV(ConfiguracoesVO vo, String delimitador) 
-	{
-		String linha="";
-		if (vo!=null)
-		{
-			linha=	delimitador									
-					+ vo.coletorEmpresa					+ ";"
-					+ vo.coletorCodigo 					+ ";"
-					+ vo.coletorEquipe 					
-					+ "\n";
-		}
-		return linha;
-	}
-	
-	
-	public void saveToFile(String directoryname, String filename)
-	{
-		List<ConfiguracoesVO> configuracoes=listar();
-		int qtd=configuracoes.size();
-		String linha="";
-
-		if (qtd>0){
-			try 
-			{
-				File sdCard = Environment.getExternalStorageDirectory();
-				File directory= new File(sdCard.getAbsolutePath() + directoryname);
-				File file = new File(directory, filename);
-				FileOutputStream output= new FileOutputStream(file);
-				OutputStreamWriter osw=new OutputStreamWriter(output);
-				
-				for (int i=0; i<qtd; i++)
-				{
-					ConfiguracoesVO vo=configuracoes.get(i);
-					linha=obterLinhaCSV(vo, "");
-					osw.write(linha);
-				}
-				osw.flush();
-				osw.close();
-			} catch (FileNotFoundException e) 
-			{
-				e.printStackTrace();
-			} catch (IOException e) 
-			{
-				e.printStackTrace();
-			}
-		}
 	}
 }

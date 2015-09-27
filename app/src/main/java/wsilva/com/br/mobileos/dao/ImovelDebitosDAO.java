@@ -1,13 +1,10 @@
 package wsilva.com.br.mobileos.dao;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import org.json.JSONObject;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-
 import wsilva.com.br.mobileos.core.dao.BasicDAO;
 import wsilva.com.br.mobileos.core.util.Util;
 import wsilva.com.br.mobileos.entity.ImovelDebitosVO;
@@ -54,7 +51,7 @@ public class ImovelDebitosDAO extends BasicDAO<ImovelDebitosVO>
 	public boolean atualizar(ImovelDebitosVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -94,17 +91,17 @@ public class ImovelDebitosDAO extends BasicDAO<ImovelDebitosVO>
 	public ContentValues obterContentValues(ImovelDebitosVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_IDIMOVELDEBITOS, vo.getIdImovelDebitos());
-		values.put(COL_IDIMOVEL, vo.getIdImovel());
-		values.put(COL_REFERENCIA, vo.getReferencia());
-		if (vo.getDataVencimento()!=null) {
-			values.put(COL_DATAVENCIMENTO, Util.dateToString("yyyy-MM-dd", vo.getDataVencimento()));
+		values.put(COL_IDIMOVELDEBITOS, vo.idImovelDebitos);
+		values.put(COL_IDIMOVEL, vo.idImovel);
+		values.put(COL_REFERENCIA, vo.referencia);
+		if (vo.dataVencimento!=null) {
+			values.put(COL_DATAVENCIMENTO, Util.dateToString("yyyy-MM-dd", vo.dataVencimento));
 		}
-		values.put(COL_DESCRICAOTIPODOCUMENTO, vo.getDescricaoTipoDocumento()); 
-		values.put(COL_VALORDOCUMENTO, vo.getValorDocumento());
-		values.put(COL_VALORACRESCIMENTO, vo.getValorAcrescimento());
-		values.put(COL_VALORTOTAL, vo.getValorTotal());
-		values.put(COL_NUMERODIASVENCIDO, vo.getNumeroDiasVencido());
+		values.put(COL_DESCRICAOTIPODOCUMENTO, vo.descricaoTipoDocumento);
+		values.put(COL_VALORDOCUMENTO, vo.valorDocumento);
+		values.put(COL_VALORACRESCIMENTO, vo.valorAcrescimento);
+		values.put(COL_VALORTOTAL, vo.valorTotal);
+		values.put(COL_NUMERODIASVENCIDO, vo.numeroDiasVencido);
 		
 		return values;
 	}
@@ -130,73 +127,19 @@ public class ImovelDebitosDAO extends BasicDAO<ImovelDebitosVO>
 		}
 		
 		ImovelDebitosVO vo = new ImovelDebitosVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdImovelDebitos(cursor.getInt(cursor.getColumnIndex(COL_IDIMOVELDEBITOS)));
-		vo.setIdImovel(cursor.getInt(cursor.getColumnIndex(COL_IDIMOVEL)));
-		vo.setReferencia(cursor.getInt(cursor.getColumnIndex(COL_REFERENCIA)));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idImovelDebitos = cursor.getInt(cursor.getColumnIndex(COL_IDIMOVELDEBITOS));
+		vo.idImovel = cursor.getInt(cursor.getColumnIndex(COL_IDIMOVEL));
+		vo.referencia = cursor.getInt(cursor.getColumnIndex(COL_REFERENCIA));
 		if (cursor.getString(cursor.getColumnIndex(COL_DATAVENCIMENTO))!=null) {
-			vo.setDataVencimento(Util.stringToDate("yyyy-MM-dd", cursor.getString(cursor.getColumnIndex(COL_DATAVENCIMENTO))));	
+			vo.dataVencimento = Util.stringToDate("yyyy-MM-dd", cursor.getString(cursor.getColumnIndex(COL_DATAVENCIMENTO)));
 		}
-		vo.setDescricaoTipoDocumento(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOTIPODOCUMENTO)));
-		vo.setValorDocumento(cursor.getDouble(cursor.getColumnIndex(COL_VALORDOCUMENTO)));
-		vo.setValorAcrescimento(cursor.getDouble(cursor.getColumnIndex(COL_VALORACRESCIMENTO)));
-		vo.setValorTotal(cursor.getDouble(cursor.getColumnIndex(COL_VALORTOTAL)));
-		vo.setValorAcrescimento(cursor.getDouble(cursor.getColumnIndex(COL_NUMERODIASVENCIDO)));
+		vo.descricaoTipoDocumento = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOTIPODOCUMENTO));
+		vo.valorDocumento = cursor.getDouble(cursor.getColumnIndex(COL_VALORDOCUMENTO));
+		vo.valorAcrescimento = cursor.getDouble(cursor.getColumnIndex(COL_VALORACRESCIMENTO));
+		vo.valorTotal = cursor.getDouble(cursor.getColumnIndex(COL_VALORTOTAL));
+		vo.valorAcrescimento = cursor.getDouble(cursor.getColumnIndex(COL_NUMERODIASVENCIDO));
 
 		return vo;
 	}
-
-	@Override
-	public ImovelDebitosVO obterObject(String line) 
-	{
-		return super.obterObject(line);
-	}
-
-	@Override
-	public ImovelDebitosVO obterObject(JSONObject line) 
-	{
-		return super.obterObject(line);
-	}
-	
-	public static void povoaTese(Context ctx)
-	{
-		ImovelDebitosDAO dao=new ImovelDebitosDAO(ctx);
-		ImovelDebitosVO vo=new ImovelDebitosVO();
-		
-		dao.removerTodos();
-		
-		//Inserir
-		vo.setDataVencimento(new Date());
-		vo.setDescricaoTipoDocumento("Fatura Mensal");
-		vo.setIdImovel(999);
-		vo.setNumeroDiasVencido(10);
-		vo.setReferencia(201201);
-		vo.setValorAcrescimento(0.0);
-		vo.setValorDocumento(10.00);
-		vo.setValorTotal(10.00);
-		dao.inserir(vo);
-		
-		vo.setDataVencimento(new Date());
-		vo.setDescricaoTipoDocumento("Fatura Mensal");
-		vo.setIdImovel(999);
-		vo.setNumeroDiasVencido(10);
-		vo.setReferencia(201202);
-		vo.setValorAcrescimento(0.0);
-		vo.setValorDocumento(20.00);
-		vo.setValorTotal(20.00);
-		dao.inserir(vo);
-		
-		vo.setDataVencimento(new Date());
-		vo.setDescricaoTipoDocumento("Fatura Mensal");
-		vo.setIdImovel(999);
-		vo.setNumeroDiasVencido(10);
-		vo.setReferencia(201203);
-		vo.setValorAcrescimento(0.0);
-		vo.setValorDocumento(30.00);
-		vo.setValorTotal(30.00);
-		dao.inserir(vo);
-	}
-		
-		
-
 }

@@ -2,17 +2,10 @@ package wsilva.com.br.mobileos.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-
 import wsilva.com.br.mobileos.core.dao.BasicDAO;
-import wsilva.com.br.mobileos.core.util.Util;
 import wsilva.com.br.mobileos.entity.LocalOcorrenciaVO;
 
 public class LocalOcorrenciaDAO extends BasicDAO<LocalOcorrenciaVO>
@@ -45,7 +38,7 @@ public class LocalOcorrenciaDAO extends BasicDAO<LocalOcorrenciaVO>
 	public boolean atualizar(LocalOcorrenciaVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -99,8 +92,8 @@ public class LocalOcorrenciaDAO extends BasicDAO<LocalOcorrenciaVO>
 	public ContentValues obterContentValues(LocalOcorrenciaVO vo) 
 	{
 		ContentValues values= new ContentValues();
-		values.put(COL_DESCRICAOLOCALOCORRENCIA, vo.getDescricaoLocalOcorrencia());
-		values.put(COL_IDLOCALOCORRENCIA, vo.getIdLocalOcorrencia());
+		values.put(COL_DESCRICAOLOCALOCORRENCIA, vo.descricaoLocalOcorrencia);
+		values.put(COL_IDLOCALOCORRENCIA, vo.idLocalOcorrencia);
 		
 		return values;
 	}
@@ -125,94 +118,10 @@ public class LocalOcorrenciaDAO extends BasicDAO<LocalOcorrenciaVO>
 		}
 		
 		LocalOcorrenciaVO vo = new LocalOcorrenciaVO();
-		vo.setDescricaoLocalOcorrencia(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOLOCALOCORRENCIA)));
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdLocalOcorrencia(cursor.getInt(cursor.getColumnIndex(COL_IDLOCALOCORRENCIA)));
+		vo.descricaoLocalOcorrencia = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOLOCALOCORRENCIA));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idLocalOcorrencia = cursor.getInt(cursor.getColumnIndex(COL_IDLOCALOCORRENCIA));
 		
 		return vo;
 	}
-
-	@Override
-	public LocalOcorrenciaVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		LocalOcorrenciaVO vo=new LocalOcorrenciaVO();
-		//C�digo
-		if (values[0].length() > 0) {
-			vo.setIdLocalOcorrencia(Integer.parseInt(values[0]));
-		}
-		//Descri��o
-		vo.setDescricaoLocalOcorrencia(values[1]);
-		
-		return vo;
-	}
-	
-	
-	
-	@Override
-	public LocalOcorrenciaVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		LocalOcorrenciaVO vo=new LocalOcorrenciaVO();
-		
-		try 
-		{
-			//C�digo
-			if (line.getString("idLocalOcorrencia").length() > 0) {
-				vo.setIdLocalOcorrencia(Integer.parseInt(line.getString("idLocalOcorrencia")));
-			}
-			//Descri��o
-			vo.setDescricaoLocalOcorrencia(line.getString("localOcorrencia"));
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-
-	public void povoaTabela()
-	{
-		List<String> lines=lerDadosFromFile("wa8.csv", Util.PATH_DOWNLOAD);
-		String line;
-		int iLinhas=lines.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			line=lines.get(i);
-			if (line.length() >0)
-			{
-				LocalOcorrenciaVO vo=obterObject(line);
-				if (vo!=null) inserir(vo);
-			}
-		}
-	}
-	
-	public void povoaTabelaFromJSON(String url)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/LocalOcorrenciaServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			LocalOcorrenciaVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
-	}
-
 }

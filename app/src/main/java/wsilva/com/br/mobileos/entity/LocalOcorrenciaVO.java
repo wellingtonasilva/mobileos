@@ -1,15 +1,14 @@
 package wsilva.com.br.mobileos.entity;
 
-import java.io.Serializable;
-
 import org.ksoap2.serialization.SoapObject;
+import wsilva.com.br.mobileos.core.entity.EntityVO;
 
-public class LocalOcorrenciaVO extends EntityVO implements Serializable 
+public class LocalOcorrenciaVO extends EntityVO
 {
 
 	private static final long serialVersionUID = 1L;
-	private int IdLocalOcorrencia;
-	private String DescricaoLocalOcorrencia;
+	public int idLocalOcorrencia;
+	public String descricaoLocalOcorrencia;
 	
 	public LocalOcorrenciaVO() {
 	}
@@ -17,28 +16,13 @@ public class LocalOcorrenciaVO extends EntityVO implements Serializable
 	public LocalOcorrenciaVO(SoapObject object) {
 		serialize(object);
 	}
-	
-	public int getIdLocalOcorrencia() {
-		return IdLocalOcorrencia;
-	}
-	public void setIdLocalOcorrencia(int idLocalOcorrencia) {
-		IdLocalOcorrencia = idLocalOcorrencia;
-	}
-	public String getDescricaoLocalOcorrencia() {
-		return DescricaoLocalOcorrencia;
-	}
-	public void setDescricaoLocalOcorrencia(String descricaoLocalOcorrencia) {
-		DescricaoLocalOcorrencia = descricaoLocalOcorrencia;
-	}
-	
+
 	private void serialize(SoapObject object)
 	{
 		if (object.getPropertyCount() != 0) 
 		{		
-			this.IdLocalOcorrencia=Integer.parseInt(object.getProperty("").toString());
-			this.DescricaoLocalOcorrencia=object.getProperty("").toString();
+			this.idLocalOcorrencia=Integer.parseInt(object.getProperty("").toString());
+			this.descricaoLocalOcorrencia=object.getProperty("").toString();
 		}
 	}
-	
-	
 }

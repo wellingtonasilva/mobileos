@@ -42,7 +42,7 @@ public class HidrometroProtecaoDAO extends BasicDAO<HidrometroProtecaoVO> {
 	public boolean atualizar(HidrometroProtecaoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -94,8 +94,8 @@ public class HidrometroProtecaoDAO extends BasicDAO<HidrometroProtecaoVO> {
 	public ContentValues obterContentValues(HidrometroProtecaoVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_IDPROTECAOHIDROMETRO, vo.getIdProtecaoHidrometro());
-		values.put(COL_DESCRICAOPROTECAOHIDROMETRO, vo.getDescricaoProtecaoHidrometro());
+		values.put(COL_IDPROTECAOHIDROMETRO, vo.idProtecaoHidrometro);
+		values.put(COL_DESCRICAOPROTECAOHIDROMETRO, vo.descricaoProtecaoHidrometro);
 		
 		return values;
 	}
@@ -121,75 +121,10 @@ public class HidrometroProtecaoDAO extends BasicDAO<HidrometroProtecaoVO> {
 		}
 		
 		HidrometroProtecaoVO vo = new HidrometroProtecaoVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdProtecaoHidrometro(cursor.getInt(cursor.getColumnIndex(COL_IDPROTECAOHIDROMETRO)));
-		vo.setDescricaoProtecaoHidrometro(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOPROTECAOHIDROMETRO)));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idProtecaoHidrometro = cursor.getInt(cursor.getColumnIndex(COL_IDPROTECAOHIDROMETRO));
+		vo.descricaoProtecaoHidrometro = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOPROTECAOHIDROMETRO));
 		
 		return vo;
 	}
-
-	@Override
-	public HidrometroProtecaoVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		HidrometroProtecaoVO vo=new HidrometroProtecaoVO();
-		//C�digo
-		if (values[0].length() > 0) {
-			vo.setIdProtecaoHidrometro(Integer.parseInt(values[0]));
-		}
-		//Descri��o
-		vo.setDescricaoProtecaoHidrometro(values[1]);
-		
-		return vo;
-	}
-
-	@Override
-	public HidrometroProtecaoVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		HidrometroProtecaoVO vo=new HidrometroProtecaoVO();
-		
-		try 
-		{
-			//C�digo
-			if (line.getString("idProtecaoHidrometro").length() > 0) {
-				vo.setIdProtecaoHidrometro(Integer.parseInt(line.getString("idProtecaoHidrometro")));
-			}
-			//Descri��o
-			vo.setDescricaoProtecaoHidrometro(line.getString("descricaoProtecaoHidrometro"));
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-	
-	public void povoaTabelaFromJSON(String url)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/HidrometroProtecaoServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			HidrometroProtecaoVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
-	}
-
 }

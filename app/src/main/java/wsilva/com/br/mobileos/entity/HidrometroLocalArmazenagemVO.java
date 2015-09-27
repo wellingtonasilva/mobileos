@@ -2,32 +2,20 @@ package wsilva.com.br.mobileos.entity;
 
 import org.ksoap2.serialization.SoapObject;
 
-public class HidrometroLocalArmazenagemVO extends EntityVO 
+import wsilva.com.br.mobileos.core.entity.EntityVO;
+
+public class HidrometroLocalArmazenagemVO extends EntityVO
 {
 
 	private static final long serialVersionUID = 1L;
-	private int idLocalArmazenagemHidrometro;
-	private String descricaoLocalArmazenagemHidrometro;
+	public int idLocalArmazenagemHidrometro;
+	public String descricaoLocalArmazenagemHidrometro;
 	
 	public HidrometroLocalArmazenagemVO() {
 	}
 	
 	public HidrometroLocalArmazenagemVO(SoapObject object) {
 		serialize(object);
-	}
-	
-	public int getIdLocalArmazenagemHidrometro() {
-		return idLocalArmazenagemHidrometro;
-	}
-	public void setIdLocalArmazenagemHidrometro(int idLocalArmazenagemHidrometro) {
-		this.idLocalArmazenagemHidrometro = idLocalArmazenagemHidrometro;
-	}
-	public String getDescricaoLocalArmazenagemHidrometro() {
-		return descricaoLocalArmazenagemHidrometro;
-	}
-	public void setDescricaoLocalArmazenagemHidrometro(
-			String descricaoLocalArmazenagemHidrometro) {
-		this.descricaoLocalArmazenagemHidrometro = descricaoLocalArmazenagemHidrometro;
 	}
 	
 	private void serialize(SoapObject object)
@@ -38,8 +26,6 @@ public class HidrometroLocalArmazenagemVO extends EntityVO
 			this.descricaoLocalArmazenagemHidrometro=object.getProperty("descricaoLocalArmazenagemHidrometro").toString();
 		}
 	}
-	
-	
 }
 
 

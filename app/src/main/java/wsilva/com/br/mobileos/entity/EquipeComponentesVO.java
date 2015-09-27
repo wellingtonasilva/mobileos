@@ -1,18 +1,16 @@
 package wsilva.com.br.mobileos.entity;
 
-import java.io.Serializable;
-
 import org.ksoap2.serialization.SoapObject;
+import wsilva.com.br.mobileos.core.entity.EntityVO;
 
-public class EquipeComponentesVO extends EntityVO implements Serializable 
+public class EquipeComponentesVO extends EntityVO
 {
-
 	private static final long serialVersionUID = 1L;
-	private int IdEquipe;
-	private int IdEquipeComponente;
-	private int IndicadorResponsavel;
-	private String NomeComponente;
-	private String IdFuncionario;
+	public int idEquipe;
+	public int idEquipeComponente;
+	public int indicadorResponsavel;
+	public String nomeComponente;
+	public String idFuncionario;
 	
 	public EquipeComponentesVO() {
 	}
@@ -20,48 +18,16 @@ public class EquipeComponentesVO extends EntityVO implements Serializable
 	public EquipeComponentesVO(SoapObject object) {
 		serialize(object);
 	}
-	
-	public int getIdEquipe() {
-		return IdEquipe;
-	}
-	public void setIdEquipe(int idEquipe) {
-		IdEquipe = idEquipe;
-	}
-	public int getIdEquipeComponente() {
-		return IdEquipeComponente;
-	}
-	public void setIdEquipeComponente(int idEquipeComponente) {
-		IdEquipeComponente = idEquipeComponente;
-	}
-	public int getIndicadorResponsavel() {
-		return IndicadorResponsavel;
-	}
-	public void setIndicadorResponsavel(int indicadorResponsavel) {
-		IndicadorResponsavel = indicadorResponsavel;
-	}
-	public String getNomeComponente() {
-		return NomeComponente;
-	}
-	public void setNomeComponente(String nomeComponente) {
-		NomeComponente = nomeComponente;
-	}
-	public String getIdFuncionario() {
-		return IdFuncionario;
-	}
-	public void setIdFuncionario(String idFuncionario) {
-		IdFuncionario = idFuncionario;
-	}
-	
+
 	private void serialize(SoapObject object)
 	{
 		if (object.getPropertyCount() != 0) 
 		{
-			this.IdEquipe=0;
-			this.IdEquipeComponente=Integer.parseInt(object.getProperty("idEquipeComponente").toString());
-			this.IndicadorResponsavel=Integer.parseInt(object.getProperty("indicadorResponsavel").toString());
-			this.NomeComponente="";
-			this.IdFuncionario=object.getProperty("idFuncionario").toString();
+			this.idEquipe=0;
+			this.idEquipeComponente=Integer.parseInt(object.getProperty("idEquipeComponente").toString());
+			this.indicadorResponsavel=Integer.parseInt(object.getProperty("indicadorResponsavel").toString());
+			this.nomeComponente="";
+			this.idFuncionario=object.getProperty("idFuncionario").toString();
 		}
 	}
-	
 }

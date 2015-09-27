@@ -44,7 +44,7 @@ public class RedeMaterialDAO extends BasicDAO<RedeMaterialVO>
 	public boolean atualizar(RedeMaterialVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -97,8 +97,8 @@ public class RedeMaterialDAO extends BasicDAO<RedeMaterialVO>
 	public ContentValues obterContentValues(RedeMaterialVO vo) 
 	{
 		ContentValues values= new ContentValues();
-		values.put(COL_DESCRICAOREDEMATERIAL, vo.getDescricaoRedeMaterial());
-		values.put(COL_IDREDEMATERIAL, vo.getIdRedeMaterial());
+		values.put(COL_DESCRICAOREDEMATERIAL, vo.descricaoRedeMaterial);
+		values.put(COL_IDREDEMATERIAL, vo.idRedeMaterial);
 		
 		return values;
 	}
@@ -123,96 +123,10 @@ public class RedeMaterialDAO extends BasicDAO<RedeMaterialVO>
 		}
 		
 		RedeMaterialVO vo = new RedeMaterialVO();
-		vo.setDescricaoRedeMaterial(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOREDEMATERIAL)));
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdRedeMaterial(cursor.getInt(cursor.getColumnIndex(COL_IDREDEMATERIAL)));
+		vo.descricaoRedeMaterial = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOREDEMATERIAL));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idRedeMaterial = cursor.getInt(cursor.getColumnIndex(COL_IDREDEMATERIAL));
 		
 		return vo;
 	}
-
-	@Override
-	public RedeMaterialVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		RedeMaterialVO vo=new RedeMaterialVO();
-		
-		//C�digo
-		if (values[0].length() > 0)
-		{
-			vo.setIdRedeMaterial(Integer.parseInt(values[0]));
-		}
-		//Descri��o
-		vo.setDescricaoRedeMaterial(values[1]);
-		
-		return vo;
-	}
-	
-	
-	
-	@Override
-	public RedeMaterialVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		RedeMaterialVO vo=new RedeMaterialVO();
-		
-		try 
-		{
-			//C�digo Material
-			if (line.getString("idRedeMaterial").length() > 0) {
-				vo.setIdRedeMaterial(Integer.parseInt(line.getString("idRedeMaterial")));
-			}
-			//Descri��o
-			vo.setDescricaoRedeMaterial(line.getString("redeMaterial"));
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-
-	public void povoaTabela()
-	{
-		List<String> lines=lerDadosFromFile("wa4.csv", Util.PATH_DOWNLOAD);
-		String line;
-		int iLinhas=lines.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			line=lines.get(i);
-			if (line.length() >0)
-			{
-				RedeMaterialVO vo=obterObject(line);
-				if (vo!=null) inserir(vo);
-			}
-		}
-	}
-	
-	public void povoaTabelaFromJSON(String url)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/RedeMaterialServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			RedeMaterialVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
-	}
-	
 }

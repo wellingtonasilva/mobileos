@@ -76,7 +76,7 @@ public class ColetorWebDAO extends BasicDAO<ColetorWebVO>
 	public boolean atualizar(ColetorWebVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -105,25 +105,25 @@ public class ColetorWebDAO extends BasicDAO<ColetorWebVO>
 	public ContentValues obterContentValues(ColetorWebVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_IDCOLETOR, vo.getIdColetor());
-		values.put(COL_ICAGENTEEXTERNO, vo.getIcAgenteExterno());
-		values.put(COL_ICCAUSAVAZAMENTO, vo.getIcCausaVazamento());
-		values.put(COL_ICDIAMETROREDE, vo.getIcDiametroRede());
-		values.put(COL_ICLOCALOCORRENCIA, vo.getIcLocalOcorrencia());
-		values.put(COL_ICMOTIVOENCERRAMENTO, vo.getIcMotivoEncerramento());
-		values.put(COL_ICMATERIAL, vo.getIcMaterial());
-		values.put(COL_ICMATERIALREDE, vo.getIcMaterialRede());
-		values.put(COL_ICSERVICOTIPO, vo.getIcServicoTipo());
-		values.put(COL_ICTIPOPAVIMENTO, vo.getIcTipoPavimento());
-		values.put(COL_ICTIPOREDE, vo.getIcTipoRede());
-		values.put(COL_ICUSUARIOS, vo.getIcUsuarios());
-		values.put(COL_ICORDEMSERVICO, vo.getIcOrdemServico());
-		values.put(COL_ICRESERVA01, vo.getIcReserva01());
-		values.put(COL_ICRESERVA02, vo.getIcReserva02());
-		values.put(COL_ICRESERVA03, vo.getIcReserva02());
-		values.put(COL_ICRESERVA04, vo.getIcReserva02());
-		values.put(COL_ICRESERVA05, vo.getIcReserva02());
-		
+		values.put(COL_IDCOLETOR, vo.idColetor);
+		values.put(COL_ICAGENTEEXTERNO, vo.icAgenteExterno);
+		values.put(COL_ICCAUSAVAZAMENTO, vo.icCausaVazamento);
+		values.put(COL_ICDIAMETROREDE, vo.icDiametroRede);
+		values.put(COL_ICLOCALOCORRENCIA, vo.icLocalOcorrencia);
+		values.put(COL_ICMOTIVOENCERRAMENTO, vo.icMotivoEncerramento);
+		values.put(COL_ICMATERIAL, vo.icMaterial);
+		values.put(COL_ICMATERIALREDE, vo.icMaterialRede);
+		values.put(COL_ICSERVICOTIPO, vo.icServicoTipo);
+		values.put(COL_ICTIPOPAVIMENTO, vo.icTipoPavimento);
+		values.put(COL_ICTIPOREDE, vo.icTipoRede);
+		values.put(COL_ICUSUARIOS, vo.icUsuarios);
+		values.put(COL_ICORDEMSERVICO, vo.icOrdemServico);
+		values.put(COL_ICRESERVA01, vo.icReserva01);
+		values.put(COL_ICRESERVA02, vo.icReserva02);
+		values.put(COL_ICRESERVA03, vo.icReserva03);
+		values.put(COL_ICRESERVA04, vo.icReserva04);
+		values.put(COL_ICRESERVA05, vo.icReserva05);
+
 		return values;
 	}
 
@@ -147,25 +147,25 @@ public class ColetorWebDAO extends BasicDAO<ColetorWebVO>
 		}
 		
 		ColetorWebVO vo = new ColetorWebVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIcAgenteExterno(cursor.getInt(cursor.getColumnIndex(COL_ICAGENTEEXTERNO)));
-		vo.setIcCausaVazamento(cursor.getInt(cursor.getColumnIndex(COL_ICCAUSAVAZAMENTO)));
-		vo.setIcDiametroRede(cursor.getInt(cursor.getColumnIndex(COL_ICDIAMETROREDE)));
-		vo.setIcLocalOcorrencia(cursor.getInt(cursor.getColumnIndex(COL_ICLOCALOCORRENCIA)));
-		vo.setIcMaterial(cursor.getInt(cursor.getColumnIndex(COL_ICMATERIAL)));
-		vo.setIcMaterialRede(cursor.getInt(cursor.getColumnIndex(COL_ICMATERIALREDE)));
-		vo.setIcMotivoEncerramento(cursor.getInt(cursor.getColumnIndex(COL_ICMOTIVOENCERRAMENTO)));
-		vo.setIcOrdemServico(cursor.getInt(cursor.getColumnIndex(COL_ICORDEMSERVICO)));
-		vo.setIcReserva01(cursor.getInt(cursor.getColumnIndex(COL_ICRESERVA01)));
-		vo.setIcReserva02(cursor.getInt(cursor.getColumnIndex(COL_ICRESERVA02)));
-		vo.setIcReserva03(cursor.getInt(cursor.getColumnIndex(COL_ICRESERVA03)));
-		vo.setIcReserva04(cursor.getInt(cursor.getColumnIndex(COL_ICRESERVA04)));
-		vo.setIcReserva05(cursor.getInt(cursor.getColumnIndex(COL_ICRESERVA05)));
-		vo.setIcServicoTipo(cursor.getInt(cursor.getColumnIndex(COL_ICSERVICOTIPO)));
-		vo.setIcTipoPavimento(cursor.getInt(cursor.getColumnIndex(COL_ICTIPOPAVIMENTO)));
-		vo.setIcTipoRede(cursor.getInt(cursor.getColumnIndex(COL_ICTIPOREDE)));
-		vo.setIcUsuarios(cursor.getInt(cursor.getColumnIndex(COL_ICUSUARIOS)));
-		vo.setIdColetor(cursor.getInt(cursor.getColumnIndex(COL_IDCOLETOR)));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.icAgenteExterno = cursor.getInt(cursor.getColumnIndex(COL_ICAGENTEEXTERNO));
+		vo.icCausaVazamento = cursor.getInt(cursor.getColumnIndex(COL_ICCAUSAVAZAMENTO));
+		vo.icDiametroRede = cursor.getInt(cursor.getColumnIndex(COL_ICDIAMETROREDE));
+		vo.icLocalOcorrencia = cursor.getInt(cursor.getColumnIndex(COL_ICLOCALOCORRENCIA));
+		vo.icMaterial = cursor.getInt(cursor.getColumnIndex(COL_ICMATERIAL));
+		vo.icMaterialRede = cursor.getInt(cursor.getColumnIndex(COL_ICMATERIALREDE));
+		vo.icMotivoEncerramento = cursor.getInt(cursor.getColumnIndex(COL_ICMOTIVOENCERRAMENTO));
+		vo.icOrdemServico = cursor.getInt(cursor.getColumnIndex(COL_ICORDEMSERVICO));
+		vo.icReserva01 = cursor.getInt(cursor.getColumnIndex(COL_ICRESERVA01));
+		vo.icReserva02 = cursor.getInt(cursor.getColumnIndex(COL_ICRESERVA02));
+		vo.icReserva03 = cursor.getInt(cursor.getColumnIndex(COL_ICRESERVA03));
+		vo.icReserva04 = cursor.getInt(cursor.getColumnIndex(COL_ICRESERVA04));
+		vo.icReserva05 = cursor.getInt(cursor.getColumnIndex(COL_ICRESERVA05));
+		vo.icServicoTipo = cursor.getInt(cursor.getColumnIndex(COL_ICSERVICOTIPO));
+		vo.icTipoPavimento = cursor.getInt(cursor.getColumnIndex(COL_ICTIPOPAVIMENTO));
+		vo.icTipoRede = cursor.getInt(cursor.getColumnIndex(COL_ICTIPOREDE));
+		vo.icUsuarios = cursor.getInt(cursor.getColumnIndex(COL_ICUSUARIOS));
+		vo.idColetor = cursor.getInt(cursor.getColumnIndex(COL_IDCOLETOR));
 		
 		return vo;
 	}
@@ -181,121 +181,4 @@ public class ColetorWebDAO extends BasicDAO<ColetorWebVO>
 			return db.delete(TABLE_NAME, null, null) > 0;	
 		}
 	}
-
-
-	@Override
-	public ColetorWebVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		ColetorWebVO vo=new ColetorWebVO();
-		
-		try 
-		{
-			//C�digo
-			if (line.getString("idColetor").length() > 0) {
-				vo.setIdColetor(Integer.parseInt(line.getString("idColetor")));
-			}
-			//Servi�o Tipo
-			if (line.getString("icServicoTipo").length() > 0) {
-				vo.setIcServicoTipo(Integer.parseInt(line.getString("icServicoTipo")));
-			}
-			//Ordem de Servi�o
-			if (line.getString("icOrdemServico").length() > 0) {
-				vo.setIcOrdemServico(Integer.parseInt(line.getString("icOrdemServico")));
-			}
-			//Local Ocorr�ncia
-			if (line.getString("icLocalOcorrencia").length() > 0) {
-				vo.setIcLocalOcorrencia(Integer.parseInt(line.getString("icLocalOcorrencia")));
-			}
-			//Usu�rios
-			if (line.getString("icUsuarios").length() > 0) {
-				vo.setIcUsuarios(Integer.parseInt(line.getString("icUsuarios")));
-			}
-			//Agente Externo
-			if (line.getString("icAgenteExterno").length() > 0) {
-				vo.setIcAgenteExterno(Integer.parseInt(line.getString("icAgenteExterno")));
-			}
-			//Material Rede
-			if (line.getString("icMaterialRede").length() > 0) {
-				vo.setIcMaterialRede(Integer.parseInt(line.getString("icMaterialRede")));
-			}
-			//Reserva 1
-			if (line.getString("icReserva01").length() > 0) {
-				vo.setIcReserva01(Integer.parseInt(line.getString("icReserva01")));
-			}
-			//Reserva 2
-			if (line.getString("icReserva02").length() > 0) {
-				vo.setIcReserva02(Integer.parseInt(line.getString("icReserva02")));
-			}
-			//Reserva 3
-			if (line.getString("icReserva03").length() > 0) {
-				vo.setIcReserva03(Integer.parseInt(line.getString("icReserva03")));
-			}
-			//Reserva 4
-			if (line.getString("icReserva04").length() > 0) {
-				vo.setIcReserva04(Integer.parseInt(line.getString("icReserva04")));
-			}
-			//Reserva 5
-			if (line.getString("icReserva05").length() > 0) {
-				vo.setIcReserva05(Integer.parseInt(line.getString("icReserva05")));
-			}
-			//Causa do Vazamento
-			if (line.getString("icCausaVazamento").length() > 0) {
-				vo.setIcCausaVazamento(Integer.parseInt(line.getString("icCausaVazamento")));
-			}
-			//Di�metro da Rede
-			if (line.getString("icDiametroRede").length() > 0) {
-				vo.setIcDiametroRede(Integer.parseInt(line.getString("icDiametroRede")));
-			}
-			//Tipo de Rede
-			if (line.getString("icTipoRede").length() > 0) {
-				vo.setIcTipoRede(Integer.parseInt(line.getString("icTipoRede")));
-			}
-			//Material
-			if (line.getString("icMaterial").length() > 0) {
-				vo.setIcMaterial(Integer.parseInt(line.getString("icMaterial")));
-			}
-			//Tipo pavimento
-			if (line.getString("icTipoPavimento").length() > 0) {
-				vo.setIcTipoPavimento(Integer.parseInt(line.getString("icTipoPavimento")));
-			}
-			//Tipo pavimento
-			if (line.getString("icMotivoEncerramento").length() > 0) {
-				vo.setIcMotivoEncerramento(Integer.parseInt(line.getString("icMotivoEncerramento")));
-			}
-			
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-	
-	public void povoaTabelaFromJSON(String url, String idMobile)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		postParameters.add(new BasicNameValuePair("idMobile", idMobile));
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/ColetorWebServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			ColetorWebVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
-	}
-	
-	
-
 }

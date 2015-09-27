@@ -40,7 +40,7 @@ public class ArquivoImportadosDAO extends BasicDAO<ArquivoImportadosVO>
 	public boolean atualizar(ArquivoImportadosVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -74,9 +74,9 @@ public class ArquivoImportadosDAO extends BasicDAO<ArquivoImportadosVO>
 	public ContentValues obterContentValues(ArquivoImportadosVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_NOMEARQUIVO, vo.getNomeArquivo());
-		if (vo.getDataImportacao()!=null) {
-			values.put(COL_DATAIMPORTACAO, vo.getDataImportacao().getTime());	
+		values.put(COL_NOMEARQUIVO, vo.nomeArquivo);
+		if (vo.dataImportacao!=null) {
+			values.put(COL_DATAIMPORTACAO, vo.dataImportacao.getTime());
 		}
 		return values;
 	}
@@ -101,9 +101,9 @@ public class ArquivoImportadosDAO extends BasicDAO<ArquivoImportadosVO>
 		}
 		
 		ArquivoImportadosVO vo = new ArquivoImportadosVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setNomeArquivo(cursor.getString(cursor.getColumnIndex(COL_NOMEARQUIVO)));
-		vo.setDataImportacao(new Date(cursor.getLong(cursor.getColumnIndex(COL_DATAIMPORTACAO))));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.nomeArquivo = cursor.getString(cursor.getColumnIndex(COL_NOMEARQUIVO));
+		vo.dataImportacao = new Date(cursor.getLong(cursor.getColumnIndex(COL_DATAIMPORTACAO)));
 		
 		return vo;
 	}
@@ -118,5 +118,4 @@ public class ArquivoImportadosDAO extends BasicDAO<ArquivoImportadosVO>
 			return false;
 		}
 	}
-	
 }

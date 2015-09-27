@@ -1,26 +1,10 @@
 package wsilva.com.br.mobileos.dao;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.os.Environment;
-import android.util.Log;
-
 import wsilva.com.br.mobileos.core.dao.BasicDAO;
 import wsilva.com.br.mobileos.core.util.Util;
 import wsilva.com.br.mobileos.entity.GPSCoordenadasVO;
@@ -64,13 +48,13 @@ public class GPSCoordenadasDAO extends BasicDAO<GPSCoordenadasVO>
 	public ContentValues obterContentValues(GPSCoordenadasVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_DATA, Util.dateToString("yyyy-MM-dd", vo.getData()));
-		values.put(COL_HORA, vo.getHora());
-		values.put(COL_LATITUDE, vo.getLatitude());
-		values.put(COL_LONGITUDE, vo.getLongitude());
-		values.put(COL_IDEQUIPE, vo.getIdEquipe());
-		values.put(COL_IDEQUIPEEXECUCAO, vo.getIdEquipeExecucao());
-		values.put(COL_DESCRICAOEQUIPEEXECUCAO, vo.getDescricaoEquipeExecucao());
+		values.put(COL_DATA, Util.dateToString("yyyy-MM-dd", vo.data));
+		values.put(COL_HORA, vo.hora);
+		values.put(COL_LATITUDE, vo.latitude);
+		values.put(COL_LONGITUDE, vo.longitude);
+		values.put(COL_IDEQUIPE, vo.idEquipe);
+		values.put(COL_IDEQUIPEEXECUCAO, vo.idEquipeExecucao);
+		values.put(COL_DESCRICAOEQUIPEEXECUCAO, vo.descricaoEquipeExecucao);
 		
 		return values;
 	}
@@ -113,14 +97,14 @@ public class GPSCoordenadasDAO extends BasicDAO<GPSCoordenadasVO>
 		}
 		
 		GPSCoordenadasVO vo = new GPSCoordenadasVO();
-		vo.setData(Util.stringToDate("yyyy-MM-dd", cursor.getString(cursor.getColumnIndex(COL_DATA))));
-		vo.setHora(cursor.getString(cursor.getColumnIndex(COL_HORA)));
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setLatitude(cursor.getDouble(cursor.getColumnIndex(COL_LATITUDE)));
-		vo.setLongitude(cursor.getDouble(cursor.getColumnIndex(COL_LONGITUDE)));
-		vo.setIdEquipe(cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPE)));
-		vo.setIdEquipeExecucao(cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPEEXECUCAO)));
-		vo.setDescricaoEquipeExecucao(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOEQUIPEEXECUCAO)));
+		vo.data = Util.stringToDate("yyyy-MM-dd", cursor.getString(cursor.getColumnIndex(COL_DATA)));
+		vo.hora = cursor.getString(cursor.getColumnIndex(COL_HORA));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.latitude = cursor.getDouble(cursor.getColumnIndex(COL_LATITUDE));
+		vo.latitude = cursor.getDouble(cursor.getColumnIndex(COL_LONGITUDE));
+		vo.idEquipe = cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPE));
+		vo.idEquipeExecucao = cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPEEXECUCAO));
+		vo.descricaoEquipeExecucao= cursor.getString(cursor.getColumnIndex(COL_DESCRICAOEQUIPEEXECUCAO));
 		
 		return vo;
 	}
@@ -149,25 +133,6 @@ public class GPSCoordenadasDAO extends BasicDAO<GPSCoordenadasVO>
 			return db.delete(TABLE_NAME, null, null) > 0;	
 		}
 	}
-	
-	@Override
-	public String obterLinhaCSV(GPSCoordenadasVO vo, String delimitador) 
-	{
-		String linha="";
-		if (vo!=null) 
-		{
-			linha=  delimitador												
-					+ Util.dateToString("dd/MM/yyyy", vo.getData()) + ";"
-					+ vo.getHora() 									+ ";"
-					+ Double.toString(vo.getLatitude()) 			+ ";"
-					+ Double.toString(vo.getLongitude())			+ ";"
-					+ Integer.toString(vo.getIdEquipe())			+ ";"
-					+ Integer.toString(vo.getIdEquipeExecucao())   	+ ";"
-					+ vo.getDescricaoEquipeExecucao()
-					+ "\n";
-		}
-		return linha;
-	}
 
 	public long obterUltimoRegistro()
 	{
@@ -183,50 +148,5 @@ public class GPSCoordenadasDAO extends BasicDAO<GPSCoordenadasVO>
 	public GPSCoordenadasVO obterUltimaCoordenadas(long id)
 	{
 		return obterPorId(id);
-	}
-
-	public boolean saveToFile(String directoryname, String filename)
-	{
-		boolean bolReturn=false;
-		List<GPSCoordenadasVO> coordenadas=listar();
-		int qtd=coordenadas.size();
-		String linha="";
-
-		if (qtd>0) {
-			try 
-			{
-				File sdCard = Environment.getExternalStorageDirectory();
-				File directory= new File(sdCard.getAbsolutePath() + directoryname);
-				File file = new File(directory, filename);
-				FileOutputStream output= new FileOutputStream(file);
-				OutputStreamWriter osw=new OutputStreamWriter(output);
-				
-				for (int i=0; i<qtd; i++)
-				{
-					GPSCoordenadasVO vo=coordenadas.get(i);
-					linha=Util.dateToString("dd/MM/yyyy", vo.getData()) 	+ ";"
-							+ vo.getHora() 									+ ";"
-							+ Double.toString(vo.getLatitude()) 			+ ";"
-							+ Double.toString(vo.getLongitude())			+ ";"
-							+ Integer.toString(vo.getIdEquipe())			+ ";"
-							+ Integer.toString(vo.getIdEquipeExecucao())	+ ";"
-							+ vo.getDescricaoEquipeExecucao()
-							+ "\n";
-				
-					osw.write(linha);
-				}
-				
-				osw.flush();
-				osw.close();
-				bolReturn=true;
-			} catch (FileNotFoundException e) 
-			{
-				e.printStackTrace();
-			} catch (IOException e) 
-			{
-				e.printStackTrace();
-			}
-		}
-		return bolReturn;
 	}
 }

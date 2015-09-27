@@ -80,7 +80,7 @@ public class ImovelDAO extends BasicDAO<ImovelVO>
 	public boolean atualizar(ImovelVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -132,30 +132,30 @@ public class ImovelDAO extends BasicDAO<ImovelVO>
 	public ContentValues obterContentValues(ImovelVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_IDIMOVEL, vo.getIdImovel());
-		values.put(COL_IDSITUACAOLIGACAOAGUA, vo.getIdSituacaoLigacaoAgua());
-		values.put(COL_DESCRICAOSITUACAOLIGACAOAGUA, vo.getDescricaoSituacaoLigacaoAgua());
-		values.put(COL_IDSITUACAOLIGACAOESGOTO, vo.getIdSituacaoLigacaoEsgoto());
-		values.put(COL_DESCRICAOSITUACAOLIGACAOESGOTO, vo.getDescricaoSituacaoLigacaoEsgoto());
-		values.put(COL_NUMEROINSCRICAO, vo.getNumeroInscricao());
-		values.put(COL_NOMECLIENTERESPONSAVEL, vo.getNomeClienteResponsavel());
-		values.put(COL_NOMECLIENTEUSUARIO, vo.getNomeClienteUsuario());
-		values.put(COL_NOMECLIENTEPROPRIETARIO, vo.getNomeClienteProprietario());
-		values.put(COL_NUMEROCORTES, vo.getNumeroCortes());
-		values.put(COL_NUMEROSUPRESSOES, vo.getNumeroSupressoes());
-		values.put(COL_NUMEROREPARCELAMENTOS, vo.getNumeroReparcelamentos());
-		values.put(COL_DIAVENCIMENTO, vo.getDiaVencimento());
-		values.put(COL_INDICADORSITUACAOESPECIALCOBRANCA, vo.getIndicadorSituacaoEspecialCobranca());
-		values.put(COL_INDICADORSITUACAOESPECIALFATURAMENTO, vo.getIndicadorSituacaoEspecialFaturamento());
-		values.put(COL_IDGRUPOFATURAMENTO, vo.getIdGrupoFaturamento());
-		values.put(COL_NUMEROROTA, vo.getNumeroRota());
-		values.put(COL_SEQUENCIAROTA, vo.getSequenciaRota());
-		if (vo.getDataLigacao()!=null) {
-			values.put(COL_DATALIGACAO, Util.dateToString("yyyy-MM-dd", vo.getDataLigacao()));
+		values.put(COL_IDIMOVEL, vo.idImovel);
+		values.put(COL_IDSITUACAOLIGACAOAGUA, vo.idSituacaoLigacaoAgua);
+		values.put(COL_DESCRICAOSITUACAOLIGACAOAGUA, vo.descricaoSituacaoLigacaoAgua);
+		values.put(COL_IDSITUACAOLIGACAOESGOTO, vo.idSituacaoLigacaoEsgoto);
+		values.put(COL_DESCRICAOSITUACAOLIGACAOESGOTO, vo.descricaoSituacaoLigacaoEsgoto);
+		values.put(COL_NUMEROINSCRICAO, vo.numeroInscricao);
+		values.put(COL_NOMECLIENTERESPONSAVEL, vo.nomeClienteResponsavel);
+		values.put(COL_NOMECLIENTEUSUARIO, vo.nomeClienteUsuario);
+		values.put(COL_NOMECLIENTEPROPRIETARIO, vo.nomeClienteProprietario);
+		values.put(COL_NUMEROCORTES, vo.numeroCortes);
+		values.put(COL_NUMEROSUPRESSOES, vo.numeroSupressoes);
+		values.put(COL_NUMEROREPARCELAMENTOS, vo.numeroReparcelamentos);
+		values.put(COL_DIAVENCIMENTO, vo.diaVencimento);
+		values.put(COL_INDICADORSITUACAOESPECIALCOBRANCA, vo.indicadorSituacaoEspecialCobranca);
+		values.put(COL_INDICADORSITUACAOESPECIALFATURAMENTO, vo.indicadorSituacaoEspecialFaturamento);
+		values.put(COL_IDGRUPOFATURAMENTO, vo.idGrupoFaturamento);
+		values.put(COL_NUMEROROTA, vo.numeroRota);
+		values.put(COL_SEQUENCIAROTA, vo.sequenciaRota);
+		if (vo.dataLigacao!=null) {
+			values.put(COL_DATALIGACAO, Util.dateToString("yyyy-MM-dd", vo.dataLigacao));
 		}
-		values.put(COL_NUMEROHIDROMETRO, vo.getNumeroHidrometro());
-		if (vo.getDataInstalacaoHidrometro()!=null) {
-			values.put(COL_DATAINSTALACAOHIDROMETRO, Util.dateToString("yyyy-MM-dd", vo.getDataInstalacaoHidrometro()));	
+		values.put(COL_NUMEROHIDROMETRO, vo.numeroHidrometro);
+		if (vo.dataInstalacaoHidrometro!=null) {
+			values.put(COL_DATAINSTALACAOHIDROMETRO, Util.dateToString("yyyy-MM-dd", vo.dataInstalacaoHidrometro));
 		}
 		
 		return values;
@@ -182,46 +182,33 @@ public class ImovelDAO extends BasicDAO<ImovelVO>
 		}
 		
 		ImovelVO vo = new ImovelVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdImovel(cursor.getInt(cursor.getColumnIndex(COL_IDIMOVEL)));
-		vo.setIdSituacaoLigacaoAgua(cursor.getInt(cursor.getColumnIndex(COL_IDSITUACAOLIGACAOAGUA)));
-		vo.setDescricaoSituacaoLigacaoAgua(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOSITUACAOLIGACAOAGUA)));
-		vo.setIdSituacaoLigacaoEsgoto(cursor.getInt(cursor.getColumnIndex(COL_IDSITUACAOLIGACAOESGOTO)));
-		vo.setDescricaoSituacaoLigacaoEsgoto(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOSITUACAOLIGACAOESGOTO)));
-		vo.setNumeroInscricao(cursor.getString(cursor.getColumnIndex(COL_NUMEROINSCRICAO)));
-		vo.setNomeClienteResponsavel(cursor.getString(cursor.getColumnIndex(COL_NOMECLIENTERESPONSAVEL)));
-		vo.setNomeClienteUsuario(cursor.getString(cursor.getColumnIndex(COL_NOMECLIENTEUSUARIO)));
-		vo.setNomeClienteProprietario(cursor.getString(cursor.getColumnIndex(COL_NOMECLIENTEPROPRIETARIO)));
-		vo.setNumeroCortes(cursor.getInt(cursor.getColumnIndex(COL_NUMEROCORTES)));
-		vo.setNumeroSupressoes(cursor.getInt(cursor.getColumnIndex(COL_NUMEROSUPRESSOES)));
-		vo.setNumeroReparcelamentos(cursor.getInt(cursor.getColumnIndex(COL_NUMEROREPARCELAMENTOS)));
-		vo.setDiaVencimento(cursor.getInt(cursor.getColumnIndex(COL_DIAVENCIMENTO)));
-		vo.setIndicadorSituacaoEspecialCobranca(cursor.getInt(cursor.getColumnIndex(COL_INDICADORSITUACAOESPECIALCOBRANCA)));
-		vo.setIndicadorSituacaoEspecialFaturamento(cursor.getInt(cursor.getColumnIndex(COL_INDICADORSITUACAOESPECIALFATURAMENTO)));
-		vo.setIdGrupoFaturamento(cursor.getInt(cursor.getColumnIndex(COL_IDGRUPOFATURAMENTO)));
-		vo.setNumeroRota(cursor.getInt(cursor.getColumnIndex(COL_NUMEROROTA)));
-		vo.setSequenciaRota(cursor.getInt(cursor.getColumnIndex(COL_SEQUENCIAROTA)));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idImovel = cursor.getInt(cursor.getColumnIndex(COL_IDIMOVEL));
+		vo.idSituacaoLigacaoAgua = cursor.getInt(cursor.getColumnIndex(COL_IDSITUACAOLIGACAOAGUA));
+		vo.descricaoSituacaoLigacaoAgua = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOSITUACAOLIGACAOAGUA));
+		vo.idSituacaoLigacaoEsgoto = cursor.getInt(cursor.getColumnIndex(COL_IDSITUACAOLIGACAOESGOTO));
+		vo.descricaoSituacaoLigacaoEsgoto = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOSITUACAOLIGACAOESGOTO));
+		vo.numeroInscricao = cursor.getString(cursor.getColumnIndex(COL_NUMEROINSCRICAO));
+		vo.nomeClienteResponsavel = cursor.getString(cursor.getColumnIndex(COL_NOMECLIENTERESPONSAVEL));
+		vo.nomeClienteUsuario = cursor.getString(cursor.getColumnIndex(COL_NOMECLIENTEUSUARIO));
+		vo.nomeClienteProprietario = cursor.getString(cursor.getColumnIndex(COL_NOMECLIENTEPROPRIETARIO));
+		vo.numeroCortes = cursor.getInt(cursor.getColumnIndex(COL_NUMEROCORTES));
+		vo.numeroSupressoes = cursor.getInt(cursor.getColumnIndex(COL_NUMEROSUPRESSOES));
+		vo.numeroReparcelamentos = cursor.getInt(cursor.getColumnIndex(COL_NUMEROREPARCELAMENTOS));
+		vo.diaVencimento = cursor.getInt(cursor.getColumnIndex(COL_DIAVENCIMENTO));
+		vo.indicadorSituacaoEspecialCobranca = cursor.getInt(cursor.getColumnIndex(COL_INDICADORSITUACAOESPECIALCOBRANCA));
+		vo.indicadorSituacaoEspecialFaturamento = cursor.getInt(cursor.getColumnIndex(COL_INDICADORSITUACAOESPECIALFATURAMENTO));
+		vo.idGrupoFaturamento = cursor.getInt(cursor.getColumnIndex(COL_IDGRUPOFATURAMENTO));
+		vo.numeroRota = cursor.getInt(cursor.getColumnIndex(COL_NUMEROROTA));
+		vo.sequenciaRota = cursor.getInt(cursor.getColumnIndex(COL_SEQUENCIAROTA));
 		if (cursor.getString(cursor.getColumnIndex(COL_DATALIGACAO))!=null) {
-			vo.setDataLigacao(Util.stringToDate("yyyy-MM-dd",cursor.getString(cursor.getColumnIndex(COL_DATALIGACAO))));	
+			vo.dataLigacao = Util.stringToDate("yyyy-MM-dd",cursor.getString(cursor.getColumnIndex(COL_DATALIGACAO)));
 		}
-		vo.setNumeroHidrometro(cursor.getString(cursor.getColumnIndex(COL_NUMEROHIDROMETRO)));
+		vo.numeroHidrometro = cursor.getString(cursor.getColumnIndex(COL_NUMEROHIDROMETRO));
 		if (cursor.getString(cursor.getColumnIndex(COL_DATAINSTALACAOHIDROMETRO))!=null) {
-			vo.setDataInstalacaoHidrometro(Util.stringToDate("yyyy-MM-dd",cursor.getString(cursor.getColumnIndex(COL_DATAINSTALACAOHIDROMETRO))));	
+			vo.dataInstalacaoHidrometro = Util.stringToDate("yyyy-MM-dd",cursor.getString(cursor.getColumnIndex(COL_DATAINSTALACAOHIDROMETRO)));
 		}
 		
 		return vo;
 	}
-
-	@Override
-	public ImovelVO obterObject(String line) 
-	{
-		return super.obterObject(line);
-	}
-
-	@Override
-	public ImovelVO obterObject(JSONObject line) 
-	{
-		return super.obterObject(line);
-	}
-
 }

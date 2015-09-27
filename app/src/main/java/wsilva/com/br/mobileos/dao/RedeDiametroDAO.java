@@ -45,7 +45,7 @@ public class RedeDiametroDAO extends BasicDAO<RedeDiametroVO>
 	public boolean atualizar(RedeDiametroVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -97,8 +97,8 @@ public class RedeDiametroDAO extends BasicDAO<RedeDiametroVO>
 	public ContentValues obterContentValues(RedeDiametroVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_DESRICAOREDEDIAMETRO, vo.getDescricaoRedeDiametro());
-		values.put(COL_IDREDEDIAMETRO, vo.getIdRedeDiametro());
+		values.put(COL_DESRICAOREDEDIAMETRO, vo.descricaoRedeDiametro);
+		values.put(COL_IDREDEDIAMETRO, vo.idRedeDiametro);
 		
 		return values;
 	}
@@ -124,96 +124,10 @@ public class RedeDiametroDAO extends BasicDAO<RedeDiametroVO>
 		}
 		
 		RedeDiametroVO vo = new RedeDiametroVO();
-		vo.setDescricaoRedeDiametro(cursor.getString(cursor.getColumnIndex(COL_DESRICAOREDEDIAMETRO)));
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdRedeDiametro(cursor.getInt(cursor.getColumnIndex(COL_IDREDEDIAMETRO)));
+		vo.descricaoRedeDiametro = cursor.getString(cursor.getColumnIndex(COL_DESRICAOREDEDIAMETRO));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idRedeDiametro = cursor.getInt(cursor.getColumnIndex(COL_IDREDEDIAMETRO));
 		
 		return vo;
 	}
-
-	@Override
-	public RedeDiametroVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		RedeDiametroVO vo=new RedeDiametroVO();
-		//C�digo
-		if (values[0].length() >0)
-		{
-			vo.setIdRedeDiametro(Integer.parseInt(values[0]));
-		}
-		//Descri��o
-		vo.setDescricaoRedeDiametro(values[1]);
-		
-		return vo;
-	}
-	
-	
-	
-	@Override
-	public RedeDiametroVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		RedeDiametroVO vo=new RedeDiametroVO();
-		
-		try 
-		{
-			//C�digo
-			if (line.getString("idRedeDiametro").length() > 0) {
-				vo.setIdRedeDiametro(Integer.parseInt(line.getString("idRedeDiametro")));
-			}
-			//Descri��o
-			vo.setDescricaoRedeDiametro(line.getString("redeDiametro"));
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-
-	public void povoaTabela()
-	{
-		List<String> lines=lerDadosFromFile("wa5.csv", Util.PATH_DOWNLOAD);
-		String line;
-		int iLinhas=lines.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			line=lines.get(i);
-			if (line.length() >0)
-			{
-				RedeDiametroVO vo=obterObject(line);
-				if (vo!=null) inserir(vo);
-			}
-		}
-	}
-	
-	public void povoaTabelaFromJSON(String url)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/RedeDiametroServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			RedeDiametroVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
-	}
-	
-
 }

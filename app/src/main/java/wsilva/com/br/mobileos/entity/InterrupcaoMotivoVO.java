@@ -1,5 +1,7 @@
 package wsilva.com.br.mobileos.entity;
 
+import wsilva.com.br.mobileos.core.entity.EntityVO;
+
 public class InterrupcaoMotivoVO extends EntityVO {
 
 	private static final long serialVersionUID = 1L;

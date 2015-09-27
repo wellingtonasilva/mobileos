@@ -2,9 +2,6 @@ package wsilva.com.br.mobileos.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.http.NameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -41,7 +38,7 @@ public class LigacaoEsgotoSituacaoDAO extends BasicDAO<LigacaoEsgotoSituacaoVO>
 	public boolean atualizar(LigacaoEsgotoSituacaoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -96,8 +93,8 @@ public class LigacaoEsgotoSituacaoDAO extends BasicDAO<LigacaoEsgotoSituacaoVO>
 	public ContentValues obterContentValues(LigacaoEsgotoSituacaoVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_IDSITUACAOLIGACAOESGOTO, vo.getIdSituacaoLigacaoEsgoto());
-		values.put(COL_DESCRICAOSITUACAOLIGACAOESGOTO, vo.getDescricaoSituacaoLigacaoEsgoto());
+		values.put(COL_IDSITUACAOLIGACAOESGOTO, vo.idSituacaoLigacaoEsgoto);
+		values.put(COL_DESCRICAOSITUACAOLIGACAOESGOTO, vo.descricaoSituacaoLigacaoEsgoto);
 		return values;
 	}
 
@@ -121,75 +118,10 @@ public class LigacaoEsgotoSituacaoDAO extends BasicDAO<LigacaoEsgotoSituacaoVO>
 		}
 		
 		LigacaoEsgotoSituacaoVO vo = new LigacaoEsgotoSituacaoVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdSituacaoLigacaoEsgoto(cursor.getInt(cursor.getColumnIndex(COL_IDSITUACAOLIGACAOESGOTO)));
-		vo.setDescricaoSituacaoLigacaoEsgoto(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOSITUACAOLIGACAOESGOTO)));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idSituacaoLigacaoEsgoto = cursor.getInt(cursor.getColumnIndex(COL_IDSITUACAOLIGACAOESGOTO));
+		vo.descricaoSituacaoLigacaoEsgoto = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOSITUACAOLIGACAOESGOTO));
 		
 		return vo;
 	}
-	
-	@Override
-	public LigacaoEsgotoSituacaoVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		LigacaoEsgotoSituacaoVO vo=new LigacaoEsgotoSituacaoVO();
-		//C�digo
-		if (values[0].length() > 0) {
-			vo.setIdSituacaoLigacaoEsgoto(Integer.parseInt(values[0]));
-		}
-		//Descri��o
-		vo.setDescricaoSituacaoLigacaoEsgoto(values[1]);
-		
-		return vo;
-	}
-
-	@Override
-	public LigacaoEsgotoSituacaoVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		LigacaoEsgotoSituacaoVO vo=new LigacaoEsgotoSituacaoVO();
-		
-		try 
-		{
-			//C�digo
-			if (line.getString("idSituacaoLigacaoEsgoto").length() > 0) {
-				vo.setIdSituacaoLigacaoEsgoto(Integer.parseInt(line.getString("idSituacaoLigacaoEsgoto")));
-			}
-			//Descri��o
-			vo.setDescricaoSituacaoLigacaoEsgoto(line.getString("descricaoSituacaoLigacaoEsgoto"));
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-	
-	public void povoaTabelaFromJSON(String url)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/LigacaoEsgotoSituacaoServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			LigacaoEsgotoSituacaoVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
-	}
-
 }

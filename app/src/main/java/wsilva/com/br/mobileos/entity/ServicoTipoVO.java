@@ -1,42 +1,42 @@
 package wsilva.com.br.mobileos.entity;
 
-import java.io.Serializable;
 
 import org.ksoap2.serialization.SoapObject;
+import wsilva.com.br.mobileos.core.entity.EntityVO;
 
-public class ServicoTipoVO extends EntityVO implements Serializable 
+public class ServicoTipoVO extends EntityVO
 {
 
 	private static final long serialVersionUID = 1L;
-	private int IdServicoTipo;
-	private String DescricaoServicoTipo;
-	private int idSubgrupo;
-	private int indicadorAtualizacaoComercial;
-	private int indicadorPavimento;
-	private int indicadorServicoTerceirizado;
-	private float valorServico; 
-	private float tempoMedioExecucao;
-	private int idDebitoTipo;
-	private int idCreditoTipo;
-	private int idPrioridade;
-	private int idPerfilTipoServico;
-	private int idTipoServicoReferencia;
-	private int indicadorVistoria;
-	private int indicadorFiscalizacaoInfracao;
-	private float valorRemuneracao;
-	private float percentualRemuneracao;
-	private float prazoexEcucaoServico;
-	private int indicadorTipoRemuneracao;
-	private int indicadorInformarDeslocamento;
-	private int indicadorInformarHorarioExecucao;
-	private int indicadorInformarCausaVazamento;
-	private int indicadorInformarRedeRamal;
-	private int indicadorInformarRedeRamalEsgoto;
-	private int indicadorInformarMaterial;
-	private int indicadorInfomarVala;
-	private int indicadorOrdemSeletiva;
-	private int indicadorServicoCritico;
-	private int indicadorAtividadeUnica;
+	public int idServicoTipo;
+	public String descricaoServicoTipo;
+	public int idSubgrupo;
+	public int indicadorAtualizacaoComercial;
+	public int indicadorPavimento;
+	public int indicadorServicoTerceirizado;
+	public float valorServico;
+	public float tempoMedioExecucao;
+	public int idDebitoTipo;
+	public int idCreditoTipo;
+	public int idPrioridade;
+	public int idPerfilTipoServico;
+	public int idTipoServicoReferencia;
+	public int indicadorVistoria;
+	public int indicadorFiscalizacaoInfracao;
+	public float valorRemuneracao;
+	public float percentualRemuneracao;
+	public float prazoexEcucaoServico;
+	public int indicadorTipoRemuneracao;
+	public int indicadorInformarDeslocamento;
+	public int indicadorInformarHorarioExecucao;
+	public int indicadorInformarCausaVazamento;
+	public int indicadorInformarRedeRamal;
+	public int indicadorInformarRedeRamalEsgoto;
+	public int indicadorInformarMaterial;
+	public int indicadorInfomarVala;
+	public int indicadorOrdemSeletiva;
+	public int indicadorServicoCritico;
+	public int indicadorAtividadeUnica;
 	
 	public ServicoTipoVO()
 	{
@@ -46,186 +46,7 @@ public class ServicoTipoVO extends EntityVO implements Serializable
 	{
 		serialize(object);
 	}
-	
-	
-	public int getIdServicoTipo() {
-		return IdServicoTipo;
-	}
-	public void setIdServicoTipo(int idServicoTipo) {
-		IdServicoTipo = idServicoTipo;
-	}
-	public String getDescricaoServicoTipo() {
-		return DescricaoServicoTipo;
-	}
-	public void setDescricaoServicoTipo(String descricaoServicoTipo) {
-		DescricaoServicoTipo = descricaoServicoTipo;
-	}
-	public int getIdSubgrupo() {
-		return idSubgrupo;
-	}
-	public void setIdSubgrupo(int idSubgrupo) {
-		this.idSubgrupo = idSubgrupo;
-	}
-	public int getIndicadorAtualizacaoComercial() {
-		return indicadorAtualizacaoComercial;
-	}
-	public void setIndicadorAtualizacaoComercial(int indicadorAtualizacaoComercial) {
-		this.indicadorAtualizacaoComercial = indicadorAtualizacaoComercial;
-	}
-	public int getIndicadorPavimento() {
-		return indicadorPavimento;
-	}
-	public void setIndicadorPavimento(int indicadorPavimento) {
-		this.indicadorPavimento = indicadorPavimento;
-	}
-	public int getIndicadorServicoTerceirizado() {
-		return indicadorServicoTerceirizado;
-	}
-	public void setIndicadorServicoTerceirizado(int indicadorServicoTerceirizado) {
-		this.indicadorServicoTerceirizado = indicadorServicoTerceirizado;
-	}
-	public float getValorServico() {
-		return valorServico;
-	}
-	public void setValorServico(float valorServico) {
-		this.valorServico = valorServico;
-	}
-	public float getTempoMedioExecucao() {
-		return tempoMedioExecucao;
-	}
-	public void setTempoMedioExecucao(float tempoMedioExecucao) {
-		this.tempoMedioExecucao = tempoMedioExecucao;
-	}
-	public int getIdDebitoTipo() {
-		return idDebitoTipo;
-	}
-	public void setIdDebitoTipo(int idDebitoTipo) {
-		this.idDebitoTipo = idDebitoTipo;
-	}
-	public int getIdCreditoTipo() {
-		return idCreditoTipo;
-	}
-	public void setIdCreditoTipo(int idCreditoTipo) {
-		this.idCreditoTipo = idCreditoTipo;
-	}
-	public int getIdPrioridade() {
-		return idPrioridade;
-	}
-	public void setIdPrioridade(int idPrioridade) {
-		this.idPrioridade = idPrioridade;
-	}
-	public int getIdPerfilTipoServico() {
-		return idPerfilTipoServico;
-	}
-	public void setIdPerfilTipoServico(int idPerfilTipoServico) {
-		this.idPerfilTipoServico = idPerfilTipoServico;
-	}
-	public int getIdTipoServicoReferencia() {
-		return idTipoServicoReferencia;
-	}
-	public void setIdTipoServicoReferencia(int idTipoServicoReferencia) {
-		this.idTipoServicoReferencia = idTipoServicoReferencia;
-	}
-	public int getIndicadorVistoria() {
-		return indicadorVistoria;
-	}
-	public void setIndicadorVistoria(int indicadorVistoria) {
-		this.indicadorVistoria = indicadorVistoria;
-	}
-	public int getIndicadorFiscalizacaoInfracao() {
-		return indicadorFiscalizacaoInfracao;
-	}
-	public void setIndicadorFiscalizacaoInfracao(int indicadorFiscalizacaoInfracao) {
-		this.indicadorFiscalizacaoInfracao = indicadorFiscalizacaoInfracao;
-	}
-	public float getValorRemuneracao() {
-		return valorRemuneracao;
-	}
-	public void setValorRemuneracao(float valorRemuneracao) {
-		this.valorRemuneracao = valorRemuneracao;
-	}
-	public float getPercentualRemuneracao() {
-		return percentualRemuneracao;
-	}
-	public void setPercentualRemuneracao(float percentualRemuneracao) {
-		this.percentualRemuneracao = percentualRemuneracao;
-	}
-	public float getPrazoexEcucaoServico() {
-		return prazoexEcucaoServico;
-	}
-	public void setPrazoexEcucaoServico(float prazoexEcucaoServico) {
-		this.prazoexEcucaoServico = prazoexEcucaoServico;
-	}
-	public int getIndicadorTipoRemuneracao() {
-		return indicadorTipoRemuneracao;
-	}
-	public void setIndicadorTipoRemuneracao(int indicadorTipoRemuneracao) {
-		this.indicadorTipoRemuneracao = indicadorTipoRemuneracao;
-	}
-	public int getIndicadorInformarDeslocamento() {
-		return indicadorInformarDeslocamento;
-	}
-	public void setIndicadorInformarDeslocamento(int indicadorInformarDeslocamento) {
-		this.indicadorInformarDeslocamento = indicadorInformarDeslocamento;
-	}
-	public int getIndicadorInformarHorarioExecucao() {
-		return indicadorInformarHorarioExecucao;
-	}
-	public void setIndicadorInformarHorarioExecucao(
-			int indicadorInformarHorarioExecucao) {
-		this.indicadorInformarHorarioExecucao = indicadorInformarHorarioExecucao;
-	}
-	public int getIndicadorInformarCausaVazamento() {
-		return indicadorInformarCausaVazamento;
-	}
-	public void setIndicadorInformarCausaVazamento(
-			int indicadorInformarCausaVazamento) {
-		this.indicadorInformarCausaVazamento = indicadorInformarCausaVazamento;
-	}
-	public int getIndicadorInformarRedeRamal() {
-		return indicadorInformarRedeRamal;
-	}
-	public void setIndicadorInformarRedeRamal(int indicadorInformarRedeRamal) {
-		this.indicadorInformarRedeRamal = indicadorInformarRedeRamal;
-	}
-	public int getIndicadorInformarRedeRamalEsgoto() {
-		return indicadorInformarRedeRamalEsgoto;
-	}
-	public void setIndicadorInformarRedeRamalEsgoto(
-			int indicadorInformarRedeRamalEsgoto) {
-		this.indicadorInformarRedeRamalEsgoto = indicadorInformarRedeRamalEsgoto;
-	}
-	public int getIndicadorInformarMaterial() {
-		return indicadorInformarMaterial;
-	}
-	public void setIndicadorInformarMaterial(int indicadorInformarMaterial) {
-		this.indicadorInformarMaterial = indicadorInformarMaterial;
-	}
-	public int getIndicadorInfomarVala() {
-		return indicadorInfomarVala;
-	}
-	public void setIndicadorInfomarVala(int indicadorInfomarVala) {
-		this.indicadorInfomarVala = indicadorInfomarVala;
-	}
-	public int getIndicadorOrdemSeletiva() {
-		return indicadorOrdemSeletiva;
-	}
-	public void setIndicadorOrdemSeletiva(int indicadorOrdemSeletiva) {
-		this.indicadorOrdemSeletiva = indicadorOrdemSeletiva;
-	}
-	public int getIndicadorServicoCritico() {
-		return indicadorServicoCritico;
-	}
-	public void setIndicadorServicoCritico(int indicadorServicoCritico) {
-		this.indicadorServicoCritico = indicadorServicoCritico;
-	}
-	public int getIndicadorAtividadeUnica() {
-		return indicadorAtividadeUnica;
-	}
-	public void setIndicadorAtividadeUnica(int indicadorAtividadeUnica) {
-		this.indicadorAtividadeUnica = indicadorAtividadeUnica;
-	}
-	
+
 	private void serialize(SoapObject object)
 	{
 		if (object.getPropertyCount() != 0) 
@@ -234,7 +55,7 @@ public class ServicoTipoVO extends EntityVO implements Serializable
 			this.idDebitoTipo=Integer.parseInt(object.getProperty("idDebitoTipo").toString());
 			this.idPerfilTipoServico=Integer.parseInt(object.getProperty("idPerfilTipoServico").toString());
 			this.idPrioridade=Integer.parseInt(object.getProperty("idPrioridade").toString());
-			this.IdServicoTipo=Integer.parseInt(object.getProperty("idServicoTipo").toString());
+			this.idServicoTipo=Integer.parseInt(object.getProperty("idServicoTipo").toString());
 			this.idSubgrupo=Integer.parseInt(object.getProperty("idSubgrupo").toString());
 			this.idTipoServicoReferencia=Integer.parseInt(object.getProperty("idTipoServicoReferencia").toString());
 			this.indicadorAtividadeUnica=Integer.parseInt(object.getProperty("indicadorAtividadeUnica").toString());
@@ -258,7 +79,7 @@ public class ServicoTipoVO extends EntityVO implements Serializable
 			this.tempoMedioExecucao=Float.parseFloat(object.getProperty("tempoMedioExecucao").toString());
 			this.valorRemuneracao=Float.parseFloat(object.getProperty("valorRemuneracao").toString());
 			this.valorServico=Float.parseFloat(object.getProperty("valorServico").toString());
-			this.DescricaoServicoTipo=object.getProperty("servicoTipo").toString();
+			this.descricaoServicoTipo=object.getProperty("servicoTipo").toString();
 		}
 	}
 }

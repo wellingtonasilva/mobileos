@@ -47,7 +47,7 @@ public class EquipeComponentesDAO extends BasicDAO<EquipeComponentesVO>
 	public boolean atualizar(EquipeComponentesVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -88,11 +88,11 @@ public class EquipeComponentesDAO extends BasicDAO<EquipeComponentesVO>
 	public ContentValues obterContentValues(EquipeComponentesVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_IDEQUIPE, vo.getIdEquipe());
-		values.put(COL_IDEQUIPECOMPONENTE, vo.getIdEquipeComponente());
-		values.put(COL_IDFUNCIONARIO, vo.getIdFuncionario());
-		values.put(COL_INDICADORRESPONSAVEL, vo.getIndicadorResponsavel());
-		values.put(COL_NOMECOMPONENTE, vo.getNomeComponente());
+		values.put(COL_IDEQUIPE, vo.idEquipe);
+		values.put(COL_IDEQUIPECOMPONENTE, vo.idEquipeComponente);
+		values.put(COL_IDFUNCIONARIO, vo.idFuncionario);
+		values.put(COL_INDICADORRESPONSAVEL, vo.indicadorResponsavel);
+		values.put(COL_NOMECOMPONENTE, vo.nomeComponente);
 		
 		return values;
 	}
@@ -117,60 +117,13 @@ public class EquipeComponentesDAO extends BasicDAO<EquipeComponentesVO>
 		}
 		
 		EquipeComponentesVO vo=new EquipeComponentesVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdEquipe(cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPE)));
-		vo.setIdEquipeComponente(cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPECOMPONENTE)));
-		vo.setIdFuncionario(cursor.getString(cursor.getColumnIndex(COL_IDFUNCIONARIO)));
-		vo.setIndicadorResponsavel(cursor.getInt(cursor.getColumnIndex(COL_INDICADORRESPONSAVEL)));
-		vo.setNomeComponente(cursor.getString(cursor.getColumnIndex(COL_NOMECOMPONENTE)));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idEquipe = cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPE));
+		vo.idEquipeComponente = cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPECOMPONENTE));
+		vo.idFuncionario = cursor.getString(cursor.getColumnIndex(COL_IDFUNCIONARIO));
+		vo.indicadorResponsavel = cursor.getInt(cursor.getColumnIndex(COL_INDICADORRESPONSAVEL));
+		vo.nomeComponente = cursor.getString(cursor.getColumnIndex(COL_NOMECOMPONENTE));
 		
 		return vo;
 	}
-
-	@Override
-	public EquipeComponentesVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		EquipeComponentesVO vo=new EquipeComponentesVO();
-		//C�digo da Equipe
-		if (values[0].length() > 0) {
-			vo.setIdEquipe(Integer.parseInt(values[0]));
-		}
-		//C�digo da Equipe Componente
-		if (values[1].length() > 0) {
-			vo.setIdEquipeComponente(Integer.parseInt(values[1]));
-		}
-		//Respons�vel
-		if (values[2].length() > 0) {
-			vo.setIndicadorResponsavel(Integer.parseInt(values[2]));
-		}
-		//Nome do Componenete
-		vo.setNomeComponente(values[3]);
-		//Funcion�rio
-		vo.setIdFuncionario(values[4]);
-		
-		return vo;
-	}
-
-	public void povoaTabela()
-	{
-		List<String> lines=lerDadosFromFile("wb1.csv", Util.PATH_DOWNLOAD);
-		String line;
-		int iLinhas=lines.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			line=lines.get(i);
-			if (line.length() >0)
-			{
-				EquipeComponentesVO vo=obterObject(line);
-				if (vo!=null) inserir(vo);
-			}
-		}
-	}
-	
 }

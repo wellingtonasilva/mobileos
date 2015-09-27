@@ -43,7 +43,7 @@ public class ReligacaoTipoDAO extends BasicDAO<ReligacaoTipoVO>
 	public boolean atualizar(ReligacaoTipoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -96,8 +96,8 @@ public class ReligacaoTipoDAO extends BasicDAO<ReligacaoTipoVO>
 	public ContentValues obterContentValues(ReligacaoTipoVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_IDTIPORELIGACAO, vo.getIdTipoReligacao());
-		values.put(COL_DESCRICAOTIPORELIGACAO, vo.getDescricaoTipoReligacao());
+		values.put(COL_IDTIPORELIGACAO, vo.idTipoReligacao);
+		values.put(COL_DESCRICAOTIPORELIGACAO, vo.descricaoTipoReligacao);
 		
 		return values;
 	}
@@ -122,75 +122,10 @@ public class ReligacaoTipoDAO extends BasicDAO<ReligacaoTipoVO>
 		}
 		
 		ReligacaoTipoVO vo = new ReligacaoTipoVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdTipoReligacao(cursor.getInt(cursor.getColumnIndex(COL_IDTIPORELIGACAO)));
-		vo.setDescricaoTipoReligacao(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOTIPORELIGACAO)));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idTipoReligacao = cursor.getInt(cursor.getColumnIndex(COL_IDTIPORELIGACAO));
+		vo.descricaoTipoReligacao = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOTIPORELIGACAO));
 		
 		return vo;
 	}
-	
-	@Override
-	public ReligacaoTipoVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		ReligacaoTipoVO vo=new ReligacaoTipoVO();
-		//C�digo
-		if (values[0].length() > 0) {
-			vo.setIdTipoReligacao(Integer.parseInt(values[0]));
-		}
-		//Descri��o
-		vo.setDescricaoTipoReligacao(values[1]);
-		
-		return vo;
-	}
-	
-	@Override
-	public ReligacaoTipoVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		ReligacaoTipoVO vo=new ReligacaoTipoVO();
-		
-		try 
-		{
-			//C�digo
-			if (line.getString("idTipoReligacao").length() > 0) {
-				vo.setIdTipoReligacao(Integer.parseInt(line.getString("idTipoReligacao")));
-			}
-			//Descri��o
-			vo.setDescricaoTipoReligacao(line.getString("descricaoTipoReligacao"));
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-	
-	public void povoaTabelaFromJSON(String url)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/ReligacaoTipoServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			ReligacaoTipoVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
-	}
-
 }

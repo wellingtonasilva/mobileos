@@ -1,15 +1,14 @@
 package wsilva.com.br.mobileos.entity;
 
-import java.io.Serializable;
-
 import org.ksoap2.serialization.SoapObject;
+import wsilva.com.br.mobileos.core.entity.EntityVO;
 
-public class AgenteExternoVO extends EntityVO implements Serializable 
+public class AgenteExternoVO extends EntityVO
 {
 
 	private static final long serialVersionUID = 1L;
-	private int IdAgenteExterno;
-	private String AgenteExterno;
+	public int idAgenteExterno;
+	public String agenteExterno;
 	
 	public AgenteExternoVO() {
 	}
@@ -18,27 +17,12 @@ public class AgenteExternoVO extends EntityVO implements Serializable
 		serialize(object);
 	}
 	
-	public int getIdAgenteExterno() {
-		return IdAgenteExterno;
-	}
-	public void setIdAgenteExterno(int idAgenteExterno) {
-		IdAgenteExterno = idAgenteExterno;
-	}
-	public String getAgenteExterno() {
-		return AgenteExterno;
-	}
-	public void setAgenteExterno(String agenteExterno) {
-		AgenteExterno = agenteExterno;
-	}
-	
 	private void serialize(SoapObject object)
 	{
-		if (object.getPropertyCount() != 0) 
+		if (object.getPropertyCount() != 0)
 		{
-			this.IdAgenteExterno=Integer.parseInt(object.getProperty("idAgenteExterno").toString());
-			this.AgenteExterno=object.getProperty("descricaoAgenteExterno").toString();
+			this.idAgenteExterno=Integer.parseInt(object.getProperty("idAgenteExterno").toString());
+			this.agenteExterno=object.getProperty("descricaoAgenteExterno").toString();
 		}
 	}
-	
-	
 }

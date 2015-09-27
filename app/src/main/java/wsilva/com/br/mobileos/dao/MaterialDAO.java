@@ -49,7 +49,7 @@ public class MaterialDAO extends BasicDAO<MaterialVO>
 	public boolean atualizar(MaterialVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -102,10 +102,10 @@ public class MaterialDAO extends BasicDAO<MaterialVO>
 	public ContentValues obterContentValues(MaterialVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_DESCRICAOMATERIAL, vo.getDescricaoMaterial());
-		values.put(COL_DESCRICAOUNIDADEMEDIDA, vo.getDescricaoUnidadeMedida());
-		values.put(COL_IDMATERIAL, vo.getIdMaterial());
-		values.put(COL_IDUNIDADEMEDIDA, vo.getIdUnidadeMedida());
+		values.put(COL_DESCRICAOMATERIAL, vo.descricaoMaterial);
+		values.put(COL_DESCRICAOUNIDADEMEDIDA, vo.descricaoUnidadeMedida);
+		values.put(COL_IDMATERIAL, vo.idMaterial);
+		values.put(COL_IDUNIDADEMEDIDA, vo.idUnidadeMedida);
 		
 		return values;
 	}
@@ -131,113 +131,13 @@ public class MaterialDAO extends BasicDAO<MaterialVO>
 		}
 		
 		MaterialVO vo = new MaterialVO();
-		vo.setDescricaoMaterial(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOMATERIAL)));
-		vo.setDescricaoUnidadeMedida(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOUNIDADEMEDIDA)));
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdMaterial(cursor.getInt(cursor.getColumnIndex(COL_IDMATERIAL)));
-		vo.setIdUnidadeMedida(cursor.getInt(cursor.getColumnIndex(COL_IDUNIDADEMEDIDA)));
+		vo.descricaoMaterial = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOMATERIAL));
+		vo.descricaoUnidadeMedida = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOUNIDADEMEDIDA));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idMaterial = cursor.getInt(cursor.getColumnIndex(COL_IDMATERIAL));
+		vo.idUnidadeMedida = cursor.getInt(cursor.getColumnIndex(COL_IDUNIDADEMEDIDA));
 		
 		return vo;
 		
 	}
-
-	@Override
-	public MaterialVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		MaterialVO vo=new MaterialVO();
-		//C�digo do Material
-		if (values[0].length() > 0) {
-			vo.setIdMaterial(Integer.parseInt(values[0]));
-		}
-		//Descri��o do Material
-		vo.setDescricaoMaterial(values[1]);
-		//C�digo da Unidade
-		if (values[2].length()>0)
-		{
-			vo.setIdUnidadeMedida(Integer.parseInt(values[2]));
-		}
-		//Descri��o da Unidade
-		vo.setDescricaoUnidadeMedida(values[3]);
-		
-		return vo;
-	}
-	
-	
-	@Override
-	public MaterialVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		MaterialVO vo=new MaterialVO();
-		
-		try 
-		{
-			//C�digo Material
-			if (line.getString("idMaterial").length() > 0) {
-				vo.setIdMaterial(Integer.parseInt(line.getString("idMaterial")));
-			}
-			//Descri��o Material
-			vo.setDescricaoMaterial(line.getString("material"));
-			
-			//C�digo Unidade
-			if (line.getString("idUnidadeMedida").length() > 0) {
-				vo.setIdUnidadeMedida(Integer.parseInt(line.getString("idUnidadeMedida")));
-			}
-			
-			//Descri��o da Unidade
-			vo.setDescricaoUnidadeMedida(line.getString("unidadeMedida"));
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-
-	public void povoaTabela()
-	{
-		List<String> lines=lerDadosFromFile("wa7.csv", Util.PATH_DOWNLOAD);
-		String line;
-		int iLinhas=lines.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			line=lines.get(i);
-			if (line.length() >0)
-			{
-				MaterialVO vo=obterObject(line);
-				if (vo!=null) inserir(vo);
-			}
-		}
-	}
-	
-	public void povoaTabelaFromJSON(String url)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/MaterialServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			MaterialVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
-	}
-	
-	
-	
 }

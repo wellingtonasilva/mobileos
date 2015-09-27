@@ -44,7 +44,7 @@ public class PavimentoTipoDAO extends BasicDAO<PavimentoTipoVO>
 	public boolean atualizar(PavimentoTipoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -97,8 +97,8 @@ public class PavimentoTipoDAO extends BasicDAO<PavimentoTipoVO>
 	public ContentValues obterContentValues(PavimentoTipoVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_IDPAVIMENTOTIPO, vo.getIdPavimentoTipo());
-		values.put(COL_DESCRICAOPAVIMENTOTIPO, vo.getDescricaoPavimentoTipo());
+		values.put(COL_IDPAVIMENTOTIPO, vo.idPavimentoTipo);
+		values.put(COL_DESCRICAOPAVIMENTOTIPO, vo.descricaoPavimentoTipo);
 		
 		return values;
 	}
@@ -116,104 +116,16 @@ public class PavimentoTipoDAO extends BasicDAO<PavimentoTipoVO>
 	}
 
 	@Override
-	public PavimentoTipoVO obterObject(Cursor cursor) 
-	{
-		if (cursor==null || cursor.getCount() < 1) {
+	public PavimentoTipoVO obterObject(Cursor cursor) {
+		if (cursor == null || cursor.getCount() < 1) {
 			return null;
 		}
-		
+
 		PavimentoTipoVO vo = new PavimentoTipoVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdPavimentoTipo(cursor.getInt(cursor.getColumnIndex(COL_IDPAVIMENTOTIPO)));
-		vo.setDescricaoPavimentoTipo(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOPAVIMENTOTIPO)));
-		
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idPavimentoTipo = cursor.getInt(cursor.getColumnIndex(COL_IDPAVIMENTOTIPO));
+		vo.descricaoPavimentoTipo = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOPAVIMENTOTIPO));
+
 		return vo;
 	}
-
-	@Override
-	public PavimentoTipoVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		PavimentoTipoVO vo= new PavimentoTipoVO();
-		
-		//C�digo
-		if (values[0].length() > 0) {
-			vo.setIdPavimentoTipo(Integer.parseInt(values[0]));	
-		}
-		//Descri��o
-		vo.setDescricaoPavimentoTipo(values[1]);
-		
-		return vo;
-	}
-	
-	
-
-	@Override
-	public PavimentoTipoVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		PavimentoTipoVO vo=new PavimentoTipoVO();
-		
-		try 
-		{
-			//C�digo
-			if (line.getString("idPavimentoTipo").length() > 0) {
-				vo.setIdPavimentoTipo(Integer.parseInt(line.getString("idPavimentoTipo")));
-			}
-			//Descri��o
-			vo.setDescricaoPavimentoTipo(line.getString("pavimentoTipo"));
-	
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-
-	public void povoaTabela()
-	{
-		List<String> lines=lerDadosFromFile("wb8.csv", Util.PATH_DOWNLOAD);
-		String line;
-		int iLinhas=lines.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			line=lines.get(i);
-			if (line.length() >0)
-			{
-				PavimentoTipoVO vo=obterObject(line);
-				if (vo!=null) inserir(vo);
-			}
-		}
-	}
-	
-	
-	public void povoaTabelaFromJSON(String url)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/PavimentoTipoServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			PavimentoTipoVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
-	}
-
 }

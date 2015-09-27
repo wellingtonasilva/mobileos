@@ -2,10 +2,6 @@ package wsilva.com.br.mobileos.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.http.NameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -43,7 +39,7 @@ public class MotivoCorteDAO extends BasicDAO<MotivoCorteVO>
 	public boolean atualizar(MotivoCorteVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -95,8 +91,8 @@ public class MotivoCorteDAO extends BasicDAO<MotivoCorteVO>
 	public ContentValues obterContentValues(MotivoCorteVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_IDMOTIVOCORTE, vo.getIdMotivoCorte());
-		values.put(COL_DESCRICAOMOTIVOCORTE, vo.getDescricaoMotivoCorte());
+		values.put(COL_IDMOTIVOCORTE, vo.idMotivoCorte);
+		values.put(COL_DESCRICAOMOTIVOCORTE, vo.descricaoMotivoCorte);
 		
 		return values;
 	}
@@ -122,74 +118,10 @@ public class MotivoCorteDAO extends BasicDAO<MotivoCorteVO>
 		}
 		
 		MotivoCorteVO vo = new MotivoCorteVO();
-		vo.setDescricaoMotivoCorte(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOMOTIVOCORTE)));
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdMotivoCorte(cursor.getInt(cursor.getColumnIndex(COL_IDMOTIVOCORTE)));
+		vo.descricaoMotivoCorte = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOMOTIVOCORTE));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idMotivoCorte = cursor.getInt(cursor.getColumnIndex(COL_IDMOTIVOCORTE));
 		
 		return vo;
-	}
-
-	@Override
-	public MotivoCorteVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		MotivoCorteVO vo=new MotivoCorteVO();
-		//C�digo
-		if (values[0].length() > 0) {
-			vo.setIdMotivoCorte(Integer.parseInt(values[0]));
-		}
-		//Descri��o
-		vo.setDescricaoMotivoCorte(values[1]);
-		
-		return vo;
-	}
-
-	@Override
-	public MotivoCorteVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		MotivoCorteVO vo=new MotivoCorteVO();
-		
-		try 
-		{
-			//C�digo
-			if (line.getString("idMotivoCorte").length() > 0) {
-				vo.setIdMotivoCorte(Integer.parseInt(line.getString("idMotivoCorte")));
-			}
-			//Descri��o
-			vo.setDescricaoMotivoCorte(line.getString("descricaoMotivoCorte"));
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-	
-	public void povoaTabelaFromJSON(String url)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/MotivoCorteServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			MotivoCorteVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
 	}
 }

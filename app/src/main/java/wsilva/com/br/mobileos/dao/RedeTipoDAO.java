@@ -43,7 +43,7 @@ public class RedeTipoDAO extends BasicDAO<RedeTipoVO>
 	public boolean atualizar(RedeTipoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -96,8 +96,8 @@ public class RedeTipoDAO extends BasicDAO<RedeTipoVO>
 	public ContentValues obterContentValues(RedeTipoVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_DESCRICAOREDETIPO, vo.getDescricaoRedeTipo());
-		values.put(COL_IDREDETIPO, vo.getIdRedeTipo());
+		values.put(COL_DESCRICAOREDETIPO, vo.descricaoRedeTipo);
+		values.put(COL_IDREDETIPO, vo.idRedeTipo);
 		
 		return values;
 	}
@@ -122,96 +122,10 @@ public class RedeTipoDAO extends BasicDAO<RedeTipoVO>
 		}
 		
 		RedeTipoVO vo=new RedeTipoVO();
-		vo.setDescricaoRedeTipo(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOREDETIPO)));
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdRedeTipo(cursor.getInt(cursor.getColumnIndex(COL_IDREDETIPO)));
+		vo.descricaoRedeTipo = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOREDETIPO));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idRedeTipo = cursor.getInt(cursor.getColumnIndex(COL_IDREDETIPO));
 		
 		return vo;
 	}
-	
-
-	@Override
-	public RedeTipoVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		RedeTipoVO vo=new RedeTipoVO();
-		
-		try 
-		{
-			//C�digo
-			if (line.getString("idRedeTipo").length() > 0) {
-				vo.setIdRedeTipo(Integer.parseInt(line.getString("idRedeTipo")));
-			}
-			//Descri��o
-			vo.setDescricaoRedeTipo(line.getString("redeTipo"));
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-
-	@Override
-	public RedeTipoVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		RedeTipoVO vo= new RedeTipoVO();
-		
-		//C�digo
-		if (values[0].length() > 0) {
-			vo.setIdRedeTipo(Integer.parseInt(values[0]));
-		}
-		//Descri��o
-		vo.setDescricaoRedeTipo(values[1]);
-		
-		return vo;
-	}
-
-	public void povoaTabela()
-	{
-		List<String> lines=lerDadosFromFile("wa3.csv", Util.PATH_DOWNLOAD);
-		String line;
-		int iLinhas=lines.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			line=lines.get(i);
-			if (line.length() >0)
-			{
-				RedeTipoVO vo=obterObject(line);
-				if (vo!=null) inserir(vo);
-			}
-		}
-	}
-	
-	public void povoaTabelaFromJSON(String url)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/RedeTipoServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			RedeTipoVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
-	}
-	
-	
-	
 }

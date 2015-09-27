@@ -2,11 +2,13 @@ package wsilva.com.br.mobileos.entity;
 
 import org.ksoap2.serialization.SoapObject;
 
+import wsilva.com.br.mobileos.core.entity.EntityVO;
+
 public class ReligacaoTipoVO extends EntityVO {
 
 	private static final long serialVersionUID = 1L;
-	private int idTipoReligacao;
-	private String descricaoTipoReligacao;
+	public int idTipoReligacao;
+	public String descricaoTipoReligacao;
 	
 	public ReligacaoTipoVO() {
 	}
@@ -14,19 +16,7 @@ public class ReligacaoTipoVO extends EntityVO {
 	public ReligacaoTipoVO(SoapObject object) {
 		serialize(object);
 	}
-	public int getIdTipoReligacao() {
-		return idTipoReligacao;
-	}
-	public void setIdTipoReligacao(int idTipoReligacao) {
-		this.idTipoReligacao = idTipoReligacao;
-	}
-	public String getDescricaoTipoReligacao() {
-		return descricaoTipoReligacao;
-	}
-	public void setDescricaoTipoReligacao(String descricaoTipoReligacao) {
-		this.descricaoTipoReligacao = descricaoTipoReligacao;
-	}
-	
+
 	private void serialize(SoapObject object)
 	{
 		if (object.getPropertyCount() != 0) 
@@ -35,5 +25,4 @@ public class ReligacaoTipoVO extends EntityVO {
 			this.descricaoTipoReligacao=object.getProperty("descricaoTipoReligacao").toString();
 		}
 	}
-
 }

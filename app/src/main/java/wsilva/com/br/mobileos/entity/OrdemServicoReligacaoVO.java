@@ -4,142 +4,35 @@ import java.util.Date;
 
 import org.ksoap2.serialization.SoapObject;
 
+import wsilva.com.br.mobileos.core.entity.EntityVO;
+
 public class OrdemServicoReligacaoVO extends EntityVO {
 
 	private static final long serialVersionUID = 1L;
-	private int idOrdemServicoReligacao;
-	private Date dataReligacao;
-	private String horaReligacao;
-	private String idFuncionario;
-	private String numeroHidrometro;
-	private Date dataInstalacaoHidrometro;
-	private int idLocalInstalacaoHidrometro;
-	private int idProtecaoHidrometro;
-	private int leituraInstalacao;
-	private String numeroSelo;
-	private String indicadorCavalete;
-	private int idOrdemServico;
-	private int indicadorTrocaRegistro;
-	private int indicadorTrocaProtecao;
-	private int idTipoReligacao;
-	private int idEquipeExecucao;
-	private String descricaoEquipeExecucao;
-	private int indicadorEnvio;
+	public int idOrdemServicoReligacao;
+	public Date dataReligacao;
+	public String horaReligacao;
+	public String idFuncionario;
+	public String numeroHidrometro;
+	public Date dataInstalacaoHidrometro;
+	public int idLocalInstalacaoHidrometro;
+	public int idProtecaoHidrometro;
+	public int leituraInstalacao;
+	public String numeroSelo;
+	public String indicadorCavalete;
+	public int idOrdemServico;
+	public int indicadorTrocaRegistro;
+	public int indicadorTrocaProtecao;
+	public int idTipoReligacao;
+	public int idEquipeExecucao;
+	public String descricaoEquipeExecucao;
+	public int indicadorEnvio;
 	
 	public OrdemServicoReligacaoVO() {
 	}
 	
 	public OrdemServicoReligacaoVO(SoapObject object) {
 		serialize(object);
-	}
-	
-	public int getIdOrdemServicoReligacao() {
-		return idOrdemServicoReligacao;
-	}
-	public void setIdOrdemServicoReligacao(int idOrdemServicoReligacao) {
-		this.idOrdemServicoReligacao = idOrdemServicoReligacao;
-	}
-	public Date getDataReligacao() {
-		return dataReligacao;
-	}
-	public void setDataReligacao(Date dataReligacao) {
-		this.dataReligacao = dataReligacao;
-	}
-	public String getHoraReligacao() {
-		return horaReligacao;
-	}
-	public void setHoraReligacao(String horaReligacao) {
-		this.horaReligacao = horaReligacao;
-	}
-	public String getIdFuncionario() {
-		return idFuncionario;
-	}
-	public void setIdFuncionario(String idFuncionario) {
-		this.idFuncionario = idFuncionario;
-	}
-	public String getNumeroHidrometro() {
-		return numeroHidrometro;
-	}
-	public void setNumeroHidrometro(String numeroHidrometro) {
-		this.numeroHidrometro = numeroHidrometro;
-	}
-	public Date getDataInstalacaoHidrometro() {
-		return dataInstalacaoHidrometro;
-	}
-	public void setDataInstalacaoHidrometro(Date dataInstalacaoHidrometro) {
-		this.dataInstalacaoHidrometro = dataInstalacaoHidrometro;
-	}
-	public int getIdLocalInstalacaoHidrometro() {
-		return idLocalInstalacaoHidrometro;
-	}
-	public void setIdLocalInstalacaoHidrometro(int idLocalInstalacaoHidrometro) {
-		this.idLocalInstalacaoHidrometro = idLocalInstalacaoHidrometro;
-	}
-	public int getIdProtecaoHidrometro() {
-		return idProtecaoHidrometro;
-	}
-	public void setIdProtecaoHidrometro(int idProtecaoHidrometro) {
-		this.idProtecaoHidrometro = idProtecaoHidrometro;
-	}
-	public int getLeituraInstalacao() {
-		return leituraInstalacao;
-	}
-	public void setLeituraInstalacao(int leituraInstalacao) {
-		this.leituraInstalacao = leituraInstalacao;
-	}
-	public String getNumeroSelo() {
-		return numeroSelo;
-	}
-	public void setNumeroSelo(String numeroSelo) {
-		this.numeroSelo = numeroSelo;
-	}
-	public String getIndicadorCavalete() {
-		return indicadorCavalete;
-	}
-	public void setIndicadorCavalete(String indicadorCavalete) {
-		this.indicadorCavalete = indicadorCavalete;
-	}
-	public int getIdOrdemServico() {
-		return idOrdemServico;
-	}
-	public void setIdOrdemServico(int idOrdemServico) {
-		this.idOrdemServico = idOrdemServico;
-	}
-	public int getIndicadorTrocaRegistro() {
-		return indicadorTrocaRegistro;
-	}
-	public void setIndicadorTrocaRegistro(int indicadorTrocaRegistro) {
-		this.indicadorTrocaRegistro = indicadorTrocaRegistro;
-	}
-	public int getIndicadorTrocaProtecao() {
-		return indicadorTrocaProtecao;
-	}
-	public void setIndicadorTrocaProtecao(int indicadorTrocaProtecao) {
-		this.indicadorTrocaProtecao = indicadorTrocaProtecao;
-	}
-	public int getIdTipoReligacao() {
-		return idTipoReligacao;
-	}
-	public void setIdTipoReligacao(int idTipoReligacao) {
-		this.idTipoReligacao = idTipoReligacao;
-	}
-	public int getIdEquipeExecucao() {
-		return idEquipeExecucao;
-	}
-	public void setIdEquipeExecucao(int idEquipeExecucao) {
-		this.idEquipeExecucao = idEquipeExecucao;
-	}
-	public String getDescricaoEquipeExecucao() {
-		return descricaoEquipeExecucao;
-	}
-	public void setDescricaoEquipeExecucao(String descricaoEquipeExecucao) {
-		this.descricaoEquipeExecucao = descricaoEquipeExecucao;
-	}
-	public int getIndicadorEnvio() {
-		return indicadorEnvio;
-	}
-	public void setIndicadorEnvio(int indicadorEnvio) {
-		this.indicadorEnvio = indicadorEnvio;
 	}
 
 	private void serialize(SoapObject object)
@@ -162,7 +55,4 @@ public class OrdemServicoReligacaoVO extends EntityVO {
 			indicadorTrocaProtecao=Integer.parseInt(object.getProperty("indicadorTrocaProtecao").toString());
 		}
 	}
-	
-	
-	
 }

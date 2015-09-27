@@ -1,6 +1,8 @@
 package wsilva.com.br.mobileos.entity;
 
-public class ConfiguracoesVO extends EntityVO 
+import wsilva.com.br.mobileos.core.entity.EntityVO;
+
+public class ConfiguracoesVO extends EntityVO
 {
 
 	public static final long serialVersionUID = 1L;

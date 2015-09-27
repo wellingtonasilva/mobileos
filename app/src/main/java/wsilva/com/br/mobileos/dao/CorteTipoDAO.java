@@ -41,7 +41,7 @@ public class CorteTipoDAO extends BasicDAO<CorteTipoVO>
 	public boolean atualizar(CorteTipoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -94,8 +94,8 @@ public class CorteTipoDAO extends BasicDAO<CorteTipoVO>
 	public ContentValues obterContentValues(CorteTipoVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_IDCORTETIPO, vo.getIdCorteTipo());
-		values.put(COL_DESCRICAOCORTETIPO, vo.getDescricaoCorteTipo());
+		values.put(COL_IDCORTETIPO, vo.idCorteTipo);
+		values.put(COL_DESCRICAOCORTETIPO, vo.descricaoCorteTipo);
 		
 		return values;
 	}
@@ -120,75 +120,10 @@ public class CorteTipoDAO extends BasicDAO<CorteTipoVO>
 		}
 		
 		CorteTipoVO vo = new CorteTipoVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdCorteTipo(cursor.getInt(cursor.getColumnIndex(COL_IDCORTETIPO)));
-		vo.setDescricaoCorteTipo(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOCORTETIPO)));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idCorteTipo = cursor.getInt(cursor.getColumnIndex(COL_IDCORTETIPO));
+		vo.descricaoCorteTipo = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOCORTETIPO));
 		
 		return vo;
 	}
-	
-	@Override
-	public CorteTipoVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		CorteTipoVO vo=new CorteTipoVO();
-		
-		try 
-		{
-			//C�digo
-			if (line.getString("idCorteTipo").length() > 0) {
-				vo.setIdCorteTipo(Integer.parseInt(line.getString("idCorteTipo")));
-			}
-			//Descri��o
-			vo.setDescricaoCorteTipo(line.getString("descricaoCorteTipo"));
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-	
-	@Override
-	public CorteTipoVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		CorteTipoVO vo=new CorteTipoVO();
-		//C�digo
-		if (values[0].length() > 0) {
-			vo.setIdCorteTipo(Integer.parseInt(values[0]));
-		}
-		//Descri��o
-		vo.setDescricaoCorteTipo(values[1]);
-		
-		return vo;
-	}
-	
-	public void povoaTabelaFromJSON(String url)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/CorteTipoServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			CorteTipoVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
-	}
-
 }

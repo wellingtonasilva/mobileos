@@ -6,9 +6,7 @@ import java.util.List;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-
 import wsilva.com.br.mobileos.core.dao.BasicDAO;
-import wsilva.com.br.mobileos.core.util.Util;
 import wsilva.com.br.mobileos.entity.FotoVO;
 
 public class FotoDAO extends BasicDAO<FotoVO>
@@ -64,7 +62,7 @@ public class FotoDAO extends BasicDAO<FotoVO>
 	public boolean atualizar(FotoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -203,7 +201,7 @@ public class FotoDAO extends BasicDAO<FotoVO>
 		FotoVO vo = new FotoVO();
 		vo.dataFoto = new Date(cursor.getLong(cursor.getColumnIndex(COL_DATAFOTO)));
 		vo.descricaoFoto = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOFOTO));
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
+		vo._id  = cursor.getInt(cursor.getColumnIndex(COL_ID));
 		vo.horaFoto = cursor.getString(cursor.getColumnIndex(COL_HORAFOTO));
 		vo.latitude = cursor.getDouble(cursor.getColumnIndex(COL_LATITUDE));
 		vo.longitude = cursor.getDouble(cursor.getColumnIndex(COL_LONGITUDE));
@@ -216,27 +214,5 @@ public class FotoDAO extends BasicDAO<FotoVO>
 		vo.numeroFoto = cursor.getInt(cursor.getColumnIndex(COL_NUMEROFOTO));
 		
 		return vo;
-	}
-
-	@Override
-	public String obterLinhaCSV(FotoVO vo, String delimitador) 
-	{
-		String linha="";
-		if (vo!=null)
-		{
-			linha=  delimitador											
-					+ Util.dateToString("yyyyMMdd", vo.dataFoto) 	+ ";"
-					+ vo.descricaoFoto 								+ ";"
-					+ vo.horaFoto									+ ";"
-					+ Double.toString(vo.latitude)					+ ";"
-					+ Double.toString(vo.longitude) 				+ ";"
-					+ vo.nomeFoto									+ ";"
-					+ Integer.toString(vo.numeroOS)					+ ";"
-					+ Integer.toString(vo.tipoFoto) 				+ ";"
-					+ Integer.toString(vo.idEquipeExecucao) 		+ ";"
-					+ vo.descricaoEquipeExecucao
-					+ "\n";
-		}
-		return linha;
 	}
 }

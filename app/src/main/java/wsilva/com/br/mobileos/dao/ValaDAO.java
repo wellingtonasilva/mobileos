@@ -85,7 +85,7 @@ public class ValaDAO extends BasicDAO<ValaVO>
 	public boolean atualizar(ValaVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -154,24 +154,24 @@ public class ValaDAO extends BasicDAO<ValaVO>
 	public ContentValues obterContentValues(ValaVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_COMPRIMENTO, vo.getComprimento());
-		values.put(COL_DESCRICAOLOCALOCORRENCIA, vo.getDescricaoLocalOcorrencia());
-		values.put(COL_DESCRICAOPAVIMENTO, vo.getDescricaoPavimento());
-		values.put(COL_IDLOCALOCORRENCIA, vo.getIdLocalOcorrencia());
-		values.put(COL_IDPAVIMENTO, vo.getIdPavimento());
-		values.put(COL_INDICADORATERRO, vo.getIndicadorAterro());
-		values.put(COL_INDICADORENTULHO, vo.getIndicadorEntulho());
-		values.put(COL_LARGURA, vo.getLargura());
-		values.put(COL_NUMEROOS, vo.getNumeroOS());
-		values.put(COL_NUMEROVALA, vo.getNumeroVala());
-		values.put(COL_PROFUNDIDADE, vo.getProfundidade());
-		values.put(COL_QUANTIDADEBAGS, vo.getQuantidadeBags());
-		values.put(COL_INDICADORATERRADOPELAEQUIPE, vo.getIndicadorAterradoPelaEquipe());
-		values.put(COL_IDEQUIPEEXECUCAO, vo.getIdEquipeExecucao());
-		values.put(COL_DESCRICAOEQUIPEEXECUCAO, vo.getDescricaoEquipeExecucao());
-		values.put(COL_INDICADORENVIO, vo.getIndicadorEnvio());
-		values.put(COL_INDICADOR_FOTOVALAABERTA, vo.getIndicadorFotoValaAberta());
-		values.put(COL_INDICADOR_FOTOVALAFECHADA, vo.getIndicadorFotoValaFechada());
+		values.put(COL_COMPRIMENTO, vo.comprimento);
+		values.put(COL_DESCRICAOLOCALOCORRENCIA, vo.descricaoLocalOcorrencia);
+		values.put(COL_DESCRICAOPAVIMENTO, vo.descricaoPavimento);
+		values.put(COL_IDLOCALOCORRENCIA, vo.idLocalOcorrencia);
+		values.put(COL_IDPAVIMENTO, vo.idPavimento);
+		values.put(COL_INDICADORATERRO, vo.indicadorAterro);
+		values.put(COL_INDICADORENTULHO, vo.indicadorEntulho);
+		values.put(COL_LARGURA, vo.largura);
+		values.put(COL_NUMEROOS, vo.numeroOS);
+		values.put(COL_NUMEROVALA, vo.numeroVala);
+		values.put(COL_PROFUNDIDADE, vo.profundidade);
+		values.put(COL_QUANTIDADEBAGS, vo.quantidadeBags);
+		values.put(COL_INDICADORATERRADOPELAEQUIPE, vo.indicadorAterradoPelaEquipe);
+		values.put(COL_IDEQUIPEEXECUCAO, vo.idEquipeExecucao);
+		values.put(COL_DESCRICAOEQUIPEEXECUCAO, vo.descricaoEquipeExecucao);
+		values.put(COL_INDICADORENVIO, vo.indicadorEnvio);
+		values.put(COL_INDICADOR_FOTOVALAABERTA, vo.indicadorFotoValaAberta);
+		values.put(COL_INDICADOR_FOTOVALAFECHADA, vo.indicadorFotoValaFechada);
 		
 		return values;
 	}
@@ -208,54 +208,27 @@ public class ValaDAO extends BasicDAO<ValaVO>
 		}
 		
 		ValaVO vo= new ValaVO();
-		vo.setComprimento(cursor.getDouble(cursor.getColumnIndex(COL_COMPRIMENTO)));
-		vo.setDescricaoLocalOcorrencia(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOLOCALOCORRENCIA)));
-		vo.setDescricaoPavimento(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOPAVIMENTO)));
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdLocalOcorrencia(cursor.getInt(cursor.getColumnIndex(COL_IDLOCALOCORRENCIA)));
-		vo.setIdPavimento(cursor.getInt(cursor.getColumnIndex(COL_IDPAVIMENTO)));
-		vo.setIndicadorAterro(cursor.getInt(cursor.getColumnIndex(COL_INDICADORATERRO)));
-		vo.setIndicadorEntulho(cursor.getInt(cursor.getColumnIndex(COL_INDICADORENTULHO)));
-		vo.setLargura(cursor.getDouble(cursor.getColumnIndex(COL_LARGURA)));
-		vo.setNumeroOS(cursor.getInt(cursor.getColumnIndex(COL_NUMEROOS)));
-		vo.setNumeroVala(cursor.getInt(cursor.getColumnIndex(COL_NUMEROVALA)));
-		vo.setProfundidade(cursor.getDouble(cursor.getColumnIndex(COL_PROFUNDIDADE)));
-		vo.setQuantidadeBags(cursor.getInt(cursor.getColumnIndex(COL_QUANTIDADEBAGS)));
-		vo.setIndicadorAterradoPelaEquipe(cursor.getInt(cursor.getColumnIndex(COL_INDICADORATERRADOPELAEQUIPE)));
-		vo.setIdEquipeExecucao(cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPEEXECUCAO)));
-		vo.setDescricaoEquipeExecucao(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOEQUIPEEXECUCAO)));
-		vo.setIndicadorEnvio(cursor.getInt(cursor.getColumnIndex(COL_INDICADORENVIO)));
-		vo.setIndicadorFotoValaAberta(cursor.getInt(cursor.getColumnIndex(COL_INDICADOR_FOTOVALAABERTA)));
-		vo.setIndicadorFotoValaFechada(cursor.getInt(cursor.getColumnIndex(COL_INDICADOR_FOTOVALAFECHADA)));
+		vo.comprimento = cursor.getDouble(cursor.getColumnIndex(COL_COMPRIMENTO));
+		vo.descricaoLocalOcorrencia = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOLOCALOCORRENCIA));
+		vo.descricaoPavimento = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOPAVIMENTO));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idLocalOcorrencia = cursor.getInt(cursor.getColumnIndex(COL_IDLOCALOCORRENCIA));
+		vo.idPavimento = cursor.getInt(cursor.getColumnIndex(COL_IDPAVIMENTO));
+		vo.indicadorAterro = cursor.getInt(cursor.getColumnIndex(COL_INDICADORATERRO));
+		vo.indicadorEntulho = cursor.getInt(cursor.getColumnIndex(COL_INDICADORENTULHO));
+		vo.largura = cursor.getDouble(cursor.getColumnIndex(COL_LARGURA));
+		vo.numeroOS = cursor.getInt(cursor.getColumnIndex(COL_NUMEROOS));
+		vo.numeroVala = cursor.getInt(cursor.getColumnIndex(COL_NUMEROVALA));
+		vo.profundidade = cursor.getDouble(cursor.getColumnIndex(COL_PROFUNDIDADE));
+		vo.quantidadeBags = cursor.getInt(cursor.getColumnIndex(COL_QUANTIDADEBAGS));
+		vo.indicadorAterradoPelaEquipe = cursor.getInt(cursor.getColumnIndex(COL_INDICADORATERRADOPELAEQUIPE));
+		vo.idEquipeExecucao = cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPEEXECUCAO));
+		vo.descricaoEquipeExecucao = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOEQUIPEEXECUCAO));
+		vo.indicadorEnvio = cursor.getInt(cursor.getColumnIndex(COL_INDICADORENVIO));
+		vo.indicadorFotoValaAberta = cursor.getInt(cursor.getColumnIndex(COL_INDICADOR_FOTOVALAABERTA));
+		vo.indicadorFotoValaFechada = cursor.getInt(cursor.getColumnIndex(COL_INDICADOR_FOTOVALAFECHADA));
 		
 		return vo;
-	}
-	
-	@Override
-	public String obterLinhaCSV(ValaVO vo, String delimitador) 
-	{
-		String linha="";
-		if (vo!=null) 
-		{
-			linha=  delimitador
-					+ String.valueOf(vo.getNumeroOS()) 					+ ";"
-					+ String.valueOf(vo.getNumeroVala()) 				+ ";"
-					+ String.valueOf(vo.getIdLocalOcorrencia()) 		+ ";"
-					+ vo.getDescricaoLocalOcorrencia() 					+ ";"
-					+ String.valueOf(vo.getIdPavimento()) 				+ ";"
-					+ vo.getDescricaoPavimento() 						+ ";"
-					+ Double.toString(vo.getComprimento()) 				+ ";"
-					+ Double.toString(vo.getLargura()) 					+ ";"
-					+ Double.toString(vo.getProfundidade()) 			+ ";"
-					+ String.valueOf(vo.getIndicadorAterro()) 			+ ";"
-					+ String.valueOf(vo.getIndicadorEntulho()) 			+ ";"
-					+ String.valueOf(vo.getQuantidadeBags()) 			+ ";"
-					+ String.valueOf(vo.getIndicadorAterradoPelaEquipe())+ ";"
-					+ Integer.toString(vo.getIdEquipeExecucao()) 		+ ";"
-					+ vo.getDescricaoEquipeExecucao()
-					+ "\n";
-		}
-		return linha;
 	}
 
 	public int obterUltimoRegistro(int numeroOs)
@@ -270,56 +243,5 @@ public class ValaDAO extends BasicDAO<ValaVO>
 		}
 		
 		return ultimoRegistro;
-	}
-	
-	public boolean saveToFile(String directoryname, String filename)
-	{
-		boolean bolReturn=false;
-		List<ValaVO> valas=listar();
-		int qtd=valas.size();
-		String linha="";
-
-		if (qtd > 0) {
-			try 
-			{
-				File sdCard = Environment.getExternalStorageDirectory();
-				File directory= new File(sdCard.getAbsolutePath() + directoryname);
-				File file = new File(directory, filename);
-				FileOutputStream output= new FileOutputStream(file);
-				OutputStreamWriter osw=new OutputStreamWriter(output);
-				
-				for (int i=0; i<qtd; i++)
-				{
-					ValaVO vo=valas.get(i);
-					linha=String.valueOf(vo.getNumeroOS()) 						+ ";"
-							+ String.valueOf(vo.getNumeroVala()) 				+ ";"
-							+ String.valueOf(vo.getIdLocalOcorrencia()) 		+ ";"
-							+ vo.getDescricaoLocalOcorrencia() 					+ ";"
-							+ String.valueOf(vo.getIdPavimento()) 				+ ";"
-							+ vo.getDescricaoPavimento() 						+ ";"
-							+ Double.toString(vo.getComprimento()) 				+ ";"
-							+ Double.toString(vo.getLargura()) 					+ ";"
-							+ Double.toString(vo.getProfundidade()) 			+ ";"
-							+ String.valueOf(vo.getIndicadorAterro()) 			+ ";"
-							+ String.valueOf(vo.getIndicadorEntulho()) 			+ ";"
-							+ String.valueOf(vo.getQuantidadeBags()) 			+ ";"
-							+ String.valueOf(vo.getIndicadorAterradoPelaEquipe()) + ";"
-							+ Integer.toString(vo.getIdEquipeExecucao())   		+ ";"
-							+ vo.getDescricaoEquipeExecucao()
-							+ "\n";
-					osw.write(linha);
-				}
-				osw.flush();
-				osw.close();
-				bolReturn=true;
-			} catch (FileNotFoundException e) 
-			{
-				e.printStackTrace();
-			} catch (IOException e) 
-			{
-				e.printStackTrace();
-			}	
-		}
-		return bolReturn;
 	}
 }

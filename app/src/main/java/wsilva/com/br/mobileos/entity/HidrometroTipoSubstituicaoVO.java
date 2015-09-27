@@ -2,11 +2,13 @@ package wsilva.com.br.mobileos.entity;
 
 import org.ksoap2.serialization.SoapObject;
 
+import wsilva.com.br.mobileos.core.entity.EntityVO;
+
 public class HidrometroTipoSubstituicaoVO extends EntityVO {
 
 	private static final long serialVersionUID = 1L;
-	private int idTipoSubstituicaoHM;
-	private String descricaoTipoSubstituicaoHM;
+	public int idTipoSubstituicaoHM;
+	public String descricaoTipoSubstituicaoHM;
 	
 	public HidrometroTipoSubstituicaoVO() {
 	}
@@ -14,20 +16,7 @@ public class HidrometroTipoSubstituicaoVO extends EntityVO {
 	public HidrometroTipoSubstituicaoVO(SoapObject object) {
 		serialize(object);
 	}
-	
-	public int getIdTipoSubstituicaoHM() {
-		return idTipoSubstituicaoHM;
-	}
-	public void setIdTipoSubstituicaoHM(int idTipoSubstituicaoHM) {
-		this.idTipoSubstituicaoHM = idTipoSubstituicaoHM;
-	}
-	public String getDescricaoTipoSubstituicaoHM() {
-		return descricaoTipoSubstituicaoHM;
-	}
-	public void setDescricaoTipoSubstituicaoHM(String descricaoTipoSubstituicaoHM) {
-		this.descricaoTipoSubstituicaoHM = descricaoTipoSubstituicaoHM;
-	}
-	
+
 	private void serialize(SoapObject object)
 	{
 		if (object.getPropertyCount() != 0) 

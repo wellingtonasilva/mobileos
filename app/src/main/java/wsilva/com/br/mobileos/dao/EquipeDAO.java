@@ -44,7 +44,7 @@ public class EquipeDAO extends BasicDAO<EquipeVO>
 	public boolean atualizar(EquipeVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -97,10 +97,10 @@ public class EquipeDAO extends BasicDAO<EquipeVO>
 	public ContentValues obterContentValues(EquipeVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_CARGAHORARIOTRABALHODIA, vo.getCargaHorarioTrabalhoDia());
-		values.put(COL_IDEQUIPE, vo.getIdEquipe());
-		values.put(COL_NOMEEQUIPE, vo.getNomeEquipe());
-		values.put(COL_NUMEROPLACAVEICULO, vo.getNumeroPlacaVeiculo());
+		values.put(COL_CARGAHORARIOTRABALHODIA, vo.cargaHorarioTrabalhoDia);
+		values.put(COL_IDEQUIPE, vo.idEquipe);
+		values.put(COL_NOMEEQUIPE, vo.nomeEquipe);
+		values.put(COL_NUMEROPLACAVEICULO, vo.numeroPlacaVeiculo);
 		
 		return values;
 	}
@@ -125,57 +125,12 @@ public class EquipeDAO extends BasicDAO<EquipeVO>
 		}
 		
 		EquipeVO vo = new EquipeVO();
-		vo.setCargaHorarioTrabalhoDia(cursor.getInt(cursor.getColumnIndex(COL_CARGAHORARIOTRABALHODIA)));
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdEquipe(cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPE)));
-		vo.setNomeEquipe(cursor.getString(cursor.getColumnIndex(COL_NOMEEQUIPE)));
-		vo.setNumeroPlacaVeiculo(cursor.getString(cursor.getColumnIndex(COL_NUMEROPLACAVEICULO)));
+		vo.cargaHorarioTrabalhoDia = cursor.getInt(cursor.getColumnIndex(COL_CARGAHORARIOTRABALHODIA));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idEquipe = cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPE));
+		vo.nomeEquipe = cursor.getString(cursor.getColumnIndex(COL_NOMEEQUIPE));
+		vo.numeroPlacaVeiculo = cursor.getString(cursor.getColumnIndex(COL_NUMEROPLACAVEICULO));
 		
 		return vo;
 	}
-
-	@Override
-	public EquipeVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		EquipeVO vo=new EquipeVO();
-		//C�digo
-		if (values[0].length() > 0) {
-			vo.setIdEquipe(Integer.parseInt(values[0]));
-		}
-		//Descri��o
-		vo.setNomeEquipe(values[1]);
-		//Placa
-		//vo.setNumeroPlacaVeiculo(values[2]);
-		//Carga Horaria
-		//if (values[3].length() >0) {
-		//	vo.setCargaHorarioTrabalhoDia(Integer.parseInt(values[3]));	
-		//}
-		
-		return vo;
-	}
-	
-	public void povoaTabela()
-	{
-		List<String> lines=lerDadosFromFile("wa9.csv", Util.PATH_DOWNLOAD);
-		String line;
-		int iLinhas=lines.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			line=lines.get(i);
-			if (line.length() >0)
-			{
-				EquipeVO vo=obterObject(line);
-				if (vo!=null) inserir(vo);
-			}
-		}
-	}
-
-	
-
 }

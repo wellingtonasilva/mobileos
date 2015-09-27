@@ -187,8 +187,7 @@ public class OrdemServicoDAO extends BasicDAO<OrdemServicoVO>
 	}
 
 	@Override
-	public long inserir(OrdemServicoVO vo) 
-	{
+	public long inserir(OrdemServicoVO vo) {
 		long lonReturn=0;
 		try {
 			ContentValues values= obterContentValues(vo);
@@ -203,7 +202,7 @@ public class OrdemServicoDAO extends BasicDAO<OrdemServicoVO>
 	public boolean atualizar(OrdemServicoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -297,101 +296,97 @@ public class OrdemServicoDAO extends BasicDAO<OrdemServicoVO>
 	{
 		ContentValues values=new ContentValues();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		values.put(COL_NUMEROOS,vo.getNumeroOS());
-		values.put(COL_NUMERORA, vo.getNumeroRA());
-		values.put(COL_SITUACAOOS, vo.getSituacaoOS());
-		values.put(COL_SITUACAORA, vo.getSituacaoRA());
-		values.put(COL_DESRICAOSITUACAORA, vo.getDesricaoSituacaoRA());
-		values.put(COL_DESCRICAOSITUACAOOS, vo.getDescricaoSituacaoOS());
+		values.put(COL_NUMEROOS,vo.numeroOS);
+		values.put(COL_NUMERORA, vo.numeroRA);
+		values.put(COL_SITUACAOOS, vo.situacaoOS);
+		values.put(COL_SITUACAORA, vo.situacaoRA);
+		values.put(COL_DESRICAOSITUACAORA, vo.desricaoSituacaoRA);
+		values.put(COL_DESCRICAOSITUACAOOS, vo.descricaoSituacaoOS);
 		
-		if (vo.getDataGeracaoOS() !=null) 
+		if (vo.dataGeracaoOS !=null)
 		{
-			values.put(COL_DATAGERACAOOS, sdf.format(vo.getDataGeracaoOS()));
+			values.put(COL_DATAGERACAOOS, sdf.format(vo.dataGeracaoOS));
 		}
 			
-		if (vo.getDataGeracaoRA() !=null)
+		if (vo.dataGeracaoRA !=null)
 		{
-			values.put(COL_DATAGERACAORA, sdf.format(vo.getDataGeracaoRA()));	
+			values.put(COL_DATAGERACAORA, sdf.format(vo.dataGeracaoRA));
 		}
 		
-		values.put(COL_IDTIPOSERVICO, vo.getIdTipoServico());
-		values.put(COL_DESCRICAOTIPOSERVICO, vo.getDescricaoTipoServico());
-		values.put(COL_OBSERVACAOOS, vo.getObservacaoOS());
-		values.put(COL_OBSERVACAORA, vo.getObservacaoRA());
-		values.put(COL_IDUNIDADEGERACAO, vo.getIdUnidadeGeracao());
-		values.put(COL_DESCRICAOUNIDADEGERACAO, vo.getDescricaoUnidadeGeracao());
-		values.put(COL_IDTIPOSERVICOEXECUTADO, vo.getIdTipoServicoExecutado());
-		values.put(COL_DESCRICAOTIPOSERVICOEXECUTADO, vo.getDescricaoTipoServicoExecutado());
+		values.put(COL_IDTIPOSERVICO, vo.idTipoServico);
+		values.put(COL_DESCRICAOTIPOSERVICO, vo.descricaoTipoServico);
+		values.put(COL_OBSERVACAOOS, vo.observacaoOS);
+		values.put(COL_OBSERVACAORA, vo.observacaoRA);
+		values.put(COL_IDUNIDADEGERACAO, vo.idUnidadeGeracao);
+		values.put(COL_DESCRICAOUNIDADEGERACAO, vo.descricaoUnidadeGeracao);
+		values.put(COL_IDTIPOSERVICOEXECUTADO, vo.idTipoServicoExecutado);
+		values.put(COL_DESCRICAOTIPOSERVICOEXECUTADO, vo.descricaoTipoServicoExecutado);
 		
-		if (vo.getDataEncerramentoOS() !=null)
+		if (vo.dataEncerramentoOS !=null)
 		{
-			values.put(COL_DATAENCERRAMENTOOS, sdf.format(vo.getDataEncerramentoOS()));	
+			values.put(COL_DATAENCERRAMENTOOS, sdf.format(vo.dataEncerramentoOS));
 		}
-		values.put(COL_HORAENCERRAMENTOOS, vo.getHoraEncerramentoOS());
-		values.put(COL_IDMOTIVOENCERRAMENTO, vo.getIdMotivoEncerramento());
-		values.put(COL_DESCRICAOMOTIVOENCERRAMENTO, vo.getDescricaoMotivoEncerramento());
-		values.put(COL_PARECERENCERRAMENTO, vo.getParecerEncerramento());
+		values.put(COL_HORAENCERRAMENTOOS, vo.horaEncerramentoOS);
+		values.put(COL_IDMOTIVOENCERRAMENTO, vo.idMotivoEncerramento);
+		values.put(COL_DESCRICAOMOTIVOENCERRAMENTO, vo.descricaoMotivoEncerramento);
+		values.put(COL_PARECERENCERRAMENTO, vo.parecerEncerramento);
 		
-		if (vo.getDataExecucao() !=null)
+		if (vo.dataExecucao !=null)
 		{
-			values.put(COL_DATAEXECUCAO, sdf.format(vo.getDataExecucao()));	
+			values.put(COL_DATAEXECUCAO, sdf.format(vo.dataExecucao));
 		}
-		values.put(COL_HORAINICIALEXECUCAO, vo.getHoraInicialExecucao());
-		values.put(COL_HORAFINALEXECUCAO, vo.getHoraFinalExecucao());
-		values.put(COL_IDEQUIPEEXECUCAO, vo.getIdEquipeExecucao());
-		values.put(COL_DESCRICAOEQUIPEEXECUCAO, vo.getDescricaoEquipeExecucao());
-		values.put(COL_TIPOREDE, vo.getTipoRede());
-		values.put(COL_DESCRICAOTIPOREDE, vo.getDescricaoTipoRede());
-		values.put(COL_IDDIAMETROREDE, vo.getIdDiametroRede());
-		values.put(COL_DESCRICAODIAMETROREDE, vo.getDescricaoDiametroRede());
-		values.put(COL_IDMATERIALREDE, vo.getIdMaterialRede());
-		values.put(COL_DESCRICAOMATERIALREDE, vo.getDescricaoMaterialRede());
-		values.put(COL_PROFUNDIDADEREDE, vo.getProfundidadeRede());
-		values.put(COL_PRESSAOREDE, vo.getPressaoRede());
-		values.put(COL_IDAGENTEEXTERNO, vo.getIdAgenteExterno());
-		values.put(COL_AGENTEEXTERNO, vo.getAgenteExterno());
-		values.put(COL_IDUSUARIO, vo.getIdUsuario());
-		values.put(COL_DESCRICAOUSUARIO, vo.getDescricaoUsuario());
-		values.put(COL_LOGRADOURO, vo.getLogradouro());
-		values.put(COL_BAIRRO, vo.getBairro());
-		values.put(COL_NUMEROIMOVEL, vo.getNumeroImovel());
-		values.put(COL_IDCLIENTE, vo.getIdCliente());
-		values.put(COL_IDIMOVEL, vo.getIdImovel());
-		values.put(COL_NOMECLIENTE, vo.getNomeCliente());
-		values.put(COL_IDCAUSAREDE, vo.getIdCausaRede());
-		values.put(COL_DESCRICAOCAUSAREDE, vo.getDescricaoCausaRede());
+		values.put(COL_HORAINICIALEXECUCAO, vo.horaInicialExecucao);
+		values.put(COL_HORAFINALEXECUCAO, vo.horaFinalExecucao);
+		values.put(COL_IDEQUIPEEXECUCAO, vo.idEquipeExecucao);
+		values.put(COL_DESCRICAOEQUIPEEXECUCAO, vo.descricaoEquipeExecucao);
+		values.put(COL_TIPOREDE, vo.tipoRede);
+		values.put(COL_DESCRICAOTIPOREDE, vo.descricaoTipoRede);
+		values.put(COL_IDDIAMETROREDE, vo.idDiametroRede);
+		values.put(COL_DESCRICAODIAMETROREDE, vo.descricaoDiametroRede);
+		values.put(COL_IDMATERIALREDE, vo.idMaterialRede);
+		values.put(COL_DESCRICAOMATERIALREDE, vo.descricaoMaterialRede);
+		values.put(COL_PROFUNDIDADEREDE, vo.profundidadeRede);
+		values.put(COL_PRESSAOREDE, vo.pressaoRede);
+		values.put(COL_IDAGENTEEXTERNO, vo.idAgenteExterno);
+		values.put(COL_AGENTEEXTERNO, vo.agenteExterno);
+		values.put(COL_IDUSUARIO, vo.idUsuario);
+		values.put(COL_DESCRICAOUSUARIO, vo.descricaoUsuario);
+		values.put(COL_LOGRADOURO, vo.logradouro);
+		values.put(COL_BAIRRO, vo.bairro);
+		values.put(COL_NUMEROIMOVEL, vo.numeroImovel);
+		values.put(COL_IDCLIENTE, vo.idCliente);
+		values.put(COL_IDIMOVEL, vo.idImovel);
+		values.put(COL_NOMECLIENTE, vo.nomeCliente);
+		values.put(COL_IDCAUSAREDE, vo.idCausaRede);
+		values.put(COL_DESCRICAOCAUSAREDE, vo.descricaoCausaRede);
 		
-		if (vo.getDataCancelamento() !=null) {
-			values.put(COL_DATACANCELAMENTO, sdf.format(vo.getDataCancelamento()));
+		if (vo.dataCancelamento !=null) {
+			values.put(COL_DATACANCELAMENTO, sdf.format(vo.dataCancelamento));
 		}
-		values.put(COL_HORACANCELAMENTO, vo.getHoraCancelamento());
-		values.put(COL_IDTIPOSERVICOGERAR, vo.getIdTipoServicoGerar());
-		values.put(COL_DESCRICAOTIPOSERVICOGERAR, vo.getDescricaoTipoServicoGerar());
-		values.put(COL_IDMOVIMENTORECEBITO, vo.getIdMovimentoRecebito());
-		values.put(COL_IDCOLETORENVIOITEM, vo.getIdColetorEnvioItem());
-		values.put(COL_IDCOLETORENVIO, vo.getIdColetorEnvio());
-		values.put(COL_KMINICIAL, vo.getKmInicial());
-		values.put(COL_KMFINAL, vo.getKmFinal());
-		values.put(COL_IDORDEMSERVICO, vo.getIdOrdemServico());
-		values.put(COL_NUMEROLACREANTERIOR, vo.getNumeroLacreAnterior());
-		values.put(COL_NUMEROLOCRENOVO, vo.getNumeroLocreNovo());
-		values.put(COL_NUMEROHIDROMETRO, vo.getNumeroHidrometro());
-		values.put(COL_LEITURA, vo.getLeitura());
-		values.put(COL_OBSERVACAOCAMPO, vo.getObservacaoCampo());
-		
-		/**
-		 * Adicionado: 2013-03-15
-		 */
-		values.put(COL_IDSETORCOMERCIAL, vo.getIdSetorComercial());
-		values.put(COL_NUMEROLOTE, vo.getNumeroLote());
-		values.put(COL_NUMEROSUBLOTE, vo.getNumeroSublote());
-		values.put(COL_SEQUENCIAROTA, vo.getSequenciaRota());
-		values.put(COL_NUMEROQUADRA, vo.getNumeroQuadra());
-		values.put(COL_INDICADORENVIO, vo.getIndicadorEnvio());
-		values.put(COL_TIPOLOGRADOURO, vo.getTipoLogradouro());
-		values.put(COL_INDICADORORDEMSERVICOAVULSA, vo.getIndicadorOrdemServicoAvulsa());
-		values.put(COL_LATITUDE, vo.getLatitude());
-		values.put(COL_LONGITUDE, vo.getLongitude());
+		values.put(COL_HORACANCELAMENTO, vo.horaCancelamento);
+		values.put(COL_IDTIPOSERVICOGERAR, vo.idTipoServicoGerar);
+		values.put(COL_DESCRICAOTIPOSERVICOGERAR, vo.descricaoTipoServicoGerar);
+		values.put(COL_IDMOVIMENTORECEBITO, vo.idMovimentoRecebito);
+		values.put(COL_IDCOLETORENVIOITEM, vo.idColetorEnvioItem);
+		values.put(COL_IDCOLETORENVIO, vo.idColetorEnvio);
+		values.put(COL_KMINICIAL, vo.kmInicial);
+		values.put(COL_KMFINAL, vo.kmFinal);
+		values.put(COL_IDORDEMSERVICO, vo.idOrdemServico);
+		values.put(COL_NUMEROLACREANTERIOR, vo.numeroLacreAnterior);
+		values.put(COL_NUMEROLOCRENOVO, vo.numeroLocreNovo);
+		values.put(COL_NUMEROHIDROMETRO, vo.numeroHidrometro);
+		values.put(COL_LEITURA, vo.leitura);
+		values.put(COL_OBSERVACAOCAMPO, vo.observacaoCampo);
+		values.put(COL_IDSETORCOMERCIAL, vo.idSetorComercial);
+		values.put(COL_NUMEROLOTE, vo.numeroLote);
+		values.put(COL_NUMEROSUBLOTE, vo.numeroSublote);
+		values.put(COL_SEQUENCIAROTA, vo.sequenciaRota);
+		values.put(COL_NUMEROQUADRA, vo.numeroQuadra);
+		values.put(COL_INDICADORENVIO, vo.indicadorEnvio);
+		values.put(COL_TIPOLOGRADOURO, vo.tipoLogradouro);
+		values.put(COL_INDICADORORDEMSERVICOAVULSA, vo.indicadorOrdemServicoAvulsa);
+		values.put(COL_LATITUDE, vo.latitude);
+		values.put(COL_LONGITUDE, vo.longitude);
 			
 		return values;
 	}
@@ -427,477 +422,95 @@ public class OrdemServicoDAO extends BasicDAO<OrdemServicoVO>
 		}
 		
 		OrdemServicoVO os = new OrdemServicoVO();
-		os.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		os.setNumeroOS(cursor.getInt(cursor.getColumnIndex(COL_NUMEROOS)));
-		os.setNumeroRA(cursor.getInt(cursor.getColumnIndex(COL_NUMERORA)));
-		os.setSituacaoOS(cursor.getInt(cursor.getColumnIndex(COL_SITUACAOOS)));
-		os.setSituacaoRA(cursor.getInt(cursor.getColumnIndex(COL_SITUACAORA)));
-		os.setDescricaoSituacaoOS(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOSITUACAOOS)));
-		os.setDesricaoSituacaoRA(cursor.getString(cursor.getColumnIndex(COL_DESRICAOSITUACAORA)));
+		os._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		os.numeroOS = cursor.getInt(cursor.getColumnIndex(COL_NUMEROOS));
+		os.numeroRA = cursor.getInt(cursor.getColumnIndex(COL_NUMERORA));
+		os.situacaoOS = cursor.getInt(cursor.getColumnIndex(COL_SITUACAOOS));
+		os.situacaoRA = cursor.getInt(cursor.getColumnIndex(COL_SITUACAORA));
+		os.descricaoSituacaoOS = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOSITUACAOOS));
+		os.desricaoSituacaoRA = cursor.getString(cursor.getColumnIndex(COL_DESRICAOSITUACAORA));
 		//Data da Gera��o da OS
 		if (cursor.getString(cursor.getColumnIndex(COL_DATAGERACAOOS))!=null) {
-			os.setDataGeracaoOS(Util.stringToDate("yyyy-MM-dd", cursor.getString(cursor.getColumnIndex(COL_DATAGERACAOOS))));	
+			os.dataGeracaoOS = Util.stringToDate("yyyy-MM-dd", cursor.getString(cursor.getColumnIndex(COL_DATAGERACAOOS)));
 		}
 		//Data da Gera��o RA
 		if (cursor.getString(cursor.getColumnIndex(COL_DATAGERACAORA))!=null) {
-			os.setDataGeracaoRA(Util.stringToDate("yyyy-MM-dd", cursor.getString(cursor.getColumnIndex(COL_DATAGERACAORA))));	
+			os.dataGeracaoRA = Util.stringToDate("yyyy-MM-dd", cursor.getString(cursor.getColumnIndex(COL_DATAGERACAORA)));
 		}
-		os.setIdTipoServico(cursor.getInt(cursor.getColumnIndex(COL_IDTIPOSERVICO)));
-		os.setDescricaoTipoServico(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOTIPOSERVICO)));
-		os.setObservacaoOS(cursor.getString(cursor.getColumnIndex(COL_OBSERVACAOOS)));
-		os.setObservacaoRA(cursor.getString(cursor.getColumnIndex(COL_OBSERVACAORA)));
-		os.setIdUnidadeGeracao(cursor.getInt(cursor.getColumnIndex(COL_IDUNIDADEGERACAO)));
-		os.setDescricaoUnidadeGeracao(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOUNIDADEGERACAO)));
-		os.setIdTipoServicoExecutado(cursor.getInt(cursor.getColumnIndex(COL_IDTIPOSERVICOEXECUTADO)));
-		os.setDescricaoTipoServicoExecutado(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOTIPOSERVICOEXECUTADO)));
+		os.idTipoServico = cursor.getInt(cursor.getColumnIndex(COL_IDTIPOSERVICO));
+		os.descricaoTipoServico = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOTIPOSERVICO));
+		os.observacaoOS = cursor.getString(cursor.getColumnIndex(COL_OBSERVACAOOS));
+		os.observacaoRA = cursor.getString(cursor.getColumnIndex(COL_OBSERVACAORA));
+		os.idUnidadeGeracao = cursor.getInt(cursor.getColumnIndex(COL_IDUNIDADEGERACAO));
+		os.descricaoUnidadeGeracao = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOUNIDADEGERACAO));
+		os.idTipoServicoExecutado = cursor.getInt(cursor.getColumnIndex(COL_IDTIPOSERVICOEXECUTADO));
+		os.descricaoTipoServicoExecutado = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOTIPOSERVICOEXECUTADO));
 		//Data do Encerramento
 		if (cursor.getString(cursor.getColumnIndex(COL_DATAENCERRAMENTOOS))!=null) {
-			os.setDataEncerramentoOS(Util.stringToDate("yyyy-MM-dd",cursor.getString(cursor.getColumnIndex(COL_DATAENCERRAMENTOOS))));	
+			os.dataEncerramentoOS = Util.stringToDate("yyyy-MM-dd",cursor.getString(cursor.getColumnIndex(COL_DATAENCERRAMENTOOS)));
 		}
-		os.setHoraEncerramentoOS(cursor.getString(cursor.getColumnIndex(COL_HORAENCERRAMENTOOS)));
-		os.setIdMotivoEncerramento(cursor.getInt(cursor.getColumnIndex(COL_IDMOTIVOENCERRAMENTO)));
-		os.setDescricaoMotivoEncerramento(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOMOTIVOENCERRAMENTO)));
-		os.setParecerEncerramento(cursor.getString(cursor.getColumnIndex(COL_PARECERENCERRAMENTO)));
+		os.horaEncerramentoOS = cursor.getString(cursor.getColumnIndex(COL_HORAENCERRAMENTOOS));
+		os.idMotivoEncerramento = cursor.getInt(cursor.getColumnIndex(COL_IDMOTIVOENCERRAMENTO));
+		os.descricaoMotivoEncerramento = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOMOTIVOENCERRAMENTO));
+		os.parecerEncerramento = cursor.getString(cursor.getColumnIndex(COL_PARECERENCERRAMENTO));
 		//Data da Execu��o
 		if (cursor.getString(cursor.getColumnIndex(COL_DATAEXECUCAO))!=null) {
-			os.setDataExecucao(Util.stringToDate("yyyy-MM-dd", cursor.getString(cursor.getColumnIndex(COL_DATAEXECUCAO))));
+			os.dataExecucao = Util.stringToDate("yyyy-MM-dd", cursor.getString(cursor.getColumnIndex(COL_DATAEXECUCAO)));
 		}
-		os.setHoraInicialExecucao(cursor.getString(cursor.getColumnIndex(COL_HORAINICIALEXECUCAO)));
-		os.setHoraFinalExecucao(cursor.getString(cursor.getColumnIndex(COL_HORAFINALEXECUCAO)));
-		os.setIdEquipeExecucao(cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPEEXECUCAO)));
-		os.setDescricaoEquipeExecucao(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOEQUIPEEXECUCAO)));
-		os.setTipoRede(cursor.getInt(cursor.getColumnIndex(COL_TIPOREDE)));
-		os.setDescricaoTipoRede(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOTIPOREDE)));
-		os.setIdDiametroRede(cursor.getInt(cursor.getColumnIndex(COL_IDDIAMETROREDE)));
-		os.setDescricaoDiametroRede(cursor.getString(cursor.getColumnIndex(COL_DESCRICAODIAMETROREDE)));
-		os.setIdMaterialRede(cursor.getInt(cursor.getColumnIndex(COL_IDMATERIALREDE)));
-		os.setDescricaoMaterialRede(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOMATERIALREDE)));
-		os.setProfundidadeRede(cursor.getString(cursor.getColumnIndex(COL_PROFUNDIDADEREDE)));
-		os.setPressaoRede(cursor.getString(cursor.getColumnIndex(COL_PRESSAOREDE)));
-		os.setIdAgenteExterno(cursor.getInt(cursor.getColumnIndex(COL_IDAGENTEEXTERNO)));
-		os.setAgenteExterno(cursor.getString(cursor.getColumnIndex(COL_AGENTEEXTERNO)));
-		os.setIdUsuario(cursor.getInt(cursor.getColumnIndex(COL_IDUSUARIO)));
-		os.setDescricaoUsuario(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOUSUARIO)));
-		os.setLogradouro(cursor.getString(cursor.getColumnIndex(COL_LOGRADOURO)));
-		os.setBairro(cursor.getString(cursor.getColumnIndex(COL_BAIRRO)));
-		os.setNumeroImovel(cursor.getString(cursor.getColumnIndex(COL_NUMEROIMOVEL)));
-		os.setIdCliente(cursor.getInt(cursor.getColumnIndex(COL_IDCLIENTE)));
-		os.setIdImovel(cursor.getInt(cursor.getColumnIndex(COL_IDIMOVEL)));
-		os.setNomeCliente(cursor.getString(cursor.getColumnIndex(COL_NOMECLIENTE)));
-		os.setIdCausaRede(cursor.getInt(cursor.getColumnIndex(COL_IDCAUSAREDE)));
-		os.setDescricaoCausaRede(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOCAUSAREDE)));
+		os.horaInicialExecucao = cursor.getString(cursor.getColumnIndex(COL_HORAINICIALEXECUCAO));
+		os.horaFinalExecucao = cursor.getString(cursor.getColumnIndex(COL_HORAFINALEXECUCAO));
+		os.idEquipeExecucao = cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPEEXECUCAO));
+		os.descricaoEquipeExecucao = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOEQUIPEEXECUCAO));
+		os.tipoRede = cursor.getInt(cursor.getColumnIndex(COL_TIPOREDE));
+		os.descricaoTipoRede = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOTIPOREDE));
+		os.idDiametroRede = cursor.getInt(cursor.getColumnIndex(COL_IDDIAMETROREDE));
+		os.descricaoDiametroRede = cursor.getString(cursor.getColumnIndex(COL_DESCRICAODIAMETROREDE));
+		os.idMaterialRede = cursor.getInt(cursor.getColumnIndex(COL_IDMATERIALREDE));
+		os.descricaoMaterialRede = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOMATERIALREDE));
+		os.profundidadeRede = cursor.getString(cursor.getColumnIndex(COL_PROFUNDIDADEREDE));
+		os.pressaoRede = cursor.getString(cursor.getColumnIndex(COL_PRESSAOREDE));
+		os.idAgenteExterno = cursor.getInt(cursor.getColumnIndex(COL_IDAGENTEEXTERNO));
+		os.agenteExterno = cursor.getString(cursor.getColumnIndex(COL_AGENTEEXTERNO));
+		os.idUsuario = cursor.getInt(cursor.getColumnIndex(COL_IDUSUARIO));
+		os.descricaoUsuario = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOUSUARIO));
+		os.logradouro = cursor.getString(cursor.getColumnIndex(COL_LOGRADOURO));
+		os.bairro = cursor.getString(cursor.getColumnIndex(COL_BAIRRO));
+		os.numeroImovel = cursor.getString(cursor.getColumnIndex(COL_NUMEROIMOVEL));
+		os.idCliente = cursor.getInt(cursor.getColumnIndex(COL_IDCLIENTE));
+		os.idImovel = cursor.getInt(cursor.getColumnIndex(COL_IDIMOVEL));
+		os.nomeCliente = cursor.getString(cursor.getColumnIndex(COL_NOMECLIENTE));
+		os.idCausaRede = cursor.getInt(cursor.getColumnIndex(COL_IDCAUSAREDE));
+		os.descricaoCausaRede = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOCAUSAREDE));
 		//Data do Cancelamento
 		if (cursor.getString(cursor.getColumnIndex(COL_DATACANCELAMENTO))!=null) {
-			os.setDataCancelamento(Util.stringToDate("yyyy-MM-dd",cursor.getString(cursor.getColumnIndex(COL_DATACANCELAMENTO))));	
+			os.dataCancelamento = Util.stringToDate("yyyy-MM-dd",cursor.getString(cursor.getColumnIndex(COL_DATACANCELAMENTO)));
 		}
-		os.setHoraCancelamento(cursor.getString(cursor.getColumnIndex(COL_HORACANCELAMENTO)));
-		os.setIdTipoServicoGerar(cursor.getInt(cursor.getColumnIndex(COL_IDTIPOSERVICOGERAR)));
-		os.setDescricaoTipoServicoGerar(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOTIPOSERVICOGERAR)));
-		os.setIdMovimentoRecebito(cursor.getInt(cursor.getColumnIndex(COL_IDMOVIMENTORECEBITO)));
-		os.setIdColetorEnvioItem(cursor.getInt(cursor.getColumnIndex(COL_IDCOLETORENVIOITEM)));
-		os.setIdColetorEnvio(cursor.getInt(cursor.getColumnIndex(COL_IDCOLETORENVIO)));
-		os.setKmInicial(cursor.getInt(cursor.getColumnIndex(COL_KMINICIAL)));
-		os.setKmFinal(cursor.getInt(cursor.getColumnIndex(COL_KMFINAL)));
-		os.setIdOrdemServico(cursor.getInt(cursor.getColumnIndex(COL_IDORDEMSERVICO)));
-		
-		os.setNumeroLacreAnterior(cursor.getInt(cursor.getColumnIndex(COL_NUMEROLACREANTERIOR)));
-		os.setNumeroLocreNovo(cursor.getInt(cursor.getColumnIndex(COL_NUMEROLOCRENOVO)));
-		os.setNumeroHidrometro(cursor.getString(cursor.getColumnIndex(COL_NUMEROHIDROMETRO)));
-		os.setLeitura(cursor.getInt(cursor.getColumnIndex(COL_LEITURA)));
-		os.setObservacaoCampo(cursor.getString(cursor.getColumnIndex(COL_OBSERVACAOCAMPO)));
-		
-		/**
-		 * Adicionado: 2013-03-15
-		 */
-		os.setIdSetorComercial(cursor.getInt(cursor.getColumnIndex(COL_IDSETORCOMERCIAL)));
-		os.setNumeroLote(cursor.getInt(cursor.getColumnIndex(COL_NUMEROLOTE)));
-		os.setNumeroSublote(cursor.getInt(cursor.getColumnIndex(COL_NUMEROSUBLOTE)));
-		os.setSequenciaRota(cursor.getInt(cursor.getColumnIndex(COL_SEQUENCIAROTA)));
-		os.setNumeroQuadra(cursor.getString(cursor.getColumnIndex(COL_NUMEROQUADRA)));
-		os.setIndicadorEnvio(cursor.getInt(cursor.getColumnIndex(COL_INDICADORENVIO)));
-		os.setTipoLogradouro(cursor.getString(cursor.getColumnIndex(COL_TIPOLOGRADOURO)));
-		os.setIndicadorOrdemServicoAvulsa(cursor.getInt(cursor.getColumnIndex(COL_INDICADORORDEMSERVICOAVULSA)));
-		os.setLatitude(cursor.getString(cursor.getColumnIndex(COL_LATITUDE)));
-		os.setLongitude(cursor.getString(cursor.getColumnIndex(COL_LONGITUDE)));
+		os.horaCancelamento = cursor.getString(cursor.getColumnIndex(COL_HORACANCELAMENTO));
+		os.idTipoServicoGerar = cursor.getInt(cursor.getColumnIndex(COL_IDTIPOSERVICOGERAR));
+		os.descricaoTipoServicoGerar = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOTIPOSERVICOGERAR));
+		os.idMovimentoRecebito = cursor.getInt(cursor.getColumnIndex(COL_IDMOVIMENTORECEBITO));
+		os.idColetorEnvioItem = cursor.getInt(cursor.getColumnIndex(COL_IDCOLETORENVIOITEM));
+		os.idColetorEnvio = cursor.getInt(cursor.getColumnIndex(COL_IDCOLETORENVIO));
+		os.kmInicial = cursor.getInt(cursor.getColumnIndex(COL_KMINICIAL));
+		os.kmFinal = cursor.getInt(cursor.getColumnIndex(COL_KMFINAL));
+		os.idOrdemServico = cursor.getInt(cursor.getColumnIndex(COL_IDORDEMSERVICO));
+		os.numeroLacreAnterior = cursor.getInt(cursor.getColumnIndex(COL_NUMEROLACREANTERIOR));
+		os.numeroLocreNovo = cursor.getInt(cursor.getColumnIndex(COL_NUMEROLOCRENOVO));
+		os.numeroHidrometro = cursor.getString(cursor.getColumnIndex(COL_NUMEROHIDROMETRO));
+		os.leitura = cursor.getInt(cursor.getColumnIndex(COL_LEITURA));
+		os.observacaoCampo = cursor.getString(cursor.getColumnIndex(COL_OBSERVACAOCAMPO));
+		os.idSetorComercial = cursor.getInt(cursor.getColumnIndex(COL_IDSETORCOMERCIAL));
+		os.numeroLote = cursor.getInt(cursor.getColumnIndex(COL_NUMEROLOTE));
+		os.numeroSublote = cursor.getInt(cursor.getColumnIndex(COL_NUMEROSUBLOTE));
+		os.sequenciaRota = cursor.getInt(cursor.getColumnIndex(COL_SEQUENCIAROTA));
+		os.numeroQuadra = cursor.getString(cursor.getColumnIndex(COL_NUMEROQUADRA));
+		os.indicadorEnvio = cursor.getInt(cursor.getColumnIndex(COL_INDICADORENVIO));
+		os.tipoLogradouro = cursor.getString(cursor.getColumnIndex(COL_TIPOLOGRADOURO));
+		os.indicadorOrdemServicoAvulsa = cursor.getInt(cursor.getColumnIndex(COL_INDICADORORDEMSERVICOAVULSA));
+		os.latitude = cursor.getString(cursor.getColumnIndex(COL_LATITUDE));
+		os.longitude = cursor.getString(cursor.getColumnIndex(COL_LONGITUDE));
 		
 		return os;
-	}
-
-	@Override
-	public OrdemServicoVO obterObject(String line) 
-	{
-
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		OrdemServicoVO vo= new OrdemServicoVO();
-		
-		try 
-		{
-			//N�mero da OS
-			if (values[0].length() > 0) {
-				vo.setNumeroOS(Integer.parseInt(values[0]));
-			}
-			//N�mero da RA
-			if (values[1].length() > 0) {
-				vo.setNumeroRA(Integer.parseInt(values[1]));
-			}
-			//Situa��o da OS
-			if (values[2].length() > 0) {
-				vo.setSituacaoOS(Integer.parseInt(values[2]));
-			}
-			//Situa��o da RA
-			if (values[3].length() > 0) {
-				vo.setSituacaoRA(Integer.parseInt(values[3]));
-			}
-			//Descri��o Situa��o da RA
-			vo.setDesricaoSituacaoRA(values[4]);
-			//Descri��o Situa��o da OS
-			vo.setDescricaoSituacaoOS(values[5]);
-			//Data Gera��o Os
-			if (values[6].length() > 0) {
-				vo.setDataGeracaoOS(Util.stringToDate("dd/MM/yyyy",values[6].replace("\"", "").toString()));
-			}
-			//Data Gera��o RA
-			if (values[7].length() > 0) {
-				vo.setDataGeracaoRA(Util.stringToDate("dd/MM/yyyy",values[7].replace("\"", "").toString()));
-			}
-			//Tipo Servi�o
-			if (values[8].length() > 0) {
-				vo.setIdTipoServico(Integer.parseInt(values[8]));
-			}
-			//Descri��o do Servi�o
-			vo.setDescricaoTipoServico(values[9]);
-			//Observa��o OS
-			vo.setObservacaoOS(values[10]);
-			//Observa��o RA
-			vo.setObservacaoRA(values[11]);
-			//Id Unidade gera��o RA
-			if (values[12].length() > 0) {
-				vo.setIdUnidadeGeracao(Integer.parseInt(values[12]));
-			}
-			//Descri��o Unidade Gera��o RA
-			vo.setDescricaoUnidadeGeracao(values[13]);	
-			//Logradouro
-			vo.setLogradouro(values[14]);
-			//Bairro
-			vo.setBairro(values[15]);
-			//Numero do Im�vel
-			vo.setNumeroImovel(values[16]);
-			//Id do Cliente
-			if (values[17].length() > 0) {
-				vo.setIdCliente(Integer.parseInt(values[17]));	
-			}
-			//Id do Im�vel
-			if (values[18].length() > 0) {
-				vo.setIdImovel(Integer.parseInt(values[18]));
-			}
-			//Nome do Cliente
-			vo.setNomeCliente(values[19]);
-			
-			//IdMovimento Recebido
-			if (values[20].length() > 0) {
-				vo.setIdMovimentoRecebito(Integer.parseInt(values[20]));
-			}
-			//Id. Coletor Envio Item
-			if (values[21].length() > 0) {
-				vo.setIdColetorEnvioItem(Integer.parseInt(values[21]));
-			}
-			//Id. Equipe
-			if (values[22].length() > 0) {
-				vo.setIdEquipeExecucao(Integer.parseInt(values[22]));
-			}
-			//Descri��o Equipe Execu��o
-			vo.setDescricaoEquipeExecucao(values[23]);
-			//Id. Coletor Envio
-			if (values[24].length() > 0) {
-				vo.setIdColetorEnvio(Integer.parseInt(values[24]));
-			}
-			//Id. do Coletor (25)
-			//Mobile ID (26)
-			//Descri��o do Coletor (27)
-			//Data do Movimento (28)
-			//Nome do Arquivo (29)
-			//Hora do Movimento (30)
-			//Id. Ordem de Servi�o (31) *** Diferen�a do n�mero da OS
-			if (values[31].length() > 0) {
-				vo.setIdOrdemServico(Integer.parseInt(values[31]));
-			}
-			//Data do Encerramento da OS (32)
-			if (values[32].length() > 0) {
-				vo.setDataEncerramentoOS(Util.stringToDate("dd/MM/yyyy",values[32].replace("\"", "").toString()));
-			}
-			
-			/**
-			 * Adicionado: 2013-03-15
-			 */
-			//N�mero do Hidrometro
-			if (values[33].length() > 0) {
-				vo.setNumeroHidrometro(values[33]);
-			}
-			//N�mero do Selo
-			if (values[34].length() > 0) {
-			}
-			//Ano de Fabricacao
-			if (values[35].length() > 0) {
-			}
-			//Complemento do Endere�o
-			if (values[36].length() > 0) {
-			}
-			//Quadra
-			if (values[37].length() > 0) {
-				vo.setNumeroQuadra(values[37]);
-			}
-			//Lote
-			if (values[38].length() > 0) {
-				vo.setNumeroLote(Integer.parseInt(values[38]));
-			}
-			//Sublote
-			if (values[39].length() > 0) {
-				vo.setNumeroSublote(Integer.parseInt(values[39]));
-			}
-			//Sequencial lote
-			if (values[40].length() > 0) {
-				vo.setSequenciaRota(Integer.parseInt(values[40]));
-			}
-			//Setor Comercial
-			if (values[41].length() > 0) {
-				vo.setIdSetorComercial(Integer.parseInt(values[41]));
-			}
-			
-			//Latitude
-			if (values[42].length() > 0) {
-				vo.setLatitude(values[42]);
-			}
-			//Longitude
-			if (values[43].length() > 0) {
-				vo.setLongitude(values[43]);
-			}
-			
-		} catch (Exception e) 
-		{
-			e.printStackTrace();
-			Log.w("ordem_servico", line);
-		}
-		
-		return vo;
-	}
-	
-	@Override
-	public OrdemServicoVO obterObject(JSONObject line)
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		OrdemServicoVO vo=new OrdemServicoVO();
-		
-		try 
-		{
-			//Id. Coletor Envio
-			if (line.getString("idColetorEnvio").length() > 0) {
-				vo.setIdColetorEnvio(Integer.parseInt(line.getString("idColetorEnvio")));
-			}
-			//N�mero da OS
-			if (line.getString("numeroOS").length() > 0) {
-				vo.setNumeroOS(Integer.parseInt(line.getString("numeroOS")));	
-			}
-			//N�mero da RA
-			if (line.getString("numeroRA").length() > 0) {
-				vo.setNumeroRA(Integer.parseInt(line.getString("numeroRA")));
-			}
-			//Id. Situa��o da OS
-			if (line.getString("idSituacaoOS").length() > 0) {
-				vo.setSituacaoOS(Integer.parseInt(line.getString("idSituacaoOS")));	
-			}
-			//Id. Situa��o RA
-			if (line.getString("idSituacaoRA").length() > 0) {
-				vo.setSituacaoRA(Integer.parseInt(line.getString("idSituacaoRA")));
-			}
-			//Situa��o OS
-			vo.setDescricaoSituacaoOS(line.getString("situacaoOS"));
-			//Situa��o RA
-			vo.setDesricaoSituacaoRA(line.getString("situacaoRA"));
-			//Data Gera��o OS
-			if (line.getString("dataGeracaoOS").length() > 0) {
-				vo.setDataGeracaoOS(Util.stringToDate("dd/MM/yyyy", line.getString("dataGeracaoOS")));
-			}
-			//Data Gera��o RA
-			if (line.getString("dataGeracaoRA").length() > 0) {
-				vo.setDataGeracaoRA(Util.stringToDate("dd/MM/yyyy", line.getString("dataGeracaoRA")));
-			}
-			//Id. Servico Tipo
-			if (line.getString("idServicoTipo").length() > 0) {
-				vo.setIdTipoServico(Integer.parseInt(line.getString("idServicoTipo")));
-			}
-			//Servico Tipo
-			vo.setDescricaoTipoServico(line.getString("servicoTipo"));
-			//Observa��o OS
-			vo.setObservacaoOS(line.getString("observacaoOS"));
-			//Observa��o RA
-			vo.setObservacaoRA(line.getString("observacaoRA"));
-			//Id. Unidade Gera��o
-			if (line.getString("idUnidadeGeracao").length() > 0) {
-				vo.setIdUnidadeGeracao(Integer.parseInt(line.getString("idUnidadeGeracao")));
-			}
-			//Unidade Gera��o
-			vo.setDescricaoUnidadeGeracao(line.getString("uniadeGeracao"));
-			//Logradouro
-			vo.setLogradouro(line.getString("logradouro"));
-			//Bairro
-			vo.setBairro(line.getString("bairro"));
-			//N�mero Im�vel
-			vo.setNumeroImovel(line.getString("numeroImovel"));
-			//Id. Cliente
-			if (line.getString("idCliente").length() > 0) {
-				vo.setIdCliente(Integer.parseInt(line.getString("idCliente")));
-			}
-			//Id. Im�vel
-			vo.setNumeroImovel(line.getString("idImovel"));
-			//Nome do Cliente
-			vo.setNomeCliente(line.getString("nomeCliente"));
-			//Id. Movimento Recebido
-			if (line.getString("idMovimentoRecebido").length() > 0) {
-				vo.setIdMovimentoRecebito(Integer.parseInt(line.getString("idMovimentoRecebido")));
-			}
-			//Id. Coletor Envio Item
-			if (line.getString("idColetorEnvioItem").length() > 0) {
-				vo.setIdColetorEnvioItem(Integer.parseInt(line.getString("idColetorEnvioItem")));
-			}
-			//Id. Equipe
-			if (line.getString("idEquipe").length() > 0) {
-				vo.setIdEquipeExecucao(Integer.parseInt(line.getString("idEquipe")));
-			}
-			//Equipe
-			vo.setDescricaoEquipeExecucao(line.getString("equipe"));
-			//Mobile ID
-			if (line.getString("idMobile").length() > 0) {
-			}
-			//Descri��o do Coletor
-			if (line.getString("descricaoColetor").length() > 0) {
-			}
-			//Data do Movimento
-			if (line.getString("dataMovimento").length() > 0) {
-			}
-			//Nome do Arquivo
-			if (line.getString("nomeArquivo").length() > 0) {
-			}
-			//Hora do Movimento
-			if (line.getString("horaMovimento").length() > 0) {
-			}	
-			//Id. Ordem Servi�o
-			if (line.getString("idOrdemServico").length() > 0) {
-				vo.setIdOrdemServico(Integer.parseInt(line.getString("idOrdemServico")));
-			}
-			//Data de Encerramento
-			if (line.getString("dataEncerramento").length() > 0) {
-				vo.setDataEncerramentoOS(Util.stringToDate("dd/MM/yyyy", line.getString("dataEncerramento")));
-			}
-			//N�mero do Hidrometro
-			if (line.getString("numeroHidrometro").length() > 0) {
-				vo.setNumeroHidrometro(line.getString("numeroHidrometro"));
-			}
-			//Numero do Selo
-			if (line.getString("numeroSelo").length() > 0) {
-			}
-			//Ano de Fabrica�ao
-			if (line.getString("anoFabricacao").length() > 0) {
-			}
-			//Complemento do Endere�o
-			if (line.getString("complementoEndereco").length() > 0) {
-			}
-			//Numero da Quadra
-			if (line.getString("numeroQuadra").length() > 0) {
-				vo.setNumeroQuadra(line.getString("numeroQuadra"));
-			}
-			//Numero do Lote
-			if (line.getString("numeroLote").length() > 0) {
-				vo.setNumeroLote(Integer.parseInt(line.getString("numeroLote")));
-			}
-			//Numero do Sublote
-			if (line.getString("numeroSublote").length() > 0) {
-				vo.setNumeroSublote(Integer.parseInt(line.getString("numeroSublote")));
-			}
-			//SEquencial da Rota
-			if (line.getString("sequencialRota").length() > 0) {
-				vo.setSequenciaRota(Integer.parseInt(line.getString("sequencialRota")));
-			}
-			//Setor Comercial
-			if (line.getString("setorComerial").length() > 0) {
-				vo.setIdSetorComercial(Integer.parseInt(line.getString("setorComerial")));
-			}
-			
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-	
-
-	@Override
-	public String obterLinhaCSV(OrdemServicoVO vo, String delimitador) 
-	{
-		String linha="";
-		
-		if (vo!=null && vo.getSituacaoOS()!=Util.OS_ID_STATUS_PENDENTE) 
-		{
-			linha=  delimitador
-					+ String.valueOf(vo.getNumeroOS()) + ";"
-					+ String.valueOf(vo.getIdTipoServicoExecutado()) + ";"
-					+ vo.getDescricaoTipoServicoExecutado() + ";"
-					+ Util.dateToString("dd/MM/yyyy", vo.getDataEncerramentoOS()) +  ";"
-					+ vo.getHoraEncerramentoOS() + ";"
-					+ String.valueOf(vo.getIdMotivoEncerramento()) + ";"
-					+ vo.getDescricaoMotivoEncerramento() + ";"
-					+ vo.getParecerEncerramento() + ";"
-					+ Util.dateToString("dd/MM/yyyy", vo.getDataExecucao()) + ";"
-					+ vo.getHoraInicialExecucao() + ";"
-					+ vo.getHoraFinalExecucao() + ";"
-					+ String.valueOf(vo.getIdEquipeExecucao()) + ";"
-					+ vo.getDescricaoEquipeExecucao() + ";"
-					+ String.valueOf(vo.getTipoRede()) + ";"
-					+ vo.getDescricaoTipoRede() + ";"
-					+ String.valueOf(vo.getIdDiametroRede()) + ";"
-					+ vo.getDescricaoDiametroRede() + ";"
-					+ String.valueOf(vo.getIdMaterialRede()) + ";"
-					+ vo.getDescricaoMaterialRede() + ";"
-					+ vo.getProfundidadeRede() + ";"
-					+ vo.getPressaoRede() + ";"
-					+ String.valueOf(vo.getIdAgenteExterno()) + ";"
-					+ vo.getAgenteExterno() + ";"
-					+ String.valueOf(vo.getIdCausaRede()) + ";"
-					+ vo.getDescricaoCausaRede() + ";"
-					+ Util.dateToString("dd/MM/yyyy", vo.getDataCancelamento()) + ";"
-					+ vo.getHoraCancelamento()													+ ";"
-					+ String.valueOf(vo.getIdTipoServicoGerar()) 								+ ";"
-					+ vo.getDescricaoTipoServicoGerar() 										+ ";"
-					+ String.valueOf(vo.getIdMovimentoRecebito()) 								+ ";"
-					+ String.valueOf(vo.getIdColetorEnvioItem()) 								+ ";"
-					+ String.valueOf(vo.getIdColetorEnvio())   									+ ";"
-					+ String.valueOf(vo.getKmInicial()) 										+ ";"
-					+ String.valueOf(vo.getKmFinal())  											+ ";"	
-					+ String.valueOf(vo.getSituacaoOS())										+ ";"
-					+ (vo.getDescricaoSituacaoOS()==null ? " " : vo.getDescricaoSituacaoOS()) 	+ ";"
-					+ String.valueOf(vo.getNumeroLacreAnterior()) 								+ ";"
-					+ String.valueOf(vo.getNumeroLocreNovo())									+ ";"
-					+ (vo.getNumeroHidrometro()==null ? " " : vo.getNumeroHidrometro()) 		+ ";"
-					+ String.valueOf(vo.getLeitura()) 											+ ";"
-					+ (vo.getObservacaoCampo()==null ? "." : vo.getObservacaoCampo())			+ ";"
-					+ (vo.getLogradouro()==null ? "." : vo.getLogradouro())						+ ";"
-					+ (vo.getBairro()==null ? "." : vo.getBairro())								+ ";"
-					+ (vo.getNumeroImovel()==null ? "0" : vo.getNumeroImovel())					+ ";"
-					+ (vo.getObservacaoOS()==null ? "." : vo.getObservacaoOS())					+ ";"
-					+ (vo.getTipoLogradouro()==null ? "." : vo.getTipoLogradouro())				+ ";"
-					+ "\n";	
-		}
-		return linha;
 	}
 
 	public String obterOrdemServicoExecucao() 
@@ -920,124 +533,5 @@ public class OrdemServicoDAO extends BasicDAO<OrdemServicoVO>
 			exist= (cursor.getInt(0) == 0 ? false : true);
 		} 
 		return exist;
-	}	
-	
-	public void povoaTabela()
-	{
-		//Lista de arquivos dispon�veis
-		List<String> files=getListFiles();
-		int qtd=files.size();
-		
-		for (int x=0; x<qtd; x++) 
-		{
-			List<String> lines=lerDadosFromFile(files.get(x), Util.PATH_DOWNLOAD);
-			String line;
-			int iLinhas=lines.size();
-			
-			for (int i=0; i<iLinhas; i++)
-			{
-				line=lines.get(i);
-				if (line.length() >0)
-				{
-					OrdemServicoVO vo=obterObject(line);
-					if (vo!=null) inserir(vo);
-				}
-			}	
-		}
-	}
-	
-	public List<String> getListFiles()
-	{
-		List<String> list=new ArrayList<String>();
-		try 
-		{
-			String sdCard = Environment.getExternalStorageDirectory().toString();
-			File file=new File(sdCard + Util.PATH_DOWNLOAD);
-			FileFilter fileFilter=new FileFilter() 
-			{
-				@Override
-				public boolean accept(File pathname) 
-				{
-					return pathname.getName().contains("wb3" + Util.dateToString("yyyyMMdd", new Date()));
-				}
-			};
-			
-			File files[]=file.listFiles(fileFilter);
-			int qtd=files.length;
-			
-			for (int i=0; i<qtd; i++)
-			{
-				list.add(files[i].getName());
-			}
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		return list;
-	}
-	
-	public boolean saveToFile(String directoryname, String filename)
-	{
-		boolean bolReturn=false;
-		List<OrdemServicoVO > oss=listar();
-		int qtd=oss.size();
-		String linha="";
-
-		if (qtd > 0) 
-		{
-			try 
-			{
-				File sdCard = Environment.getExternalStorageDirectory();
-				File directory= new File(sdCard.getAbsolutePath() + directoryname);
-				File file = new File(directory, filename);
-				FileOutputStream output= new FileOutputStream(file);
-				OutputStreamWriter osw=new OutputStreamWriter(output);
-				
-				for (int i=0; i<qtd; i++)
-				{
-					OrdemServicoVO vo=oss.get(i);
-					if (vo.getDataEncerramentoOS() !=null || vo.getDataCancelamento() !=null) 
-					{
-						linha= obterLinhaCSV(vo, "");
-						osw.write(linha);
-					}
-				}
-				
-				osw.flush();
-				osw.close();
-				bolReturn=true;
-			} catch (FileNotFoundException e) 
-			{
-				e.printStackTrace();
-			} catch (IOException e) 
-			{
-				e.printStackTrace();
-			}	
-		}
-		return bolReturn;
-	}
-	
-	public void povoaTabelaFromJSON(String url,  String idMobile, Date dataMovimento)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		postParameters.add(new BasicNameValuePair("idMobile", idMobile));
-		postParameters.add(new BasicNameValuePair("dataMovimento", Util.dateToString("MM/dd/yyyy", dataMovimento)));
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/OrdemServicoServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			OrdemServicoVO vo=obterObject(jsonObject);
-			if (vo!=null) {
-				if (obterPorNumeroOs(vo.getNumeroOS())==null) {
-					inserir(vo);	
-				}
-			}
-		}
 	}
  }

@@ -69,7 +69,7 @@ public class OrdemServicoCorteDAO extends BasicDAO<OrdemServicoCorteVO>
 	public boolean atualizar(OrdemServicoCorteVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -132,21 +132,21 @@ public class OrdemServicoCorteDAO extends BasicDAO<OrdemServicoCorteVO>
 	public ContentValues obterContentValues(OrdemServicoCorteVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_IDORDEMSERVICOCORTE, vo.getIdOrdemServicoCorte());
-		values.put(COL_IDORDEMSERVICO, vo.getIdOrdemServico());
-		if (vo.getDataCorte()!=null) {
-			values.put(COL_DATACORTE, Util.dateToString("yyyy-MM-dd", vo.getDataCorte()));	
+		values.put(COL_IDORDEMSERVICOCORTE, vo.idOrdemServicoCorte);
+		values.put(COL_IDORDEMSERVICO, vo.idOrdemServico);
+		if (vo.dataCorte!=null) {
+			values.put(COL_DATACORTE, Util.dateToString("yyyy-MM-dd", vo.dataCorte));
 		}
-		values.put(COL_HORACORTE, vo.getHoraCorte());
-		values.put(COL_LEITURACORTE, vo.getLeituraCorte());
-		values.put(COL_NUMEROSELO, vo.getNumeroSelo());
-		values.put(COL_IDFUNCIONARIO, vo.getIdFuncionario());
-		values.put(COL_NUMEROHIDROMETRO, vo.getNumeroHidrometro());
-		values.put(COL_IDMOTIVOCORTE, vo.getIdMotivoCorte());
-		values.put(COL_IDCORTETIPO, vo.getIdCorteTipo());
-		values.put(COL_IDEQUIPEEXECUCAO, vo.getIdEquipeExecucao());
-		values.put(COL_DESCRICAOEQUIPEEXECUCAO, vo.getDescricaoEquipeExecucao());
-		values.put(COL_INDICADORENVIO, vo.getIndicadorEnvio());
+		values.put(COL_HORACORTE, vo.horaCorte);
+		values.put(COL_LEITURACORTE, vo.leituraCorte);
+		values.put(COL_NUMEROSELO, vo.numeroSelo);
+		values.put(COL_IDFUNCIONARIO, vo.idFuncionario);
+		values.put(COL_NUMEROHIDROMETRO, vo.numeroHidrometro);
+		values.put(COL_IDMOTIVOCORTE, vo.idMotivoCorte);
+		values.put(COL_IDCORTETIPO, vo.idCorteTipo);
+		values.put(COL_IDEQUIPEEXECUCAO, vo.idEquipeExecucao);
+		values.put(COL_DESCRICAOEQUIPEEXECUCAO, vo.descricaoEquipeExecucao);
+		values.put(COL_INDICADORENVIO, vo.indicadorEnvio);
 		
 		return values;
 	}
@@ -172,99 +172,23 @@ public class OrdemServicoCorteDAO extends BasicDAO<OrdemServicoCorteVO>
 		}
 		
 		OrdemServicoCorteVO vo = new OrdemServicoCorteVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdOrdemServicoCorte(cursor.getInt(cursor.getColumnIndex(COL_IDORDEMSERVICOCORTE)));
-		vo.setIdOrdemServico(cursor.getInt(cursor.getColumnIndex(COL_IDORDEMSERVICO)));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idOrdemServicoCorte = cursor.getInt(cursor.getColumnIndex(COL_IDORDEMSERVICOCORTE));
+		vo.idOrdemServico = cursor.getInt(cursor.getColumnIndex(COL_IDORDEMSERVICO));
 		if (cursor.getString(cursor.getColumnIndex(COL_DATACORTE)) !=null) {
-			vo.setDataCorte(Util.stringToDate("yyyy-MM-dd", cursor.getString(cursor.getColumnIndex(COL_DATACORTE))));
+			vo.dataCorte = Util.stringToDate("yyyy-MM-dd", cursor.getString(cursor.getColumnIndex(COL_DATACORTE)));
 		}
-		vo.setHoraCorte(cursor.getString(cursor.getColumnIndex(COL_HORACORTE)));
-		vo.setLeituraCorte(cursor.getInt(cursor.getColumnIndex(COL_LEITURACORTE)));
-		vo.setNumeroSelo(cursor.getString(cursor.getColumnIndex(COL_NUMEROSELO)));
-		vo.setIdFuncionario(cursor.getString(cursor.getColumnIndex(COL_IDFUNCIONARIO)));
-		vo.setNumeroHidrometro(cursor.getString(cursor.getColumnIndex(COL_NUMEROHIDROMETRO)));
-		vo.setIdMotivoCorte(cursor.getInt(cursor.getColumnIndex(COL_IDMOTIVOCORTE)));
-		vo.setIdCorteTipo(cursor.getInt(cursor.getColumnIndex(COL_IDCORTETIPO)));
-		vo.setIdEquipeExecucao(cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPEEXECUCAO)));
-		vo.setDescricaoEquipeExecucao(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOEQUIPEEXECUCAO)));
-		vo.setIndicadorEnvio(cursor.getInt(cursor.getColumnIndex(COL_INDICADORENVIO)));
+		vo.horaCorte = cursor.getString(cursor.getColumnIndex(COL_HORACORTE));
+		vo.leituraCorte = cursor.getInt(cursor.getColumnIndex(COL_LEITURACORTE));
+		vo.numeroSelo = cursor.getString(cursor.getColumnIndex(COL_NUMEROSELO));
+		vo.idFuncionario = cursor.getString(cursor.getColumnIndex(COL_IDFUNCIONARIO));
+		vo.numeroHidrometro = cursor.getString(cursor.getColumnIndex(COL_NUMEROHIDROMETRO));
+		vo.idMotivoCorte = cursor.getInt(cursor.getColumnIndex(COL_IDMOTIVOCORTE));
+		vo.idCorteTipo = cursor.getInt(cursor.getColumnIndex(COL_IDCORTETIPO));
+		vo.idEquipeExecucao = cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPEEXECUCAO));
+		vo.descricaoEquipeExecucao = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOEQUIPEEXECUCAO));
+		vo.indicadorEnvio = cursor.getInt(cursor.getColumnIndex(COL_INDICADORENVIO));
 		
 		return vo;
 	}
-
-	@Override
-	public OrdemServicoCorteVO obterObject(String line) 
-	{
-		return super.obterObject(line);
-	}
-
-	@Override
-	public OrdemServicoCorteVO obterObject(JSONObject line) 
-	{
-		return super.obterObject(line);
-	}
-
-	@Override
-	public String obterLinhaCSV(OrdemServicoCorteVO vo, String delimitador) 
-	{
-		String linha="";
-		if (vo!=null)
-		{
-			linha=  delimitador												
-					+ Integer.toString(vo.getIdOrdemServicoCorte()) 		+ ";"
-					+ Integer.toString(vo.getIdOrdemServico()) 				+ ";"
-					+ Util.dateToString("dd/MM/yyyy", vo.getDataCorte()) 	+ ";"
-					+ vo.getHoraCorte()										+ ";"
-					+ Integer.toString(vo.getLeituraCorte()) 				+ ";"
-					+ vo.getNumeroSelo()									+ ";"
-					+ vo.getIdFuncionario() 								+ ";"
-					+ vo.getNumeroHidrometro()								+ ";"
-					+ Integer.toString(vo.getIdMotivoCorte()) 				+ ";"
-					+ Integer.toString(vo.getIdCorteTipo())					+ ";"
-					+ Integer.toString(vo.getIdEquipeExecucao()) 			+ ";"
-					+ vo.getDescricaoEquipeExecucao()
-					+ "\n";
-		}
-		return linha;
-	}
-	
-	public boolean saveToFile(String directoryname, String filename)
-	{
-		boolean bolReturn=false;
-		List<OrdemServicoCorteVO> lista=listar();
-		int qtd=lista.size();
-		String linha="";
-
-		if (qtd>0) {
-			try 
-			{
-				File sdCard = Environment.getExternalStorageDirectory();
-				File directory= new File(sdCard.getAbsolutePath() + directoryname);
-				File file = new File(directory, filename);
-				FileOutputStream output= new FileOutputStream(file);
-				OutputStreamWriter osw=new OutputStreamWriter(output);
-				
-				for (int i=0; i<qtd; i++)
-				{
-					OrdemServicoCorteVO vo=lista.get(i);
-					linha= obterLinhaCSV(vo, "");
-					osw.write(linha);
-				}
-				
-				osw.flush();
-				osw.close();
-				bolReturn=true;
-			} catch (FileNotFoundException e) 
-			{
-				e.printStackTrace();
-			} catch (IOException e) 
-			{
-				e.printStackTrace();
-			}
-		}
-		return bolReturn;
-	}
-	
-	
-
 }

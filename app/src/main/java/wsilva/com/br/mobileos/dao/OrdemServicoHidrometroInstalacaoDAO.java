@@ -80,7 +80,7 @@ public class OrdemServicoHidrometroInstalacaoDAO extends
 	public boolean atualizar(OrdemServicoHidrometroInstalacaoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -131,26 +131,26 @@ public class OrdemServicoHidrometroInstalacaoDAO extends
 	public ContentValues obterContentValues(OrdemServicoHidrometroInstalacaoVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_IDORDEMSERVICOINSTALACAOHM, vo.getIdOrdemServicoInstalacaoHM());
-		values.put(COL_NUMEROHIDROMETRO, vo.getNumeroHidrometro());
-		if (vo.getDataInstalacaoHidrometro()!=null) {
-			values.put(COL_DATAINSTALACAOHIDROMETRO,  Util.dateToString("yyyy-MM-dd", vo.getDataInstalacaoHidrometro()));
+		values.put(COL_IDORDEMSERVICOINSTALACAOHM, vo.idOrdemServicoInstalacaoHM);
+		values.put(COL_NUMEROHIDROMETRO, vo.numeroHidrometro);
+		if (vo.dataInstalacaoHidrometro!=null) {
+			values.put(COL_DATAINSTALACAOHIDROMETRO,  Util.dateToString("yyyy-MM-dd", vo.dataInstalacaoHidrometro));
 		}
-		values.put(COL_IDTIPOMEDICAO, vo.getIdTipoMedicao());
-		values.put(COL_IDLOCALINSTALACAOHIDROMETRO, vo.getIdLocalInstalacaoHidrometro());
-		values.put(COL_IDPROTECAOHIDROMETRO, vo.getIdProtecaoHidrometro());
-		values.put(COL_IDORDEMSERVICO, vo.getIdOrdemServico());
-		values.put(COL_INDICADORTROCAPROTECAO, vo.getIndicadorTrocaProtecao());
-		values.put(COL_INDICADORTROCAREGISTRO, vo.getIndicadorTrocaRegistro());
-		values.put(COL_LEITURAINSTALACAO, vo.getLeituraInstalacao());
-		values.put(COL_NUMEROSELO, vo.getNumeroSelo());
-		values.put(COL_INDCADORCAVALETE, vo.getIndcadorCavalete());
-		values.put(COL_IDFUNCIONARIO, vo.getIdFuncionario());
-		values.put(COL_IDTIPOINSTALACAOHM, vo.getIdTipoInstalacaoHM());
-		values.put(COL_HORAINSTALACAOHIDROMETRO, vo.getHoraInstalacaoHidrometro());
-		values.put(COL_IDEQUIPEEXECUCAO, vo.getIdEquipeExecucao());
-		values.put(COL_DESCRICAOEQUIPEEXECUCAO, vo.getDescricaoEquipeExecucao());
-		values.put(COL_INDICADORENVIO, vo.getIndicadorEnvio());
+		values.put(COL_IDTIPOMEDICAO, vo.idTipoMedicao);
+		values.put(COL_IDLOCALINSTALACAOHIDROMETRO, vo.idLocalInstalacaoHidrometro);
+		values.put(COL_IDPROTECAOHIDROMETRO, vo.idProtecaoHidrometro);
+		values.put(COL_IDORDEMSERVICO, vo.idOrdemServico);
+		values.put(COL_INDICADORTROCAPROTECAO, vo.indicadorTrocaProtecao);
+		values.put(COL_INDICADORTROCAREGISTRO, vo.indicadorTrocaRegistro);
+		values.put(COL_LEITURAINSTALACAO, vo.leituraInstalacao);
+		values.put(COL_NUMEROSELO, vo.numeroSelo);
+		values.put(COL_INDCADORCAVALETE, vo.indcadorCavalete);
+		values.put(COL_IDFUNCIONARIO, vo.idFuncionario);
+		values.put(COL_IDTIPOINSTALACAOHM, vo.idTipoInstalacaoHM);
+		values.put(COL_HORAINSTALACAOHIDROMETRO, vo.horaInstalacaoHidrometro);
+		values.put(COL_IDEQUIPEEXECUCAO, vo.idEquipeExecucao);
+		values.put(COL_DESCRICAOEQUIPEEXECUCAO, vo.descricaoEquipeExecucao);
+		values.put(COL_INDICADORENVIO, vo.indicadorEnvio);
 		
 		return values;
 	}
@@ -176,122 +176,28 @@ public class OrdemServicoHidrometroInstalacaoDAO extends
 		}
 		
 		OrdemServicoHidrometroInstalacaoVO vo = new OrdemServicoHidrometroInstalacaoVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdOrdemServicoInstalacaoHM(cursor.getInt(cursor.getColumnIndex(COL_IDORDEMSERVICOINSTALACAOHM)));
-		vo.setNumeroHidrometro(cursor.getString(cursor.getColumnIndex(COL_NUMEROHIDROMETRO)));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idOrdemServicoInstalacaoHM = cursor.getInt(cursor.getColumnIndex(COL_IDORDEMSERVICOINSTALACAOHM));
+		vo.numeroHidrometro = cursor.getString(cursor.getColumnIndex(COL_NUMEROHIDROMETRO));
 		if (cursor.getString(cursor.getColumnIndex(COL_DATAINSTALACAOHIDROMETRO))!=null) {
-			vo.setDataInstalacaoHidrometro(Util.stringToDate("yyyy-MM-dd", cursor.getString(cursor.getColumnIndex(COL_DATAINSTALACAOHIDROMETRO))));
+			vo.dataInstalacaoHidrometro = Util.stringToDate("yyyy-MM-dd", cursor.getString(cursor.getColumnIndex(COL_DATAINSTALACAOHIDROMETRO)));
 		}
-		vo.setIdTipoMedicao(cursor.getString(cursor.getColumnIndex(COL_IDTIPOMEDICAO)));
-		vo.setIdLocalInstalacaoHidrometro(cursor.getInt(cursor.getColumnIndex(COL_IDLOCALINSTALACAOHIDROMETRO)));
-		vo.setIdProtecaoHidrometro(cursor.getInt(cursor.getColumnIndex(COL_IDPROTECAOHIDROMETRO)));
-		vo.setIdOrdemServico(cursor.getInt(cursor.getColumnIndex(COL_IDORDEMSERVICO)));
-		vo.setIndicadorTrocaProtecao(cursor.getInt(cursor.getColumnIndex(COL_INDICADORTROCAPROTECAO)));
-		vo.setIndicadorTrocaRegistro(cursor.getInt(cursor.getColumnIndex(COL_INDICADORTROCAREGISTRO)));
-		vo.setLeituraInstalacao(cursor.getInt(cursor.getColumnIndex(COL_LEITURAINSTALACAO)));
-		vo.setNumeroSelo(cursor.getString(cursor.getColumnIndex(COL_NUMEROSELO)));
-		vo.setIndcadorCavalete(cursor.getString(cursor.getColumnIndex(COL_INDCADORCAVALETE)));
-		vo.setIdFuncionario(cursor.getString(cursor.getColumnIndex(COL_IDFUNCIONARIO)));
-		vo.setIdTipoInstalacaoHM(cursor.getInt(cursor.getColumnIndex(COL_IDTIPOINSTALACAOHM)));
-		vo.setHoraInstalacaoHidrometro(cursor.getString(cursor.getColumnIndex(COL_HORAINSTALACAOHIDROMETRO)));
-		vo.setIdEquipeExecucao(cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPEEXECUCAO)));
-		vo.setDescricaoEquipeExecucao(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOEQUIPEEXECUCAO)));
-		vo.setIndicadorEnvio(cursor.getInt(cursor.getColumnIndex(COL_INDICADORENVIO)));
+		vo.idTipoMedicao = cursor.getString(cursor.getColumnIndex(COL_IDTIPOMEDICAO));
+		vo.idLocalInstalacaoHidrometro = cursor.getInt(cursor.getColumnIndex(COL_IDLOCALINSTALACAOHIDROMETRO));
+		vo.idProtecaoHidrometro = cursor.getInt(cursor.getColumnIndex(COL_IDPROTECAOHIDROMETRO));
+		vo.idOrdemServico = cursor.getInt(cursor.getColumnIndex(COL_IDORDEMSERVICO));
+		vo.indicadorTrocaProtecao = cursor.getInt(cursor.getColumnIndex(COL_INDICADORTROCAPROTECAO));
+		vo.indicadorTrocaRegistro = cursor.getInt(cursor.getColumnIndex(COL_INDICADORTROCAREGISTRO));
+		vo.leituraInstalacao = cursor.getInt(cursor.getColumnIndex(COL_LEITURAINSTALACAO));
+		vo.numeroSelo = cursor.getString(cursor.getColumnIndex(COL_NUMEROSELO));
+		vo.indcadorCavalete = cursor.getString(cursor.getColumnIndex(COL_INDCADORCAVALETE));
+		vo.idFuncionario = cursor.getString(cursor.getColumnIndex(COL_IDFUNCIONARIO));
+		vo.idTipoInstalacaoHM = cursor.getInt(cursor.getColumnIndex(COL_IDTIPOINSTALACAOHM));
+		vo.horaInstalacaoHidrometro = cursor.getString(cursor.getColumnIndex(COL_HORAINSTALACAOHIDROMETRO));
+		vo.idEquipeExecucao = cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPEEXECUCAO));
+		vo.descricaoEquipeExecucao = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOEQUIPEEXECUCAO));
+		vo.indicadorEnvio = cursor.getInt(cursor.getColumnIndex(COL_INDICADORENVIO));
 		
 		return vo;
 	}
-
-	@Override
-	public OrdemServicoHidrometroInstalacaoVO obterObject(String line) 
-	{
-		return super.obterObject(line);
-	}
-
-	@Override
-	public OrdemServicoHidrometroInstalacaoVO obterObject(JSONObject line) 
-	{
-		return super.obterObject(line);
-	}
-
-
-	@Override
-	public String obterLinhaCSV(OrdemServicoHidrometroInstalacaoVO vo, String delimitador) 
-	{
-		String linha="";
-		if (vo!=null) 
-		{
-			linha= delimitador 
-				//N�mero do Hidr�metro
-				+ vo.getNumeroHidrometro()								 				+ ";"
-				//Data da Instala��o
-				+ Util.dateToString("dd/MM/yyyy",vo.getDataInstalacaoHidrometro()) 		+ ";"
-				//Tipo de Medi��o (�gua ou Po�o)
-				+ vo.getIdTipoMedicao()													+ ";"
-				//Local da Instala��o do Hidr�metro
-				+ Integer.toString(vo.getIdLocalInstalacaoHidrometro())					+ ";"
-				//Tipo de Prote��o
-				+ Integer.toString(vo.getIdProtecaoHidrometro())						+ ";"
-				//N�mero da Ordem de Servi�o
-				+ Integer.toString(vo.getIdOrdemServico())								+ ";"
-				//Indicador de Troca de Protec��o
-				+ Integer.toString(vo.getIndicadorTrocaProtecao())						+ ";"
-				//Indicador de Troca de Registro
-				+ Integer.toString(vo.getIndicadorTrocaRegistro())						+ ";"
-				//Leitura
-				+ Integer.toString(vo.getLeituraInstalacao())							+ ";"
-				//Selo
-				+ vo.getNumeroSelo()													+ ";"
-				//Indicador Com ou Sem Cavalete
-				+ vo.getIndcadorCavalete()												+ ";"
-				//Funcion�rio Respons�vel
-				+ vo.getIdFuncionario()													+ ";"
-				//Tipo de Instala��o do Hidr�metro
-				+ Integer.toString(vo.getIdTipoInstalacaoHM())							+ ";"
-				//Hora da Instala��o do Hidr�metro
-				+ vo.getHoraInstalacaoHidrometro()										+ ";"
-				//Id. Equipe Execuc�o
-				+ Integer.toString(vo.getIdEquipeExecucao())							+ ";"
-				//Nome da Equipe
-				+ vo.getDescricaoEquipeExecucao()								
-				+ "\n";
-		}
-		return linha;
-	}
-	
-	public boolean saveToFile(String directoryname, String filename)
-	{
-		boolean bolReturn=false;
-		List<OrdemServicoHidrometroInstalacaoVO> lista=listar();
-		int qtd=lista.size();
-		String linha="";
-
-		if (qtd>0) {
-			try 
-			{
-				File sdCard = Environment.getExternalStorageDirectory();
-				File directory= new File(sdCard.getAbsolutePath() + directoryname);
-				File file = new File(directory, filename);
-				FileOutputStream output= new FileOutputStream(file);
-				OutputStreamWriter osw=new OutputStreamWriter(output);
-				
-				for (int i=0; i<qtd; i++)
-				{
-					OrdemServicoHidrometroInstalacaoVO vo=lista.get(i);
-					linha= obterLinhaCSV(vo, "");
-					osw.write(linha);
-				}
-				
-				osw.flush();
-				osw.close();
-				bolReturn=true;
-			} catch (FileNotFoundException e) 
-			{
-				e.printStackTrace();
-			} catch (IOException e) 
-			{
-				e.printStackTrace();
-			}	
-		}
-		return bolReturn;
-	}	
 }

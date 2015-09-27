@@ -42,7 +42,7 @@ public class MotivoEncerramentoDAO extends BasicDAO<MotivoEncerramentoVO>
 	public boolean atualizar(MotivoEncerramentoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -95,8 +95,8 @@ public class MotivoEncerramentoDAO extends BasicDAO<MotivoEncerramentoVO>
 	public ContentValues obterContentValues(MotivoEncerramentoVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_DESCRICAOMOTIVOENCERRAMENTO, vo.getDescricaoMotivoEncerramento());
-		values.put(COL_IDMOTIVOENCERRAMENTO, vo.getIdMotivoEncerramento());
+		values.put(COL_DESCRICAOMOTIVOENCERRAMENTO, vo.descricaoMotivoEncerramento);
+		values.put(COL_IDMOTIVOENCERRAMENTO, vo.idMotivoEncerramento);
 		
 		return values;
 	}
@@ -121,91 +121,10 @@ public class MotivoEncerramentoDAO extends BasicDAO<MotivoEncerramentoVO>
 		}
 		
 		MotivoEncerramentoVO vo = new MotivoEncerramentoVO();
-		vo.setDescricaoMotivoEncerramento(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOMOTIVOENCERRAMENTO)));
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdMotivoEncerramento(cursor.getInt(cursor.getColumnIndex(COL_IDMOTIVOENCERRAMENTO)));
+		vo.descricaoMotivoEncerramento = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOMOTIVOENCERRAMENTO));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idMotivoEncerramento = cursor.getInt(cursor.getColumnIndex(COL_IDMOTIVOENCERRAMENTO));
 		
 		return vo;
 	}
-
-	@Override
-	public MotivoEncerramentoVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		MotivoEncerramentoVO vo=new MotivoEncerramentoVO();
-		//C�digo
-		if (values[0].length()>0){
-			vo.setIdMotivoEncerramento(Integer.parseInt(values[0]));
-		}
-		//Descri��o
-		vo.setDescricaoMotivoEncerramento(values[1]);
-		
-		return vo;
-	}
-	
-	@Override
-	public MotivoEncerramentoVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		MotivoEncerramentoVO vo=new MotivoEncerramentoVO();
-		
-		try 
-		{
-			//C�digo
-			if (line.getString("idMotivoEncerramento").length() > 0) {
-				vo.setIdMotivoEncerramento(Integer.parseInt(line.getString("idMotivoEncerramento")));
-			}
-			//Descri��o
-			vo.setDescricaoMotivoEncerramento(line.getString("motivoEncerramento"));
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		return vo;
-	}
-
-	public void povoaTabela()
-	{
-		List<String> lines=lerDadosFromFile("wa6.csv", Util.PATH_DOWNLOAD);
-		String line;
-		int iLinhas=lines.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			line=lines.get(i);
-			if (line.length() >0)
-			{
-				MotivoEncerramentoVO vo=obterObject(line);
-				if (vo!=null) inserir(vo);
-			}
-		}
-	}
-	
-	public void povoaTabelaFromJSON(String url)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/MotivoEncerramentoServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			MotivoEncerramentoVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
-	}
-	
 }

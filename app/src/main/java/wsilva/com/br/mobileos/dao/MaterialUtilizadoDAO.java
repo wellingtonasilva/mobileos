@@ -67,7 +67,7 @@ public class MaterialUtilizadoDAO extends BasicDAO<MaterialUtilizadoVO>
 	public boolean atualizar(MaterialUtilizadoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -135,15 +135,15 @@ public class MaterialUtilizadoDAO extends BasicDAO<MaterialUtilizadoVO>
 	public ContentValues obterContentValues(MaterialUtilizadoVO vo) 
 	{
 		ContentValues values = new ContentValues();
-		values.put(COL_DESCRICAOMATERIAL, vo.getDescricaoMateriall());
-		values.put(COL_DESCRICAOUNIDADEMEDIDA, vo.getDescricaoUnidadeMedida());
-		values.put(COL_IDMATERIAL, vo.getIdMaterial());
-		values.put(COL_IDUNIDADEMEDIDA, vo.getIdUnidadeMedida());
-		values.put(COL_NUMEROOS, vo.getNumeroOS());
-		values.put(COL_QUANTIDADE, vo.getQuantidade());
-		values.put(COL_IDEQUIPEEXECUCAO, vo.getIdEquipeExecucao());
-		values.put(COL_DESCRICAOEQUIPEEXECUCAO, vo.getDescricaoEquipeExecucao());
-		values.put(COL_INDICADORENVIO,  vo.getIndicadorEnvio());
+		values.put(COL_DESCRICAOMATERIAL, vo.descricaoMateriall);
+		values.put(COL_DESCRICAOUNIDADEMEDIDA, vo.descricaoUnidadeMedida);
+		values.put(COL_IDMATERIAL, vo.idMaterial);
+		values.put(COL_IDUNIDADEMEDIDA, vo.idUnidadeMedida);
+		values.put(COL_NUMEROOS, vo.numeroOS);
+		values.put(COL_QUANTIDADE, vo.quantidade);
+		values.put(COL_IDEQUIPEEXECUCAO, vo.idEquipeExecucao);
+		values.put(COL_DESCRICAOEQUIPEEXECUCAO, vo.descricaoEquipeExecucao);
+		values.put(COL_INDICADORENVIO,  vo.indicadorEnvio);
 		
 		return values;
 	}
@@ -180,81 +180,17 @@ public class MaterialUtilizadoDAO extends BasicDAO<MaterialUtilizadoVO>
 		}
 		
 		MaterialUtilizadoVO vo = new MaterialUtilizadoVO();
-		vo.setDescricaoMateriall(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOMATERIAL)));
-		vo.setDescricaoUnidadeMedida(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOUNIDADEMEDIDA)));
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setIdMaterial(cursor.getInt(cursor.getColumnIndex(COL_IDMATERIAL)));
-		vo.setIdUnidadeMedida(cursor.getInt(cursor.getColumnIndex(COL_IDUNIDADEMEDIDA)));
-		vo.setNumeroOS(cursor.getInt(cursor.getColumnIndex(COL_NUMEROOS)));
-		vo.setQuantidade(cursor.getDouble(cursor.getColumnIndex(COL_QUANTIDADE)));
-		vo.setIdEquipeExecucao(cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPEEXECUCAO)));
-		vo.setDescricaoEquipeExecucao(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOEQUIPEEXECUCAO)));
-		vo.setIndicadorEnvio(cursor.getInt(cursor.getColumnIndex(COL_INDICADORENVIO)));
+		vo.descricaoMateriall = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOMATERIAL));
+		vo.descricaoUnidadeMedida = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOUNIDADEMEDIDA));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.idMaterial = cursor.getInt(cursor.getColumnIndex(COL_IDMATERIAL));
+		vo.idUnidadeMedida = cursor.getInt(cursor.getColumnIndex(COL_IDUNIDADEMEDIDA));
+		vo.numeroOS = cursor.getInt(cursor.getColumnIndex(COL_NUMEROOS));
+		vo.quantidade = cursor.getDouble(cursor.getColumnIndex(COL_QUANTIDADE));
+		vo.idEquipeExecucao = cursor.getInt(cursor.getColumnIndex(COL_IDEQUIPEEXECUCAO));
+		vo.descricaoEquipeExecucao = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOEQUIPEEXECUCAO));
+		vo.indicadorEnvio = cursor.getInt(cursor.getColumnIndex(COL_INDICADORENVIO));
 		
 		return vo;
-	}
-	
-	@Override
-	public String obterLinhaCSV(MaterialUtilizadoVO vo, String delimitador) 
-	{
-		String linha="";
-		if (vo!=null)
-		{
-			linha=	delimitador									+ ";"
-					+ String.valueOf(vo.getNumeroOS()) 			+ ";"
-					+ vo.getDescricaoMateriall() 				+ ";"
-					+ String.valueOf(vo.getIdUnidadeMedida()) 	+ ";"
-					+ vo.getDescricaoUnidadeMedida() 			+ ";"
-					+ Double.toString(vo.getQuantidade()) 		+ ";"
-					+ String.valueOf(vo.getIdMaterial()) 		+ ";"
-					+ Integer.toString(vo.getIdEquipeExecucao())+ ";"
-					+ vo.getDescricaoEquipeExecucao()
-					+ "\n";
-		}
-		return linha;
-	}
-
-	public boolean saveToFile(String directoryname, String filename)
-	{
-		boolean bolReturn=false;
-		List<MaterialUtilizadoVO> materiais=listar();
-		int qtd=materiais.size();
-		String linha="";
-
-		if (qtd>0) {
-			try 
-			{
-				File sdCard = Environment.getExternalStorageDirectory();
-				File directory= new File(sdCard.getAbsolutePath() + directoryname);
-				File file = new File(directory, filename);
-				FileOutputStream output= new FileOutputStream(file);
-				OutputStreamWriter osw=new OutputStreamWriter(output);
-				
-				for (int i=0; i<qtd; i++)
-				{
-					MaterialUtilizadoVO vo=materiais.get(i);
-					linha=String.valueOf(vo.getNumeroOS())				+ ";"
-							+ vo.getDescricaoMateriall() 				+  ";"
-							+ String.valueOf(vo.getIdUnidadeMedida()) 	+ ";"
-							+ vo.getDescricaoUnidadeMedida() 			+ ";"
-							+ Double.toString(vo.getQuantidade()) 		+ ";"
-							+ String.valueOf(vo.getIdMaterial()) 		+ ";"
-							+ Integer.toString(vo.getIdEquipeExecucao())+ ";"
-							+ vo.getDescricaoEquipeExecucao()
-							+ "\n";
-					osw.write(linha);
-				}
-				osw.flush();
-				osw.close();
-				bolReturn=true;
-			} catch (FileNotFoundException e) 
-			{
-				e.printStackTrace();
-			} catch (IOException e) 
-			{
-				e.printStackTrace();
-			}	
-		}
-		return bolReturn;
 	}
 }

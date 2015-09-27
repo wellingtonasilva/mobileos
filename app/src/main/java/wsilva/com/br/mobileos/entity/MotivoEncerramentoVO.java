@@ -1,15 +1,14 @@
 package wsilva.com.br.mobileos.entity;
 
-import java.io.Serializable;
-
 import org.ksoap2.serialization.SoapObject;
+import wsilva.com.br.mobileos.core.entity.EntityVO;
 
-public class MotivoEncerramentoVO extends EntityVO implements Serializable
+public class MotivoEncerramentoVO extends EntityVO
 {
 
 	private static final long serialVersionUID = 1L;
-	private int IdMotivoEncerramento;
-	private String DescricaoMotivoEncerramento;
+	public int idMotivoEncerramento;
+	public String descricaoMotivoEncerramento;
 	
 	public MotivoEncerramentoVO() {
 	}
@@ -17,27 +16,13 @@ public class MotivoEncerramentoVO extends EntityVO implements Serializable
 	public MotivoEncerramentoVO(SoapObject object) {
 		serialize(object);
 	}
-	
-	public int getIdMotivoEncerramento() {
-		return IdMotivoEncerramento;
-	}
-	public void setIdMotivoEncerramento(int idMotivoEncerramento) {
-		IdMotivoEncerramento = idMotivoEncerramento;
-	}
-	public String getDescricaoMotivoEncerramento() {
-		return DescricaoMotivoEncerramento;
-	}
-	public void setDescricaoMotivoEncerramento(String descricaoMotivoEncerramento) {
-		DescricaoMotivoEncerramento = descricaoMotivoEncerramento;
-	}
-	
+
 	private void serialize(SoapObject object)
 	{
 		if (object.getPropertyCount() != 0) 
 		{
-			this.IdMotivoEncerramento=Integer.parseInt(object.getProperty("idMotivoEncerramento").toString());
-			this.DescricaoMotivoEncerramento=object.getProperty("motivoEncerramento").toString();
+			this.idMotivoEncerramento=Integer.parseInt(object.getProperty("idMotivoEncerramento").toString());
+			this.descricaoMotivoEncerramento=object.getProperty("motivoEncerramento").toString();
 		}
 	}
-	
 }

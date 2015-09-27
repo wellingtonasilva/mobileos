@@ -2,10 +2,6 @@ package wsilva.com.br.mobileos.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -42,7 +38,7 @@ public class HidrometroLocalInstalacaoDAO extends
 	public boolean atualizar(HidrometroLocalInstalacaoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -94,8 +90,8 @@ public class HidrometroLocalInstalacaoDAO extends
 	public ContentValues obterContentValues(HidrometroLocalInstalacaoVO vo) 
 	{
 		ContentValues values=new ContentValues();
-		values.put(COL_IDLOCALINSTALACAOHIDROMETRO, vo.getIdLocalInstalacaoHidrometro());
-		values.put(COL_DESCRICAOLOCALINSTALACAOHIDROMETRO, vo.getDescricaoLocalInstalacaoHidrometro());
+		values.put(COL_IDLOCALINSTALACAOHIDROMETRO, vo.idLocalInstalacaoHidrometro);
+		values.put(COL_DESCRICAOLOCALINSTALACAOHIDROMETRO, vo.descricaoLocalInstalacaoHidrometro);
 		
 		return values;
 	}
@@ -121,74 +117,10 @@ public class HidrometroLocalInstalacaoDAO extends
 		}
 		
 		HidrometroLocalInstalacaoVO vo = new HidrometroLocalInstalacaoVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-		vo.setDescricaoLocalInstalacaoHidrometro(cursor.getString(cursor.getColumnIndex(COL_DESCRICAOLOCALINSTALACAOHIDROMETRO)));
-		vo.setIdLocalInstalacaoHidrometro(cursor.getInt(cursor.getColumnIndex(COL_IDLOCALINSTALACAOHIDROMETRO)));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
+		vo.descricaoLocalInstalacaoHidrometro = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOLOCALINSTALACAOHIDROMETRO));
+		vo.idLocalInstalacaoHidrometro = cursor.getInt(cursor.getColumnIndex(COL_IDLOCALINSTALACAOHIDROMETRO));
 		
 		return vo;
-	}
-
-	@Override
-	public HidrometroLocalInstalacaoVO obterObject(String line) 
-	{
-		if (line.length() <= 0) {
-			return null;
-		}
-		
-		String[] values=line.split(";");
-		HidrometroLocalInstalacaoVO vo=new HidrometroLocalInstalacaoVO();
-		//C�digo
-		if (values[0].length() > 0) {
-			vo.setIdLocalInstalacaoHidrometro(Integer.parseInt(values[0]));
-		}
-		//Descri��o
-		vo.setDescricaoLocalInstalacaoHidrometro(values[1]);
-		
-		return vo;
-	}
-
-	@Override
-	public HidrometroLocalInstalacaoVO obterObject(JSONObject line) 
-	{
-		if (line ==null) {
-			return null;
-		}
-		
-		HidrometroLocalInstalacaoVO vo=new HidrometroLocalInstalacaoVO();
-		
-		try 
-		{
-			//C�digo
-			if (line.getString("idLocalInstalacaoHidrometro").length() > 0) {
-				vo.setIdLocalInstalacaoHidrometro(Integer.parseInt(line.getString("idLocalInstalacaoHidrometro")));
-			}
-			//Descri��o
-			vo.setDescricaoLocalInstalacaoHidrometro(line.getString("descricaoLocalInstalacaoHidrometro"));
-		} catch (NumberFormatException e) 
-		{
-			e.printStackTrace();
-		} catch (JSONException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		return vo;
-	}
-	
-	public void povoaTabelaFromJSON(String url)
-	{
-		//Lista de parametros POST
-		List<NameValuePair> postParameters=new ArrayList<NameValuePair>();
-		
-		//Ler objetos do servidor
-		List<JSONObject> jsonObjects=lerDadosFromFile(url + "/HidrometroLocalInstalacaoServlet", postParameters);
-		int iLinhas=jsonObjects.size();
-		
-		for (int i=0; i<iLinhas; i++)
-		{
-			JSONObject jsonObject= jsonObjects.get(i);
-			HidrometroLocalInstalacaoVO vo=obterObject(jsonObject);
-			if (vo!=null) inserir(vo);
-		}
 	}
 }

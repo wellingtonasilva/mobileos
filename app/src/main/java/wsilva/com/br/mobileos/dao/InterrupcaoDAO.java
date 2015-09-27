@@ -73,7 +73,7 @@ public class InterrupcaoDAO extends BasicDAO<InterrupcaoVO> {
 	public boolean atualizar(InterrupcaoVO vo) 
 	{
 		ContentValues values=obterContentValues(vo);
-		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo.getEntityId())}) > 0;
+		return db.update(TABLE_NAME, values, COL_ID + "=?", new String[]{String.valueOf(vo._id)}) > 0;
 	}
 
 	@Override
@@ -228,7 +228,7 @@ public class InterrupcaoDAO extends BasicDAO<InterrupcaoVO> {
 		}
 		
 		InterrupcaoVO vo= new InterrupcaoVO();
-		vo.setEntityId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
+		vo._id = cursor.getInt(cursor.getColumnIndex(COL_ID));
 		vo.dataMovimento=cursor.getString(cursor.getColumnIndex(COL_DATAMOVIMENTO));
 		vo.nomeEquipe=cursor.getString(cursor.getColumnIndex(COL_NOMEEQUIPE));
 		vo.matricula=cursor.getInt(cursor.getColumnIndex(COL_MATRICULA));
@@ -249,71 +249,4 @@ public class InterrupcaoDAO extends BasicDAO<InterrupcaoVO> {
 		
 		return vo;
 	}
-	
-	@Override
-	public String obterLinhaCSV(InterrupcaoVO vo, String delimitador) 
-	{
-		String linha="";
-		if (vo!=null) 
-		{
-			linha=  delimitador
-					+ vo.dataMovimento 									+ ";"
-					+ vo.nomeEquipe 									+ ";"
-					+ String.valueOf(vo.matricula) 						+ ";"
-					+ String.valueOf(vo.numeroOS) 						+ ";"
-					+ String.valueOf(vo.idInterrupcaoMotivo) 			+ ";"
-					+ vo.descricaoInterrupcaoMotivo 					+ ";"
-					+ vo.observacaoInicio								+ ";"
-					+ vo.observacaoFim 									+ ";"
-					+ vo.dataInicio 									+ ";"
-					+ vo.horaInicio										+ ";"
-					+ vo.dataFim 										+ ";"
-					+ vo.horaFim 										+ ";"
-					+ String.valueOf(vo.indicadorAtivo) 				+ ";"
-					+ String.valueOf(vo.indicadorEnviouSMSInicio)		+ ";"
-					+ String.valueOf(vo.indicadorEnviouSMSFim) 			+ ";"
-					+ String.valueOf(vo.kmInicial) 						+ ";"
-					+ String.valueOf(vo.kmFinal) 						+ ";"
-					+ "\n";
-		}
-		return linha;
-	}
-
-	
-	public boolean saveToFile(String directoryname, String filename)
-	{
-		boolean bolReturn=false;
-		List<InterrupcaoVO> valas=listar();
-		int qtd=valas.size();
-		String linha="";
-
-		if (qtd>0){
-			try 
-			{
-				File sdCard = Environment.getExternalStorageDirectory();
-				File directory= new File(sdCard.getAbsolutePath() + directoryname);
-				File file = new File(directory, filename);
-				FileOutputStream output= new FileOutputStream(file);
-				OutputStreamWriter osw=new OutputStreamWriter(output);
-				
-				for (int i=0; i<qtd; i++)
-				{
-					InterrupcaoVO vo=valas.get(i);
-					linha= obterLinhaCSV(vo, "");
-					osw.write(linha);
-				}
-				osw.flush();
-				osw.close();
-				bolReturn=true;
-			} catch (FileNotFoundException e) 
-			{
-				e.printStackTrace();
-			} catch (IOException e) 
-			{
-				e.printStackTrace();
-			}	
-		}
-		return bolReturn;
-	}
-
 }

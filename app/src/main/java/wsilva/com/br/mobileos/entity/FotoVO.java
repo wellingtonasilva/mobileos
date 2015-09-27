@@ -1,13 +1,11 @@
 package wsilva.com.br.mobileos.entity;
 
-import java.io.Serializable;
 import java.util.Date;
-
 import org.ksoap2.serialization.SoapObject;
+import wsilva.com.br.mobileos.core.entity.EntityVO;
 
-public class FotoVO extends EntityVO implements Serializable 
+public class FotoVO extends EntityVO
 {
-
 	private static final long serialVersionUID = 1L;
 	public int numeroOS;
 	public String nomeFoto;
@@ -42,6 +40,4 @@ public class FotoVO extends EntityVO implements Serializable
 			this.horaFoto=object.getProperty("horaFoto").toString();
 		}
 	}
-	
-	
 }
