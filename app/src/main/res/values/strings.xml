@@ -35,4 +35,22 @@
     <string name="app_carregando_usuario">Carregando Usuários</string>
     <string name="app_carregando_irregularidade_tipo">Carregando Tipo de Irregularidades</string>
     <string name="app_sem_conexao">Não foi possível conectar à rede. Tente novamente.</string>
+    <string name="app_configuracao">Configuração</string>
+    <string name="app_checklist">Checklist</string>
+    <string name="app_ocorrencias">Ocorrências</string>
+    <string name="app_ordem_servico">Ordem de Serviço</string>
+
+    <string name="app_ra">RA</string>
+    <string name="app_os">OS</string>
+    <string name="app_data_geracao_os">Data Geração OS</string>
+    <string name="app_logradouro">Logradouro</string>
+    <string name="app_bairro">Bairro</string>
+    <string name="app_numero_imovel">No. Imóvel</string>
+    <string name="app_data_encerramento">Data Encerramento</string>
+    <string name="app_hora">Hora</string>
+    <string name="app_zona">Zona</string>
+    <string name="app_quadra">Quadra</string>
+    <string name="app_lote">Lote</string>
+    <string name="app_numero_ra">No. RA</string>
+    <string name="app_numero_hidrometro">No. Hidrômetro</string>
 </resources>

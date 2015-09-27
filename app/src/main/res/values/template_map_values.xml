@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="tlcc_find">Localizar</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_main3">Main3Activity</string>
+    <string name="tlcc_retroceder">Voltar</string>
+    <string name="tlcc_pause">Pause</string>
+    <string name="tlcc_play">Play</string>
+    <string name="tlcc_avancar">Avançar</string>
+    <string name="title_activity_main4">Main4Activity</string>
+    <string name="title_activity_menu_mapa">MenuMapa</string>
+    <string name="tlcc_example1">Mark</string>
+    <string name="tlcc_example2">On-line</string>
+    <string name="tlcc_example3">Origem/Destino</string>
+    <string name="tlcc_example4">Rota</string>
+    <string name="tlcc_example5">Histórico</string>
+    <string name="tlcc_calculando_rota">Calculando Rota</string>
+    <string name="tlcc_app_name_long">Map</string>
+</resources>
