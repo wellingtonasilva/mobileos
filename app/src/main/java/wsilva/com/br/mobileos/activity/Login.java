@@ -66,6 +66,9 @@ public class Login extends CoreActivity
 				doSair();
 			}
 		});
+
+		//Criar Pastas Auxiliares
+		Util.criarPastas(Login.this);
 	}
 	
 	protected void doLogin()

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/lblSpinnerItem1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_label"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        style="?android:attr/spinnerItemStyle"
+        android:singleLine="true" 
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:ellipsize="marquee"
+        
+        />
+
+    <TextView
+        android:id="@+id/lblSpinnerItem2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="@string/lbl_label"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        style="?android:attr/spinnerItemStyle" 
+        android:visibility="invisible"
+        />
+
+</LinearLayout>

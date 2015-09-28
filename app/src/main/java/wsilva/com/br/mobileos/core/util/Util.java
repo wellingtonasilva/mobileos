@@ -1,7 +1,17 @@
 package wsilva.com.br.mobileos.core.util;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,6 +28,7 @@ import android.net.NetworkInfo;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import org.json.JSONException;
@@ -193,6 +204,17 @@ public class Util
 		Cursor cursor=basicDAO.obterCursor();
 		activity.startManagingCursor(cursor);
 		SimpleCursorAdapter simpleCursorAdapter= new SimpleCursorAdapter(context, 
+				android.R.layout.simple_spinner_item, cursor, from, to);
+		simpleCursorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		return simpleCursorAdapter;
+	}
+
+	public static SimpleCursorAdapter criarSimpleCursorAdapter(Context context, IBasicDAO<?> basicDAO,
+		String[] from, int[] to)
+	{
+
+		Cursor cursor=basicDAO.obterCursor();
+		SimpleCursorAdapter simpleCursorAdapter= new SimpleCursorAdapter(context,
 				android.R.layout.simple_spinner_item, cursor, from, to);
 		simpleCursorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		return simpleCursorAdapter;
@@ -446,5 +468,113 @@ public class Util
 
 	public static void unlockScreenOrientation(Activity activity) {
 		activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+	}
+
+	public static List<String> lerDadosFromFile(String filename, String directoryname)
+	{
+		List<String> arrReturn=new ArrayList<String>();
+		try
+		{
+			File sdCard = Environment.getExternalStorageDirectory();
+			File directory= new File(sdCard.getAbsolutePath() + directoryname);
+			File file = new File(directory, filename);
+			FileInputStream input= new FileInputStream(file);
+
+
+			InputStreamReader reader=new InputStreamReader(input);
+			BufferedReader br=new BufferedReader(reader);
+			String line;
+
+			while ((line = br.readLine()) != null)
+			{
+				arrReturn.add(line);
+			}
+
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+
+		return arrReturn;
+	}
+
+	public static ArrayAdapter<String> criarArrayAdapter(Context context, int array,
+														 int textViewResourceId)
+	{
+		String stringArray[]= context.getResources().getStringArray(array);
+		ArrayAdapter<String> adapter=new ArrayAdapter<String>(context,
+				textViewResourceId,stringArray);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		return adapter;
+	}
+
+	public static boolean criarPastas(Context context)
+	{
+		boolean bolReturn=false;
+		try {
+			//SDCard
+			File sdCard = context.getFilesDir();
+
+			//Pasta in
+			String dirIn =  sdCard.getAbsolutePath() + "/" + Util.PATH_DOWNLOAD;
+			File file=new File(dirIn);
+			if (!file.exists()) {
+				file.mkdirs();
+			}
+
+			//Pasta out
+			String dirOut =  sdCard.getAbsolutePath() + "/" + Util.PATH_UPLOAD;
+			file=new File(dirOut);
+			if (!file.exists()) {
+				file.mkdirs();
+			}
+
+			//Pasta image
+			String dirImage = sdCard.getAbsolutePath() + "/" + Util.PATH_IMAGE;
+			file=new File(dirImage);
+			if (!file.exists()) {
+				file.mkdirs();
+			}
+			bolReturn=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bolReturn;
+	}
+
+	public static boolean gerarArquivoDemoOrdemServico(Context context, String assetname)
+	{
+		boolean bolReturn=false;
+		try {
+			//SDCard
+			File sdCard = context.getFilesDir();
+			String filename =  sdCard.getAbsolutePath() + "/" + Util.PATH_DOWNLOAD + "/" + assetname;
+			File file=new File(filename);
+			if (!file.exists()) {
+				InputStream from=context.getAssets().open(filename);
+				Util.copyFileFromAssets(context, from, new FileOutputStream(assetname));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bolReturn;
+	}
+
+	public static boolean copyFileFromAssets(Context context, InputStream from, OutputStream to)
+	{
+		boolean bolReturn=false;
+		try {
+			byte[] buffer=new byte[1024];
+			int length;
+			while ((length = from.read(buffer)) > 0)
+			{
+				to.write(buffer,0, length);
+			}
+			from.close();
+			to.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bolReturn;
 	}
 }

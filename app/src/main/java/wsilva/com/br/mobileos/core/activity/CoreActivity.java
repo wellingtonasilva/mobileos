@@ -1,8 +1,11 @@
 package wsilva.com.br.mobileos.core.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
+
+import wsilva.com.br.mobileos.R;
 import wsilva.com.br.mobileos.core.interfaces.ICoreAcaoFim;
 import wsilva.com.br.mobileos.core.interfaces.ICoreAcaoInicio;
 import wsilva.com.br.mobileos.core.receivers.CoreAcaoFimReceiver;
@@ -12,6 +15,7 @@ public class CoreActivity extends Activity implements ICoreAcaoInicio, ICoreAcao
 {
     protected CoreAcaoInicioReceiver coreAcaoInicioReceiver;
     protected CoreAcaoFimReceiver coreAcaoFimReceiver;
+    protected ProgressDialog progressDialog;
 
     @Override
     protected void onResume()
@@ -19,6 +23,7 @@ public class CoreActivity extends Activity implements ICoreAcaoInicio, ICoreAcao
         super.onResume();
         if (coreAcaoInicioReceiver==null) registerBaseFinishReceiver();
         if (coreAcaoFimReceiver==null) registerBaseStartReceiver();
+        if (progressDialog ==null) registerProgress();
     }
 
     @Override
@@ -53,5 +58,15 @@ public class CoreActivity extends Activity implements ICoreAcaoInicio, ICoreAcao
         coreAcaoFimReceiver = new CoreAcaoFimReceiver();
         coreAcaoFimReceiver.setCoreAcaoFim(this);
         registerReceiver(coreAcaoFimReceiver, intentFilter);
+    }
+
+    protected void registerProgress()
+    {
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMax(100);
+        progressDialog.setTitle(getBaseContext().getResources().getText(R.string.lbl_titulo_aguarde));
+        progressDialog.setMessage(getBaseContext().getResources().getText(R.string.lbl_msg_carregando_dados));
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
     }
 }

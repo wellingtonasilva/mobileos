@@ -1,5 +1,6 @@
 package wsilva.com.br.mobileos.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,30 +41,32 @@ public class MainActivity extends CoreActivity {
         });
 
         Button btnChecklist = (Button) findViewById(R.id.btnChecklist);
-        btnChecklist.setOnClickListener(new View.OnClickListener()
-        {
+        btnChecklist.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
             }
         });
 
         Button btnConfiguracao = (Button) findViewById(R.id.btnConfiguracao);
-        btnConfiguracao.setOnClickListener(new View.OnClickListener()
-        {
+        btnConfiguracao.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
+                showConfiguracao();
             }
         });
 
         Button btnSair = (Button) findViewById(R.id.btnSair);
-        btnSair.setOnClickListener(new View.OnClickListener()
-        {
+        btnSair.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view)
-            {
+            public void onClick(View view) {
+                finish();
             }
         });
+    }
+
+    protected void showConfiguracao()
+    {
+        Intent intent = new Intent(MainActivity.this, ConfiguracaoManter.class);
+        startActivity(intent);
     }
 }

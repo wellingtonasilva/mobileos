@@ -1,6 +1,7 @@
 package wsilva.com.br.mobileos.adapter;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
@@ -11,21 +12,20 @@ import android.widget.TextView;
 
 import wsilva.com.br.mobileos.R;
 import wsilva.com.br.mobileos.core.util.Util;
-import wsilva.com.br.mobileos.entity.OrdemServicoVO;
+import wsilva.com.br.mobileos.entity.os.OrdemServicoVO;
 
 public class ListaOrdemServicoAdapter extends ArrayAdapter<OrdemServicoVO>
 {
 
-	private ArrayList<OrdemServicoVO> items;
+	private List<OrdemServicoVO> items;
 	private Resources resources;
 	int resource;
 	
-	public ListaOrdemServicoAdapter(Context context, 
+	public ListaOrdemServicoAdapter(Context context,
 			int resourceId,
-			ArrayList<OrdemServicoVO> items) 
+			List<OrdemServicoVO> items)
 	{
 		super(context, resourceId, items);
-		this.resource=resourceId;
 		this.items=items;
 		resources = context.getResources();
 	}

@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/template_layout_border"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/lbl_no_os"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtDadosOSNumeroOs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="number" >
+            </EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_numero_ra"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtNumeroRA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="number" >
+            </EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_servico"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtSevico"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="textMultiLine"
+                android:lines="2"
+                android:maxLines="2"
+                android:singleLine="false" >
+            </EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_servico_executado"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtSevicoExecutado"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="textMultiLine"
+                android:lines="2"
+                android:maxLines="2"
+                android:singleLine="false" >
+            </EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_data_geracao"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtDataGeracao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="text" >
+            </EditText>
+
+            <!-- Observação da RA -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_observacao_ra"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtObservacaoRA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="textMultiLine" >
+            </EditText>
+
+            <!-- Observação da oS -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_observacao_os"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtDadosOSObservacaoOS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="textMultiLine" />
+
+            <!-- Observação de Campo -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_observacao_equipe"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtDadosOSObservacaoCampo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:inputType="textMultiLine" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/lighter_gray" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/template_layout_border"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/lbl_local_ocorrencia"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/lbl_logradouro"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtLogradouro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="textMultiLine"
+                android:lines="2"
+                android:maxLines="2"
+                android:singleLine="false" >
+            </EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_bairro"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtBairro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="textMultiLine"
+                android:lines="2"
+                android:maxLines="2"
+                android:singleLine="false" >
+            </EditText>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_numero_imovel"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtNumeroImovel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="textMultiLine|number"
+                android:lines="2"
+                android:maxLines="2"
+                android:singleLine="false" >
+            </EditText>
+
+            <!-- Zona -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_zona"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtNumeroZona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="text"
+                android:lines="2"
+                android:maxLines="2"
+                android:singleLine="false" >
+            </EditText>
+
+            <!-- Quadra -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_quadra"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtNumeroQuadra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="text"
+                android:lines="2"
+                android:maxLines="2"
+                android:singleLine="false" >
+            </EditText>
+
+            <!-- Lote -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_lote"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtNumeroLote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:lines="2"
+                android:maxLines="2"
+                android:singleLine="false" >
+            </EditText>
+
+            <!-- No. Hidrômetro -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_numero_hidrometro"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtNumeroHidrometro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="textMultiLine|number"
+                android:lines="2"
+                android:maxLines="2"
+                android:singleLine="false" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/template_layout_border"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/lbl_dados_cliente"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/lbl_codigo"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtCodigoCliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="number" >
+            </EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_numero_matricula"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtNumeroLigacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="number" >
+            </EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_nome_cliente"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/background_holo_dark"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtNomeCliente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/template_edittext_rounded_corners"
+                android:focusable="false"
+                android:inputType="textMultiLine|number"
+                android:lines="2"
+                android:maxLines="2"
+                android:singleLine="false" >
+            </EditText>
+        </LinearLayout>
+        <!-- Botões de Opções -->
+
+    </LinearLayout>
+</ScrollView>
+

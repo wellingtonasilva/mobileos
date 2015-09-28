@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <CheckedTextView
+        android:id="@+id/lblSpinnerItem1"
+        style="?android:attr/spinnerDropDownItemStyle"
+        android:layout_width="match_parent"
+        android:singleLine="false"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:maxLines="2"
+        />
+
+    <TextView
+        android:id="@+id/lblSpinnerItem2"
+        style="?android:attr/spinnerItemStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_label"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/holo_orange_dark" />
+
+</LinearLayout>

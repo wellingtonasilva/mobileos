@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/lblOsMaterialUtilizadoOS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/lbl_no_os"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtOsMaterialUtilizadoOS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:focusable="false"
+            />
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_material_utilizado_codigo"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+
+
+        <TableLayout
+            android:id="@+id/tableLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/txtOsMaterialUtilizadoCodigo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:inputType="number"
+                    android:layout_weight="1"
+                    />
+
+                <ImageButton
+                    android:id="@+id/btnPesquisar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:background="@drawable/template_layout_button"
+                    android:onClick="onDeleteClick"
+                    android:src="@mipmap/ic_action_search"
+                    android:visibility="visible"
+                    />
+
+            </TableRow>
+        </TableLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_material_utilizado_descricao"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <Spinner
+            android:id="@+id/spiOsMaterialUtilizadoMaterial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_material_utilizado_quantidade"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/txtOsMaterialUtilizadoQuantidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" >
+        </EditText>
+    </LinearLayout>
+</ScrollView>
+

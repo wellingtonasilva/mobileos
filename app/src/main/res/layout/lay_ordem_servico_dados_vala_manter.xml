@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/lbl_no_os"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/txtDadosValaNumeroOs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:focusable="false"
+            />
+
+        <!-- Número da Vala       -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_dados_vala_numero_vala"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/txtDadosValaNumero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:focusable="false"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_dados_vala_local_ocorrencia"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <Spinner
+            android:id="@+id/spiDadosValaLocalOcorrencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <requestFocus />
+        </Spinner>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_dados_vala_pavimento"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <Spinner
+            android:id="@+id/spiDadosValaPavimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_dados_vala_comprimento"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/txtDadosValaComprimento"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_dados_vala_largura"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/txtDadosValaLargura"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_dados_vala_profundidade"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/txtDadosValaProfundidade"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            />
+
+
+        <CheckBox
+            android:id="@+id/chkDadosValaIndicadorAterro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_dados_vala_indicador_aterro"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/chkDadosValaIndicadorEntulho"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_dados_vala_indicador_entulho"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+        <!-- 		Reaterrado pela Equipe -->
+        <CheckBox
+            android:id="@+id/chkDadosValaIndicadorAterroPelaEquipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_dados_vala_indicador_aterro_equipe"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_dados_vala_quantidade_bags"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/txtDadosValaQuantidadeBag"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            >
+        </EditText>
+
+    </LinearLayout>
+</ScrollView>
+

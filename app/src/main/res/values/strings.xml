@@ -39,6 +39,7 @@
     <string name="app_checklist">Checklist</string>
     <string name="app_ocorrencias">Ocorrências</string>
     <string name="app_ordem_servico">Ordem de Serviço</string>
+    <string name="app_dados_rede">Dados da Rede</string>
 
     <string name="app_ra">RA</string>
     <string name="app_os">OS</string>
@@ -53,4 +54,209 @@
     <string name="app_lote">Lote</string>
     <string name="app_numero_ra">No. RA</string>
     <string name="app_numero_hidrometro">No. Hidrômetro</string>
+    <string name="app_listagem">Listagem</string>
+    <string name="app_nome_foto">Nome da Foto</string>
+    <string name="app_descricao">Descrição</string>
+
+    <string name="lbl_ordem_servico">Ordem Serviço</string>
+    <string name="lbl_encerrar">Encerrar</string>
+    <string name="lbl_vala">Vala</string>
+    <string name="lbl_material">Material</string>
+    <string name="lbl_observacao_ra">Observação RA</string>
+    <string name="lbl_observacao_os">Observação OS</string>
+    <string name="lbl_observacao_equipe">Observação da Equipe</string>
+    <string name="lbl_numero_ra">No. RA</string>
+    <string name="lbl_local_ocorrencia">Local da Ocorrência</string>
+    <string name="lbl_logradouro">Logradouro</string>
+    <string name="lbl_bairro">Bairro</string>
+    <string name="lbl_numero_imovel">No. Imóvel</string>
+    <string name="lbl_zona">Zona</string>
+    <string name="lbl_quadra">Quadra</string>
+    <string name="lbl_lote">Lote</string>
+    <string name="lbl_numero_hidrometro">No. Medidor</string>
+    <string name="lbl_dados_cliente">Dados do cliente</string>
+    <string name="lbl_codigo">Código</string>
+    <string name="lbl_numero_matricula">Matrícula</string>
+    <string name="lbl_nome_cliente">Nome do cliente</string>
+    <string name="lbl_servico">Serviço</string>
+    <string name="lbl_servico_executado">Serviço Executado</string>
+    <string name="lbl_dados_ordem_servico">Dados da Ordem de Serviço</string>
+    <string name="selecione_um_item">Selecione um item</string>
+    <string name="lbl_label">Lorem ipsum dolor sit amet</string>
+    <string name="lbl_no_os">No. OS</string>
+    <string name="lbl_no_hidrometro">No. Hidrômetro</string>
+    <string name="lbl_data_instalacao">Data Instalação</string>
+    <string name="lbl_data">Data</string>
+    <string name="lbl_data_geracao">Data Geração</string>
+    <string name="lbl_hora">Hora</string>
+    <string name="lbl_hora_instalacao">Hora Instalação</string>
+    <string name="lbl_local_instalacao">Local Instalação</string>
+    <string name="lbl_protecao_hidrometro">Proteção do Hidrômetro</string>
+    <string name="lbl_tipo_instalacao_hidrometro">Tipo Instalação Hidrômetro</string>
+    <string name="lbl_leitura_instalacao">Leitura na Instalação</string>
+    <string name="lbl_no_leitura">No. Leitura</string>
+    <string name="lbl_no_lacre">No. Lacre</string>
+    <string name="lbl_troca_registro">Troca Registro</string>
+    <string name="lbl_troca_protecao">Troca Proteção</string>
+    <string name="lbl_com_cavalete">Com Cavalete</string>
+    <string name="lbl_observacao">Observação</string>
+    <string name="lbl_ok">OK</string>
+    <string name="lbl_cancelar">Cancelar</string>
+    <string name="lbl_sair">Sair</string>
+    <string name="lbl_salvar">Salvar</string>
+    <string name="lbl_entrar">Entrar</string>
+    <string name="lbl_rdt">RDT/Equipe</string>
+    <string name="lbl_administracao">Administração</string>
+    <string name="lbl_kminicial">KM Inicial</string>
+    <string name="lbl_kmafinal">KM Final</string>
+    <string name="lbl_login">Login</string>
+    <string name="lbl_senha">Senha</string>
+    <string name="lbl_tipo_servico">Tipo de Serviço"</string>
+    <string name="lbl_logo_administra">Logo Administra</string>
+    <string name="lbl_nome_usuario">Nome do usuário</string>
+
+    <string name="lbl_titulo_instalacao_hidrometro">Instalação de Hidrômetro</string>
+
+    <!-- Labels da Configuração -->
+    <string name="lbl_config_servidor_ftp_titulo">Servidor FTP</string>
+    <string name="lbl_config_servidor_ftp_ip">IP</string>
+    <string name="lbl_config_servidor_ftp_usuario">Usuário</string>
+    <string name="lbl_config_servidor_ftp_senha">Senha</string>
+    <string name="lbl_config_servidor_ftp_porta">Porta</string>
+    <string name="lbl_config_utilizar_ftp_enviar_arquivos">Utilizar FTP enviar arquivos</string>
+    <string name="lbl_config_utilizar_ftp_receber_arquivos">Utilizar FTP receber arquivos</string>
+    <string name="lbl_config_utilizar_ftp_enviar_fotos">Enviar Fotos via FTP</string>
+
+    <string name="lbl_config_servidor_web_titulo">Servidor Web</string>
+    <string name="lbl_config_servidor_url">URL</string>
+    <string name="lbl_config_utilizar_web_enviar_arquivos">Utilizar WEB enviar arquivos</string>
+    <string name="lbl_config_utilizar_web_receber_arquivos">Utilizar WEB receber arquivos</string>
+    <string name="lbl_config_utilizar_web_enviar_fotos">Enviar Fotos via WEB</string>
+
+    <string name="lbl_config_dispositivo_titulo">Dispositivo</string>
+    <string name="lbl_config_dispositivo_nome">Nome</string>
+    <string name="lbl_config_dispositivo_dispositivo">Dispositivo</string>
+    <string name="lbl_config_dispositivo_empresa">Empresa</string>
+    <string name="lbl_config_dispositivo_equipe">Equipe</string>
+    <string name="lbl_config_dispositivo_serial">Serial</string>
+    <string name="lbl_config_dispositivo_id">ID</string>
+    <string name="lbl_config_dispositivo_pasta_download">Pasta download</string>
+    <string name="lbl_config_dispositivo_pasta_upload">Pasta upload</string>
+    <string name="lbl_config_dispositivo_pasta_image">Pasta image</string>
+
+    <string name="lbl_config_email_titulo">Email</string>
+    <string name="lbl_config_email_destinatario">Destinatário</string>
+    <string name="lbl_config_email_enviar_apos_exportar">Enviar email após exportar</string>
+    <string name="lbl_config_email_enviar_apos_encerrar">Enviar email após encerrar</string>
+
+    <string name="lbl_config_sms_titulo">SMS</string>
+    <string name="lbl_config_sms_telefone">Telefone</string>
+    <string name="lbl_config_sms_enviar_apos_iniciar">Enviar SMS após iniciar</string>
+    <string name="lbl_config_sms_enviar_apos_encerrar">Enviar SMS após encerrar</string>
+
+    <string name="lbl_config_geral_titulo">Geral</string>
+    <string name="lbl_config_geral_logomarca">Logomarca</string>
+    <string name="lbl_config_geral_enviar_apos_exportacao">Enviar arquivos após exportação</string>
+    <string name="lbl_config_geral_execucao_os_paralelo">Execução de OS em paralelo</string>
+    <string name="lbl_config_geral_exige_checklist">Exige Checklist</string>
+    <string name="lbl_config_geral_exige_inicio_atividade">Exige Início Atividade</string>
+
+    <!-- Material Utilizado -->
+    <string name="lbl_material_utilizado_titulo">Material Utilizado</string>
+    <string name="lbl_material_utilizado_codigo">Codigo Material</string>
+    <string name="lbl_material_utilizado_descricao">Material</string>
+    <string name="lbl_material_utilizado_quantidade">Quantidade</string>
+
+    <!-- Dados da Vala -->
+    <string name="lbl_dados_vala_titulo">Dados da Vala</string>
+    <string name="lbl_dados_vala_numero_vala">No. Vala</string>
+    <string name="lbl_dados_vala_local_ocorrencia">Local Ocorrência</string>
+    <string name="lbl_dados_vala_pavimento">Pavimento</string>
+    <string name="lbl_dados_vala_comprimento">Comprimento</string>
+    <string name="lbl_dados_vala_largura">Largura</string>
+    <string name="lbl_dados_vala_profundidade">Profundidade</string>
+    <string name="lbl_dados_vala_indicador_aterro">Falta Aterrar</string>
+    <string name="lbl_dados_vala_indicador_entulho">Falta Retirar Entulho</string>
+    <string name="lbl_dados_vala_indicador_aterro_equipe">Aterrado pela Equipe</string>
+    <string name="lbl_dados_vala_quantidade_bags">Quantidade BAG\'s</string>
+
+    <!-- OS de Remajenamento -->
+    <string name="lbl_dados_os_remanejamento_titulo">Remanejamento</string>
+
+    <!-- Checklist - Saida -->
+    <string name="lbl_dados_checklist_saida_titulo">Vistória de Veículos - Saída</string>
+    <string name="lbl_dados_checklist_retorno_titulo">Vistória de Veículos - Retorno</string>
+    <string name="lbl_dados_checklist_matricula">Matricula</string>
+    <string name="lbl_dados_checklist_nomecondutor">Nome do Condutor</string>
+    <string name="lbl_dados_checklist_cnh">No. CNH</string>
+    <string name="lbl_dados_checklist_cr">CR</string>
+    <string name="lbl_dados_checklist_setor">Setor</string>
+    <string name="lbl_dados_checklist_placa">Placa do Veículo</string>
+    <string name="lbl_dados_checklist_data_saida">Data Saída</string>
+    <string name="lbl_dados_checklist_hora_saida">Hora Saída</string>
+    <string name="lbl_dados_checklist_kmsaida">KM Saída para campo</string>
+    <string name="lbl_dados_checklist_data_retorno">Data Retorno</string>
+    <string name="lbl_dados_checklist_hora_retorno">Hora Retorno</string>
+    <string name="lbl_dados_checklist_kmretorno">KM Retorno</string>
+    <string name="lbl_dados_checklist_senha">Senha</string>
+
+    <!-- Interrupcao -->
+    <string name="lbl_interrupcao_inicio_titulo">Ocorrência - Iniciar</string>
+    <string name="lbl_interrupcao_fim_titulo">Ocorrência - Finalizar</string>
+    <string name="lbl_interrupcao_nome_equipe">Nome da Equipe</string>
+    <string name="lbl_interrupcao_matricula">Matrícula</string>
+    <string name="lbl_interrupcao_numero_os">No. OS</string>
+    <string name="lbl_interrupcao_motivo_interrupcao">Motivo da Ocorrência</string>
+    <string name="lbl_interrupcao_inicio_observacao">Observação do Início</string>
+    <string name="lbl_interrupcao_fim_observacao">Observação do Fim</string>
+    <string name="lbl_interrupcao_inicio_data">Data Início</string>
+    <string name="lbl_interrupcao_inicio_hora">Hora Início</string>
+    <string name="lbl_interrupcao_fim_data">Data Fim</string>
+    <string name="lbl_interrupcao_fim_hora">Hora Fim</string>
+
+    <!-- Gerar novo serviço -->
+    <string name="lbl_gerar_nova_os_titulo">Gerar Nova Ordem de Serviço</string>
+    <string name="lbl_gerar_nova_os_data_geracao">Data da Geração</string>
+    <string name="lbl_gerar_nova_os_hora_geracao">Hora da Geração</string>
+
+    <!-- Iniciar Ordem de Serviço -->
+    <string name="lbl_os_iniciar_titulo">Iniciar Execução da Ordem de Serviço</string>
+
+    <!-- Religação -->
+    <string name="lbl_os_religacao_titulo">Religação</string>
+    <string name="lbl_os_data_religacao">Data da Religação</string>
+    <string name="lbl_os_hora_religacao">Hora da Religação</string>
+    <string name="lbl_os_tipo_religacao">Tipo Religação</string>
+    <string name="lbl_os_leitura_religacao">Leitura na Religação</string>
+
+    <!--  Cancelar OS -->
+    <string name="lbl_os_cancelamento_titulo">Cancelar Ordem de Serviço</string>
+    <string name="lbl_os_data_cancelamento">Data Cancelamento</string>
+    <string name="lbl_os_hora_cancelamento">Hora Cancelamento</string>
+    <string name="lbl_os_motivo_cancelamento">Motivo Cancelamento</string>
+
+
+    <string name="lbl_vala_inserir_vala">Inserir Vala</string>
+    <string name="lbl_foto">Foto</string>
+    <string name="lbl_concluir">Concluir</string>
+    <string name="lbl_voltar">Voltar</string>
+    <string name="lbl_pesquisar">Pesquisar</string>
+    <string name="lbl_mapa">Mapa</string>
+    <string name="lbl_rede">Rede</string>
+
+    <string name="lbl_titulo_aguarde">Aguarde</string>
+    <string name="lbl_msg_task_enviar_ordem_servico">Enviando as Ordens de Servicos</string>
+    <string name="lbl_msg_task_enviar_vala">Enviando Vala</string>
+    <string name="lbl_msg_task_enviar_material_utilizado">Enviando Material Utilizado</string>
+    <string name="lbl_msg_task_enviar_dados_fotos">Enviando informações das fotos</string>
+    <string name="lbl_msg_verificar_conexao">Verificando conexão com o servidor, por favor aguarde</string>
+    <string name="lbl_msg_sem_conexao_servidor_mobileos">Sem conexão com servidor da aplicação</string>
+    <string name="lbl_msg_sem_conexao_rede">Conexão com a Rede sem Fio não está ativa</string>
+    <string name="lbl_msg_enviando_foto">Enviando a imagem </string>
+
+    <string name="lbl_msg_data_hora_inicio">Data/Hora Início</string>
+    <string name="lbl_msg_data_hora_fim">Data/Hora Fim</string>
+    <string name="lbl_msg_observacao_inicio">Observação Início</string>
+    <string name="lbl_msg_carregando_dados">Carregando dados</string>
+
 </resources>

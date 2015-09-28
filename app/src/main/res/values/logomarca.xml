@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="arrLogomarca">
+        <item>Default</item>
+		<item>CEDAE</item>
+		<item>Manaus Ambiental</item>
+		<item>Prefeitura Municipal de Manaus</item>
+    </string-array>
+</resources>
+
+

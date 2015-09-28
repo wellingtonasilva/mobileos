@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_servidor_ftp_titulo"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_servidor_ftp_ip"
+            android:textColor="@android:color/black"
+            />
+
+        <EditText
+            android:id="@+id/txtServidorFTPIP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@android:color/black"
+            >
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_servidor_ftp_usuario"
+            android:textColor="@android:color/black"
+            />
+
+        <EditText
+            android:id="@+id/txtServidorFTPUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@android:color/black"
+            >
+        </EditText>
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_servidor_ftp_senha" />
+
+        <EditText
+            android:id="@+id/txtServidorFTPSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPassword" >
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_servidor_ftp_porta"
+            android:textColor="@android:color/black"
+            />
+
+        <EditText
+            android:id="@+id/txtServidorFTPPorta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="number"
+            android:textColor="@android:color/black"
+            >
+        </EditText>
+
+        <CheckBox
+            android:id="@+id/chkConfigUtilizarFTPEnviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_utilizar_ftp_enviar_arquivos"
+            android:textColor="@android:color/black"/>
+
+        <CheckBox
+            android:id="@+id/chkConfigUtilizarFTPReceber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_utilizar_ftp_receber_arquivos"
+            android:textColor="@android:color/black"/>
+
+        <CheckBox
+            android:id="@+id/chkConfigEnviarFotosFTP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_utilizar_ftp_enviar_fotos"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_servidor_web_titulo"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_servidor_url"
+            android:textColor="@android:color/black"/>
+
+        <EditText
+            android:id="@+id/txtConfigURL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="textUri"
+            android:textColor="@android:color/black">
+        </EditText>
+
+        <CheckBox
+            android:id="@+id/chkConfigUtilizarWEBEnviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_utilizar_web_enviar_arquivos"
+            android:textColor="@android:color/black"/>
+
+        <CheckBox
+            android:id="@+id/chkConfigUtilizarWEBReceber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_utilizar_web_receber_arquivos"
+            android:textColor="@android:color/black"/>
+
+        <CheckBox
+            android:id="@+id/chkConfigEnviarFotosWEB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_utilizar_web_enviar_fotos"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_dispositivo_titulo"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_dispositivo_nome"
+            android:textColor="@android:color/black"/>
+
+        <EditText
+            android:id="@+id/txtConfigNomeDispositivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@android:color/black">
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_dispositivo_dispositivo"
+            android:textColor="@android:color/black"/>
+
+        <EditText
+            android:id="@+id/txtConfigCodigoColetor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@android:color/black">
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_dispositivo_empresa"
+            android:textColor="@android:color/black"/>
+
+        <EditText
+            android:id="@+id/txtConfigCodigoEmpresa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@android:color/black">
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_dispositivo_equipe"
+            android:textColor="@android:color/black"/>
+
+        <EditText
+            android:id="@+id/txtConfigCodigoEquipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@android:color/black">
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_dispositivo_id"
+            android:textColor="@android:color/black"/>
+
+        <EditText
+            android:id="@+id/txtConfigIdDispositivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:textColor="@android:color/black">
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_dispositivo_serial"
+            android:textColor="@android:color/black"/>
+
+        <EditText
+            android:id="@+id/txtConfigSerialDispositivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:textColor="@android:color/black">
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_dispositivo_pasta_download"
+            android:textColor="@android:color/black"/>
+
+        <EditText
+            android:id="@+id/txtConfigPastDownload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@android:color/black">
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_dispositivo_pasta_upload"
+            android:textColor="@android:color/black"/>
+
+        <EditText
+            android:id="@+id/txtConfigPastaUpload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@android:color/black">
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_dispositivo_pasta_image"
+            android:textColor="@android:color/black"/>
+
+        <EditText
+            android:id="@+id/txtConfigPastaImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="text"
+            android:textColor="@android:color/black">
+        </EditText>
+
+        <!-- SMS -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_sms_titulo"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_sms_telefone"
+            android:textColor="@android:color/black"/>
+
+        <EditText
+            android:id="@+id/txtConfigSMSTelefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="number"
+            android:textColor="@android:color/black">
+        </EditText>
+
+        <CheckBox
+            android:id="@+id/chkConfigSMSEnviarAposIniciar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_sms_enviar_apos_iniciar"
+            android:textColor="@android:color/black"/>
+
+        <CheckBox
+            android:id="@+id/chkConfigSMSEnviarAposEncerrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_sms_enviar_apos_encerrar"
+            android:textColor="@android:color/black"/>
+
+        <!-- EMAIL -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_email_titulo"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_email_destinatario" />
+
+        <EditText
+            android:id="@+id/txtConfigEmailDestinatario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:textColor="@android:color/black">
+        </EditText>
+
+        <CheckBox
+            android:id="@+id/chkConfigEmailEnviarAposExportar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_email_enviar_apos_exportar" />
+
+        <CheckBox
+            android:id="@+id/chkConfigEmailEnviarAposEncerrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_email_enviar_apos_encerrar"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_geral_titulo"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_config_geral_logomarca"
+            android:textColor="@android:color/black"/>
+
+        <Spinner
+            android:id="@+id/spiConfigLogomarca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/selecione_um_item"
+            android:textColor="@android:color/black"
+            />
+
+        <CheckBox
+            android:id="@+id/chkConfigEnviarAposExportacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_geral_enviar_apos_exportacao"
+            android:textColor="@android:color/black"/>
+
+        <CheckBox
+            android:id="@+id/chkConfigExecucaoOSParalelo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_geral_execucao_os_paralelo"
+            android:textColor="@android:color/black"/>
+
+        <CheckBox
+            android:id="@+id/chkConfigExigeCheclist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_geral_exige_checklist"
+            android:textColor="@android:color/black"/>
+
+        <CheckBox
+            android:id="@+id/chkConfigExigeInicioAtividade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lbl_config_geral_exige_inicio_atividade"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+</ScrollView>
+
