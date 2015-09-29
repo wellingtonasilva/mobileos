@@ -27,6 +27,7 @@ import wsilva.com.br.mobileos.dao.os.HidrometroLocalInstalacaoDAO;
 import wsilva.com.br.mobileos.dao.os.HidrometroProtecaoDAO;
 import wsilva.com.br.mobileos.dao.os.HidrometroSituacaoDAO;
 import wsilva.com.br.mobileos.dao.os.HidrometroTipoInstalacaoDAO;
+import wsilva.com.br.mobileos.dao.os.HidrometroTipoSubstituicaoDAO;
 import wsilva.com.br.mobileos.dao.os.ImovelDAO;
 import wsilva.com.br.mobileos.dao.os.ImovelDebitosDAO;
 import wsilva.com.br.mobileos.dao.ocorrencia.InterrupcaoDAO;
@@ -133,6 +134,7 @@ public class Conexao
 			db.execSQL(HidrometroProtecaoDAO.CREATE_TABLE);
 			db.execSQL(HidrometroLocalArmazenagemDAO.CREATE_TABLE);
 			db.execSQL(HidrometroSituacaoDAO.CREATE_TABLE);
+			db.execSQL(HidrometroTipoSubstituicaoDAO.CREATE_TABLE);
 			db.execSQL(OrdemServicoHidrometroSubstituicaoDAO.CREATE_TABLE);
 			db.execSQL(OrdemServicoHidrometroInstalacaoDAO.CREATE_TABLE);
 			db.execSQL(LigacaoAguaSituacaoDAO.CREATE_TABLE);

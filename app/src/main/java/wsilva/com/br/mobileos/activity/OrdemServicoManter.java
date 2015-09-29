@@ -154,8 +154,8 @@ public class OrdemServicoManter extends ActionBarActivity implements ActionBar.T
         //Alterar subtitulo
         alterarSubtitulo(OrdemServicoPagerAdapter.TAB_ORDEM_SERVICO);
 
-        Button btnReturn = (Button) findViewById(R.id.btnReturn);
-        btnReturn.setOnClickListener(new View.OnClickListener()
+        Button btnVoltar = (Button) findViewById(R.id.btnVoltar);
+        btnVoltar.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)

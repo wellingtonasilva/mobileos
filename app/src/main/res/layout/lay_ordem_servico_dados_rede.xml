@@ -9,7 +9,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/background_holo_light"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -17,14 +16,14 @@
             android:text="Causa"
             android:textSize="14sp"
             android:textColor="@color/background_holo_dark"
-            android:textStyle="bold"
             android:layout_marginTop="20dp"
             />
 
         <Spinner
             android:id="@+id/spiDadosRedeCausa"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,7 +31,6 @@
             android:text="Rede/Ramal"
             android:textSize="14sp"
             android:textColor="@color/background_holo_dark"
-            android:textStyle="bold"
             />
 
         <Spinner
@@ -50,7 +48,6 @@
             android:text="Diâmetro"
             android:textSize="14sp"
             android:textColor="@color/background_holo_dark"
-            android:textStyle="bold"
             />
 
         <Spinner
@@ -64,7 +61,6 @@
             android:text="Material"
             android:textSize="14sp"
             android:textColor="@color/background_holo_dark"
-            android:textStyle="bold"
             />
 
         <Spinner
@@ -80,7 +76,6 @@
             android:text="Profundidade"
             android:textSize="14sp"
             android:textColor="@color/background_holo_dark"
-            android:textStyle="bold"
             />
 
         <EditText
@@ -97,7 +92,6 @@
             android:text="Pressão"
             android:textSize="14sp"
             android:textColor="@color/background_holo_dark"
-            android:textStyle="bold"
             />
 
         <EditText
@@ -115,7 +109,6 @@
             android:text="Lacre Atual"
             android:textSize="14sp"
             android:textColor="@color/background_holo_dark"
-            android:textStyle="bold"
             />
 
         <EditText
@@ -133,7 +126,6 @@
             android:text="Lacre Novo"
             android:textSize="14sp"
             android:textColor="@color/background_holo_dark"
-            android:textStyle="bold"
             />
 
         <EditText
@@ -151,7 +143,6 @@
             android:text="Número do Hidrômetro"
             android:textSize="14sp"
             android:textColor="@color/background_holo_dark"
-            android:textStyle="bold"
             />
 
         <EditText
@@ -169,7 +160,6 @@
             android:text="Leitura"
             android:textSize="14sp"
             android:textColor="@color/background_holo_dark"
-            android:textStyle="bold"
             />
 
         <EditText
@@ -186,7 +176,6 @@
             android:text="Agente Externo"
             android:textSize="14sp"
             android:textColor="@color/background_holo_dark"
-            android:textStyle="bold"
             />
 
         <Spinner

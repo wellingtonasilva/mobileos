@@ -45,7 +45,12 @@
         <activity
             android:name=".activity.ConfiguracaoManter"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
+        <activity
+            android:name=".activity.OrdemServicoLista"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".activity.OrdemServicoManter"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <service
             android:name=".services.ImportacaoService"
             android:exported="false" >

@@ -3,6 +3,7 @@ package wsilva.com.br.mobileos.core.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -21,28 +22,50 @@ public class CoreAppCompactActivity extends ActionBarActivity
     protected ProgressDialog progressDialog;
 
     @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        if (coreAcaoInicioReceiver==null) registerBaseStartReceiver();
+        if (coreAcaoFimReceiver==null) registerBaseFinishReceiver();
+        if (progressDialog ==null) registerProgress();
+    }
+
+    @Override
     protected void onResume()
     {
         super.onResume();
-        if (coreAcaoInicioReceiver==null) registerBaseFinishReceiver();
-        if (coreAcaoFimReceiver==null) registerBaseStartReceiver();
-        if (progressDialog ==null) registerProgress();
     }
 
     @Override
     protected void onPause()
     {
         super.onPause();
-        if (coreAcaoInicioReceiver!=null) unregisterReceiver(coreAcaoInicioReceiver);
-        if (coreAcaoFimReceiver!=null) unregisterReceiver(coreAcaoFimReceiver);
+        if (coreAcaoInicioReceiver!=null)
+        {
+            unregisterReceiver(coreAcaoInicioReceiver);
+            coreAcaoInicioReceiver=null;
+        }
+        if (coreAcaoFimReceiver!=null)
+        {
+            unregisterReceiver(coreAcaoFimReceiver);
+            coreAcaoFimReceiver=null;
+        }
     }
 
     @Override
     protected void onDestroy()
     {
         super.onDestroy();
-        if (coreAcaoInicioReceiver!=null) unregisterReceiver(coreAcaoInicioReceiver);
-        if (coreAcaoFimReceiver!=null) unregisterReceiver(coreAcaoFimReceiver);
+        if (coreAcaoInicioReceiver!=null)
+        {
+            unregisterReceiver(coreAcaoInicioReceiver);
+            coreAcaoInicioReceiver=null;
+        }
+        if (coreAcaoFimReceiver!=null)
+        {
+            unregisterReceiver(coreAcaoFimReceiver);
+            coreAcaoFimReceiver=null;
+        }
     }
 
     @Override

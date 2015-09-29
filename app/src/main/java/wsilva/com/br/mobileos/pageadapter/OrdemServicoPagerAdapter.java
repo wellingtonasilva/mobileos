@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import wsilva.com.br.mobileos.R;
 import wsilva.com.br.mobileos.entity.os.OrdemServicoVO;
+import wsilva.com.br.mobileos.fragment.ListaOrdemServicoDadosValaFragment;
+import wsilva.com.br.mobileos.fragment.ListaOrdemServicoMaterialUtilizadoFragment;
 import wsilva.com.br.mobileos.fragment.OrdemServicoDadosRedeFragment;
 import wsilva.com.br.mobileos.fragment.OrdemServicoDadosValaFragment;
 import wsilva.com.br.mobileos.fragment.ListaOrdemServicoFotoFragment;
@@ -50,11 +52,11 @@ public class OrdemServicoPagerAdapter extends FragmentPagerAdapter
                 adoBOInqueritoPolicialFragment.setArguments(bundle);
                 return adoBOInqueritoPolicialFragment;
             case TAB_DADOS_VALA:
-                Fragment adoDiligenciasFragment = new OrdemServicoDadosValaFragment();
+                Fragment adoDiligenciasFragment = new ListaOrdemServicoDadosValaFragment();
                 adoDiligenciasFragment.setArguments(bundle);
                 return adoDiligenciasFragment;
             case TAB_MATERIAL_UTILIZADO:
-                Fragment adoTipoIrregularidadeFragment = new OrdemServicoMaterialUtilizadoFragment();
+                Fragment adoTipoIrregularidadeFragment = new ListaOrdemServicoMaterialUtilizadoFragment();
                 adoTipoIrregularidadeFragment.setArguments(bundle);
                 return adoTipoIrregularidadeFragment;
             case TAB_FOTOS:

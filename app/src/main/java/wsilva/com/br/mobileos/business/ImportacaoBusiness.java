@@ -109,7 +109,7 @@ public class ImportacaoBusiness {
         boolean excluirLogradouroTipo=false;
 
         //Ler conteúdo do arquivo
-        List<String> lines= Util.lerDadosFromFile(filename, Util.PATH_DOWNLOAD);
+        List<String> lines= Util.lerDadosFromFile(context, filename, Util.PATH_DOWNLOAD);
         String line;
         int iLinhas=lines.size();
 
@@ -126,7 +126,6 @@ public class ImportacaoBusiness {
                     if (excluiUsuarios==false)
                     {
                         excluiUsuarios= dao.removerTodos();
-                        //Util.iniciarUsuario(context);
                     }
                     dao.inserir(vo);
                 }

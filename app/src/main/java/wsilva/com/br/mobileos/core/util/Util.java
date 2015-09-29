@@ -34,6 +34,7 @@ import android.widget.Spinner;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import wsilva.com.br.mobileos.R;
 import wsilva.com.br.mobileos.core.dao.IBasicDAO;
 
 
@@ -470,12 +471,13 @@ public class Util
 		activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
 	}
 
-	public static List<String> lerDadosFromFile(String filename, String directoryname)
+	public static List<String> lerDadosFromFile(Context context, String filename, String directoryname)
 	{
 		List<String> arrReturn=new ArrayList<String>();
 		try
 		{
-			File sdCard = Environment.getExternalStorageDirectory();
+			//File sdCard = Environment.getExternalStorageDirectory();
+			File sdCard = context.getFilesDir();
 			File directory= new File(sdCard.getAbsolutePath() + directoryname);
 			File file = new File(directory, filename);
 			FileInputStream input= new FileInputStream(file);
@@ -516,21 +518,21 @@ public class Util
 			File sdCard = context.getFilesDir();
 
 			//Pasta in
-			String dirIn =  sdCard.getAbsolutePath() + "/" + Util.PATH_DOWNLOAD;
+			String dirIn =  sdCard.getAbsolutePath() + Util.PATH_DOWNLOAD;
 			File file=new File(dirIn);
 			if (!file.exists()) {
 				file.mkdirs();
 			}
 
 			//Pasta out
-			String dirOut =  sdCard.getAbsolutePath() + "/" + Util.PATH_UPLOAD;
+			String dirOut =  sdCard.getAbsolutePath() + Util.PATH_UPLOAD;
 			file=new File(dirOut);
 			if (!file.exists()) {
 				file.mkdirs();
 			}
 
 			//Pasta image
-			String dirImage = sdCard.getAbsolutePath() + "/" + Util.PATH_IMAGE;
+			String dirImage = sdCard.getAbsolutePath() + Util.PATH_IMAGE;
 			file=new File(dirImage);
 			if (!file.exists()) {
 				file.mkdirs();
@@ -548,11 +550,11 @@ public class Util
 		try {
 			//SDCard
 			File sdCard = context.getFilesDir();
-			String filename =  sdCard.getAbsolutePath() + "/" + Util.PATH_DOWNLOAD + "/" + assetname;
+			String filename =  sdCard.getAbsolutePath() + Util.PATH_DOWNLOAD + "/" + assetname;
 			File file=new File(filename);
 			if (!file.exists()) {
-				InputStream from=context.getAssets().open(filename);
-				Util.copyFileFromAssets(context, from, new FileOutputStream(assetname));
+				InputStream from=context.getResources().openRawResource(R.raw.wb020130508_010_002_000001_0001);
+				Util.copyFileFromAssets(context, from, new FileOutputStream(filename));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

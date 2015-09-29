@@ -153,4 +153,28 @@ public class UsuarioDAO extends BasicDAO<UsuarioVO>
 		}
 		return obterObject(cursor);
 	}
+
+	@Override
+	public UsuarioVO obterObject(String line)
+	{
+		if (line.length() <= 0) {
+			return null;
+		}
+
+		String[] values=line.split(";");
+		UsuarioVO vo= new UsuarioVO();
+
+		//C�digo
+		if (values[0].length() > 0) {
+			vo.idUsuario = Integer.parseInt(values[0]);
+		}
+		//Login
+		vo.login = values[1];
+		//Nome
+		vo.nome = values[2];
+		//Senha
+		vo.senha = values[3];
+
+		return vo;
+	}
 }

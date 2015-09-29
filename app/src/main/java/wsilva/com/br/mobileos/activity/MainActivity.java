@@ -28,6 +28,7 @@ public class MainActivity extends CoreActivity {
             @Override
             public void onClick(View view)
             {
+                showOrdemServico();
             }
         });
 
@@ -67,6 +68,12 @@ public class MainActivity extends CoreActivity {
     protected void showConfiguracao()
     {
         Intent intent = new Intent(MainActivity.this, ConfiguracaoManter.class);
+        startActivity(intent);
+    }
+
+    protected void showOrdemServico()
+    {
+        Intent intent = new Intent(MainActivity.this, OrdemServicoLista.class);
         startActivity(intent);
     }
 }

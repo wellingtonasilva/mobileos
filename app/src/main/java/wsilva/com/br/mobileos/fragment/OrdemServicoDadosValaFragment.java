@@ -44,7 +44,7 @@ public class OrdemServicoDadosValaFragment extends Fragment
         if (arguments!=null)
         {
             ordemServico = (OrdemServicoVO) arguments.getSerializable(OrdemServicoPagerAdapter.KEY_ORDEM_SERVICO);
-            vala = (ValaVO) arguments.getSerializable(OrdemServicoPagerAdapter.KEY_ORDEM_SERVICO);
+            //vala = (ValaVO) arguments.getSerializable(OrdemServicoPagerAdapter.KEY_ORDEM_SERVICO);
         }
 
         doPovoaTela(root, vala);
