@@ -23,4 +23,17 @@ public class ValaVO extends EntityVO
 	public int indicadorEnvio;
 	public int indicadorFotoValaAberta;
 	public int indicadorFotoValaFechada;
+
+
+	public ValaVO() {
+	}
+
+	public ValaVO(int numeroOS, int numeroVala, Double comprimento, Double largura, Double profundidade)
+	{
+		this.numeroOS = numeroOS;
+		this.numeroVala = numeroVala;
+		this.comprimento = comprimento;
+		this.largura = largura;
+		this.profundidade = profundidade;
+	}
 }

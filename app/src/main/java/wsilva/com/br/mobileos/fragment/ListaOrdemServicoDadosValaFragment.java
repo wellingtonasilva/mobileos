@@ -13,6 +13,7 @@ import java.util.List;
 import wsilva.com.br.mobileos.R;
 import wsilva.com.br.mobileos.adapter.ListaOrdemServicoDadosValaAdapter;
 import wsilva.com.br.mobileos.adapter.ListaOrdemServicoFotosAdapter;
+import wsilva.com.br.mobileos.dao.os.ValaDAO;
 import wsilva.com.br.mobileos.entity.os.FotoVO;
 import wsilva.com.br.mobileos.entity.os.OrdemServicoVO;
 import wsilva.com.br.mobileos.entity.os.ValaVO;
@@ -41,7 +42,18 @@ public class ListaOrdemServicoDadosValaFragment extends Fragment
             ordemServico = (OrdemServicoVO) arguments.getSerializable(OrdemServicoPagerAdapter.KEY_ORDEM_SERVICO);
         }
 
-        doPovoaTela(root, ordemServico);
+        ValaDAO dao = new ValaDAO(getActivity());
+        dao.removerTodos();
+        if (dao.quantidadeRegistros() == 0)
+        {
+            dao.inserir(new ValaVO(9999, 1, 1.0,2.0,3.0));
+            dao.inserir(new ValaVO(9999, 2, 1.0,2.0,3.0));
+            dao.inserir(new ValaVO(9999, 3, 1.0,2.0,3.0));
+            dao.inserir(new ValaVO(9999, 4, 1.0,2.0,3.0));
+            dao.inserir(new ValaVO(9999, 5, 1.0,2.0,3.0));
+        }
+
+        doListar(root, dao.listar());
     }
 
     protected void doPovoaTela(View view, OrdemServicoVO vo)
@@ -53,7 +65,7 @@ public class ListaOrdemServicoDadosValaFragment extends Fragment
 
     protected void doListar(View view, List<ValaVO> items)
     {
-        ListaOrdemServicoDadosValaAdapter listAdoFotosAdapter =
+        ListaOrdemServicoDadosValaAdapter listAdapter =
                 new ListaOrdemServicoDadosValaAdapter(getActivity(),
                         R.layout.lay_ordem_servico_dados_vala_list_row, items);
         ListView list = (ListView) view.findViewById(R.id.list);
@@ -64,6 +76,6 @@ public class ListaOrdemServicoDadosValaFragment extends Fragment
             {
             }
         });
-        list.setAdapter(listAdoFotosAdapter);
+        list.setAdapter(listAdapter);
     }
 }

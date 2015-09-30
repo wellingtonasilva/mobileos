@@ -16,7 +16,6 @@
             android:text="Causa"
             android:textSize="14sp"
             android:textColor="@color/background_holo_dark"
-            android:layout_marginTop="20dp"
             />
 
         <Spinner
