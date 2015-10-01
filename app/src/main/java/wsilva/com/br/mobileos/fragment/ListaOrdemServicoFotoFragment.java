@@ -9,11 +9,13 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.Date;
 import java.util.List;
 
 import wsilva.com.br.mobileos.R;
 import wsilva.com.br.mobileos.adapter.ListaOrdemServicoFotosAdapter;
 import wsilva.com.br.mobileos.core.util.Util;
+import wsilva.com.br.mobileos.dao.os.FotoDAO;
 import wsilva.com.br.mobileos.entity.os.FotoVO;
 import wsilva.com.br.mobileos.entity.os.OrdemServicoVO;
 import wsilva.com.br.mobileos.pageadapter.OrdemServicoPagerAdapter;
@@ -42,6 +44,20 @@ public class ListaOrdemServicoFotoFragment extends Fragment
         }
 
         doPovoaTela(root, ordemServico);
+
+        FotoDAO dao = new FotoDAO(getActivity());
+        dao.removerTodos();
+        if (dao.quantidadeRegistros() ==0)
+        {
+            dao.inserir(new FotoVO(9999, "Foto 1", "Foto 1", new Date(), "14:00"));
+            dao.inserir(new FotoVO(9999, "Foto 2", "Foto 2", new Date(), "14:00"));
+            dao.inserir(new FotoVO(9999, "Foto 3", "Foto 3", new Date(), "14:00"));
+            dao.inserir(new FotoVO(9999, "Foto 4", "Foto 4", new Date(), "14:00"));
+            dao.inserir(new FotoVO(9999, "Foto 5", "Foto 5", new Date(), "14:00"));
+            dao.inserir(new FotoVO(9999, "Foto 6", "Foto 6", new Date(), "14:00"));
+        }
+
+        doListar(root, dao.listar());
     }
 
     protected void doPovoaTela(View view, OrdemServicoVO vo)

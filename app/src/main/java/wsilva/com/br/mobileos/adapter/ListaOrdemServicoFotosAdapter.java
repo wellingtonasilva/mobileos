@@ -61,13 +61,13 @@ public class ListaOrdemServicoFotosAdapter extends ArrayAdapter<FotoVO> {
 					+ ": " + (vo.descricaoFoto == null ? "" : vo.descricaoFoto));
 
 			ImageView imgFoto = (ImageView) v.findViewById(R.id.imgFoto);
-			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(vo.image);
-			Bitmap bitmap = BitmapFactory.decodeStream(byteArrayInputStream);
+			//ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(vo.image);
+			//Bitmap bitmap = BitmapFactory.decodeStream(byteArrayInputStream);
 
-			if (bitmap!=null)
-			{
-				imgFoto.setImageBitmap(bitmap);
-			}
+			//if (bitmap!=null)
+			//{
+			//	imgFoto.setImageBitmap(bitmap);
+			//}
 		}
 	
 		return v;

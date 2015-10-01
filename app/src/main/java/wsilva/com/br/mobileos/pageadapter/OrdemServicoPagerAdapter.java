@@ -10,10 +10,13 @@ import wsilva.com.br.mobileos.R;
 import wsilva.com.br.mobileos.entity.os.OrdemServicoVO;
 import wsilva.com.br.mobileos.fragment.ListaOrdemServicoDadosValaFragment;
 import wsilva.com.br.mobileos.fragment.ListaOrdemServicoMaterialUtilizadoFragment;
+import wsilva.com.br.mobileos.fragment.OrdemServicoCorteFragment;
 import wsilva.com.br.mobileos.fragment.OrdemServicoDadosRedeFragment;
 import wsilva.com.br.mobileos.fragment.OrdemServicoDadosValaFragment;
 import wsilva.com.br.mobileos.fragment.ListaOrdemServicoFotoFragment;
 import wsilva.com.br.mobileos.fragment.OrdemServicoFragment;
+import wsilva.com.br.mobileos.fragment.OrdemServicoInstalacaoHMFragment;
+import wsilva.com.br.mobileos.fragment.OrdemServicoLigacaoNovaFragment;
 import wsilva.com.br.mobileos.fragment.OrdemServicoMaterialUtilizadoFragment;
 
 public class OrdemServicoPagerAdapter extends FragmentPagerAdapter
@@ -23,6 +26,9 @@ public class OrdemServicoPagerAdapter extends FragmentPagerAdapter
     public static final int TAB_DADOS_VALA              = 2;
     public static final int TAB_MATERIAL_UTILIZADO      = 3;
     public static final int TAB_FOTOS                   = 4;
+    public static final int TAB_ORDEM_SERVICO_CORTE     = 5;
+    public static final int TAB_ORDEM_SERVICO_INST_HM   = 6;
+    public static final int TAB_ORDEM_SERVICO_LIG_NOVA  = 7;
     public static final String KEY_ORDEM_SERVICO            = "KEY_ORDEM_SERVICO";
 
     Resources resources;
@@ -63,6 +69,18 @@ public class OrdemServicoPagerAdapter extends FragmentPagerAdapter
                 Fragment adoExtensaoExamesFragment = new ListaOrdemServicoFotoFragment();
                 adoExtensaoExamesFragment.setArguments(bundle);
                 return adoExtensaoExamesFragment;
+            case TAB_ORDEM_SERVICO_CORTE:
+                Fragment mOrdemServicoCorteFragment = new OrdemServicoCorteFragment();
+                mOrdemServicoCorteFragment.setArguments(bundle);
+                return mOrdemServicoCorteFragment;
+            case TAB_ORDEM_SERVICO_INST_HM:
+                Fragment mOrdemServicoInstalacaoHMFragment = new OrdemServicoInstalacaoHMFragment();
+                mOrdemServicoInstalacaoHMFragment.setArguments(bundle);
+                return mOrdemServicoInstalacaoHMFragment;
+            case TAB_ORDEM_SERVICO_LIG_NOVA:
+                Fragment mOrdemServicoLigacaoNovaFragment = new OrdemServicoLigacaoNovaFragment();
+                mOrdemServicoLigacaoNovaFragment.setArguments(bundle);
+                return mOrdemServicoLigacaoNovaFragment;
             default:
                 break;
         }
@@ -72,7 +90,7 @@ public class OrdemServicoPagerAdapter extends FragmentPagerAdapter
     @Override
     public int getCount()
     {
-        return 5;
+        return 7;
     }
 
     @Override
@@ -90,6 +108,12 @@ public class OrdemServicoPagerAdapter extends FragmentPagerAdapter
                 return resources.getText(R.string.lbl_material_utilizado_titulo).toString();
             case TAB_FOTOS:
                 return resources.getText(R.string.lbl_foto).toString();
+            case TAB_ORDEM_SERVICO_CORTE:
+                return resources.getText(R.string.lbl_os_corte_titulo).toString();
+            case TAB_ORDEM_SERVICO_INST_HM:
+                return resources.getText(R.string.lbl_titulo_instalacao_hidrometro).toString();
+            case TAB_ORDEM_SERVICO_LIG_NOVA:
+                return resources.getText(R.string.lbl_os_ligacao_nova_titulo).toString();
             default:
                 break;
         }

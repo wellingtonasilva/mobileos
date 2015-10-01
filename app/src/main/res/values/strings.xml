@@ -259,4 +259,7 @@
     <string name="lbl_msg_observacao_inicio">Observação Início</string>
     <string name="lbl_msg_carregando_dados">Carregando dados</string>
 
+    <string name="lbl_os_corte_titulo">Dados do Corte</string>
+    <string name="lbl_os_ligacao_nova_titulo">Ligacao Nova</string>
+
 </resources>

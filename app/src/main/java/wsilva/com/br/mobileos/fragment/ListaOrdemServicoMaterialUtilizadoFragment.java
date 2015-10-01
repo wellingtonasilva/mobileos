@@ -12,6 +12,7 @@ import java.util.List;
 
 import wsilva.com.br.mobileos.R;
 import wsilva.com.br.mobileos.adapter.ListaOrdemServicoMaterialUtilizadoAdapter;
+import wsilva.com.br.mobileos.dao.os.MaterialUtilizadoDAO;
 import wsilva.com.br.mobileos.entity.os.MaterialUtilizadoVO;
 import wsilva.com.br.mobileos.entity.os.OrdemServicoVO;
 import wsilva.com.br.mobileos.pageadapter.OrdemServicoPagerAdapter;
@@ -40,6 +41,19 @@ public class ListaOrdemServicoMaterialUtilizadoFragment extends Fragment
         }
 
         doPovoaTela(root, ordemServico);
+        MaterialUtilizadoDAO dao = new MaterialUtilizadoDAO(getActivity());
+        dao.removerTodos();
+        if (dao.quantidadeRegistros() ==0)
+        {
+            dao.inserir(new MaterialUtilizadoVO(9999, "Unidade", "ADAPT. FoFo FF JE DE 107,2MMX133,2MM", 1.0 ));
+            dao.inserir(new MaterialUtilizadoVO(9999, "Unidade", "ADAPT. FoFo FF JE DE 107,2MMX133,2MM", 2.0));
+            dao.inserir(new MaterialUtilizadoVO(9999, "Unidade", "ADAPT. FoFo FF JE DE 107,2MMX133,2MM", 3.0));
+            dao.inserir(new MaterialUtilizadoVO(9999, "Unidade", "ADAPT. FoFo FF JE DE 107,2MMX133,2MM", 4.0));
+            dao.inserir(new MaterialUtilizadoVO(9999, "Unidade", "ADAPT. FoFo FF JE DE 107,2MMX133,2MM", 5.0));
+            dao.inserir(new MaterialUtilizadoVO(9999, "Unidade", "ADAPT. FoFo FF JE DE 107,2MMX133,2MM", 6.0));
+        }
+
+        doListar(root, dao.listar());
     }
 
     protected void doPovoaTela(View view, OrdemServicoVO vo)

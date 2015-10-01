@@ -23,7 +23,16 @@ public class FotoVO extends EntityVO
 	
 	public FotoVO() {
 	}
-	
+
+	public FotoVO(int numeroOS, String descricaoFoto, String nomeFoto, Date dataFoto, String horaFoto)
+	{
+		this.numeroOS = numeroOS;
+		this.descricaoFoto = descricaoFoto;
+		this.nomeFoto = nomeFoto;
+		this.dataFoto = dataFoto;
+		this.horaFoto = horaFoto;
+	}
+
 	public FotoVO(SoapObject object) {
 		serialize(object);
 	}

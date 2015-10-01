@@ -22,7 +22,15 @@ public class MaterialUtilizadoVO extends EntityVO
 	
 	public MaterialUtilizadoVO() {
 	}
-	
+
+	public MaterialUtilizadoVO(int numeroOS, String descricaoUnidadeMedida, String descricaoMateriall, Double quantidade)
+	{
+		this.numeroOS = numeroOS;
+		this.descricaoUnidadeMedida = descricaoUnidadeMedida;
+		this.descricaoMateriall = descricaoMateriall;
+		this.quantidade = quantidade;
+	}
+
 	public MaterialUtilizadoVO(SoapObject object) {
 		serialize(object);
 	}

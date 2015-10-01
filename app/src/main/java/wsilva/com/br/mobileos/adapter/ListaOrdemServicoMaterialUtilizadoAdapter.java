@@ -39,7 +39,7 @@ public class ListaOrdemServicoMaterialUtilizadoAdapter extends ArrayAdapter<Mate
 		if (v==null)
 		{
 			LayoutInflater vi=(LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			v=vi.inflate(R.layout.lay_ordem_servico_dados_vala_list_row, null);
+			v=vi.inflate(R.layout.lay_ordem_servico_material_utilizado_list_row, null);
 
 			viewHolder = new ViewHolder();
 			viewHolder.numeroOS = (TextView) v.findViewById(R.id.lblTitulo);

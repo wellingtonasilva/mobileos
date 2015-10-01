@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No. OS"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            />
+
+        <EditText
+            android:id="@+id/txtOsCorteNumeroOs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:focusable="false"
+            android:editable="false"
+            >
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data do Corte"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtOsCorteData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:focusable="false"
+            android:editable="false"
+            >
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hora do Corte"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtOsCorteHora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:focusable="false"
+            android:editable="false"
+            >
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Leitura no Corte"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtOsCorteLeitura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:focusable="true"
+            android:editable="true"
+            >
+        </EditText>
+
+        <!-- 		Selo -->
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Número do Lacre"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtOsCorteNumeroLacre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:editable="true"
+            >
+        </EditText>
+
+        <!-- Matricula do funcionario		 -->
+        <!-- 		<TextView -->
+        <!--             android:id="@+id/textView2" -->
+        <!--             android:layout_width="wrap_content" -->
+        <!--             android:layout_height="wrap_content" -->
+        <!--             android:text="Matrícula do Funcionario" -->
+        <!--             android:textAppearance="?android:attr/textAppearanceMedium" -->
+        <!--             android:textColor="@color/background_holo_dark" -->
+        <!--             android:textSize="14sp" -->
+        <!--             android:textStyle="bold" /> -->
+
+        <!-- 		<EditText -->
+        <!-- 		    android:id="@+id/txtOsIniciarHora" -->
+        <!-- 		    android:layout_width="match_parent" -->
+        <!-- 		    android:layout_height="wrap_content" -->
+        <!-- 		    android:inputType="text" -->
+        <!-- 		    android:focusable="false" -->
+        <!-- 		    android:editable="false" -->
+        <!-- 		    > -->
+        <!-- 		</EditText> -->
+
+        <!-- Número do Hidrômetro		 -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Número do Hidrômetro"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtOsCorteNumeroHidrometro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapCharacters"
+            >
+        </EditText>
+
+        <!-- 		Motivo do Corte -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Motivo do Corte/Supressão"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spiOSCorteMotivoCorte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/selecione_um_item"
+            />
+
+        <!-- Tipo do Corte/Supressão -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo do Corte/Supressão"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spiOSCorteTipoCorte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/selecione_um_item"
+            />
+
+    </LinearLayout>
+</ScrollView>
+
