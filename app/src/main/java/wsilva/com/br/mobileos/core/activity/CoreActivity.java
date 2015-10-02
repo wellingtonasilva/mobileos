@@ -30,8 +30,16 @@ public class CoreActivity extends Activity implements ICoreAcaoInicio, ICoreAcao
     protected void onDestroy()
     {
         super.onDestroy();
-        if (coreAcaoInicioReceiver!=null) unregisterReceiver(coreAcaoInicioReceiver);
-        if (coreAcaoFimReceiver!=null) unregisterReceiver(coreAcaoFimReceiver);
+        if (coreAcaoInicioReceiver!=null)
+        {
+            unregisterReceiver(coreAcaoInicioReceiver);
+            coreAcaoInicioReceiver = null;
+        }
+        if (coreAcaoFimReceiver!=null)
+        {
+            unregisterReceiver(coreAcaoFimReceiver);
+            coreAcaoFimReceiver = null;
+        }
     }
 
     @Override
