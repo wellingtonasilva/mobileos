@@ -51,6 +51,12 @@
         <activity
             android:name=".activity.OrdemServicoManter"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OrdemServicoExecucaoInicio"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OrdemServicoExecucaoEncerramento"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <service
             android:name=".services.ImportacaoService"
             android:exported="false" >

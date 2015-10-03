@@ -1,6 +1,7 @@
 package wsilva.com.br.mobileos.activity;
 
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -33,7 +34,7 @@ public class OrdemServicoManter extends ActionBarActivity implements ActionBar.T
     {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.lay_template_fragment);
+        setContentView(R.layout.lay_template_viewpager_indicator);
 
         init(savedInstanceState);
     }
@@ -138,8 +139,19 @@ public class OrdemServicoManter extends ActionBarActivity implements ActionBar.T
                 popupMenu.getMenuInflater().inflate(R.menu.menu_popup_ordem_servico, popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        doTabChange(item);
+                    public boolean onMenuItemClick(MenuItem item)
+                    {
+                        if (item.getItemId() == R.id.mnuOrdemServico)
+                        {
+                            Intent intent = new Intent(OrdemServicoManter.this, OrdemServicoExecucaoInicio.class);
+                            startActivity(intent);
+                        }
+                        else if (item.getItemId() == R.id.mnuOrdemServicoEncerramento)
+                        {
+                            Intent intent = new Intent(OrdemServicoManter.this, OrdemServicoExecucaoEncerramento.class);
+                            startActivity(intent);
+                        }
+
                         return false;
                     }
                 });

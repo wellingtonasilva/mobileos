@@ -3,4 +3,7 @@
     <item android:id="@+id/mnuOrdemServico"
         android:title="@string/app_ordem_servico"
         />
+    <item android:id="@+id/mnuOrdemServicoEncerramento"
+        android:title="@string/lbl_encerrar"
+        />
 </menu>

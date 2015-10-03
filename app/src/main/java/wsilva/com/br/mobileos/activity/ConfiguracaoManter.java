@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -21,9 +20,7 @@ import com.viewpagerindicator.PageIndicator;
 import wsilva.com.br.mobileos.R;
 import wsilva.com.br.mobileos.core.activity.CoreAppCompactActivity;
 import wsilva.com.br.mobileos.entity.os.ConfiguracoesVO;
-import wsilva.com.br.mobileos.entity.os.OrdemServicoVO;
 import wsilva.com.br.mobileos.pageadapter.ConfiguracaoPagerAdapter;
-import wsilva.com.br.mobileos.pageadapter.OrdemServicoPagerAdapter;
 import wsilva.com.br.mobileos.services.ImportacaoService;
 
 public class ConfiguracaoManter extends CoreAppCompactActivity
@@ -39,7 +36,7 @@ public class ConfiguracaoManter extends CoreAppCompactActivity
     {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.lay_template_fragment);
+        setContentView(R.layout.lay_template_viewpager_indicator);
 
         init(savedInstanceState);
     }
