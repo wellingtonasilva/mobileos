@@ -2,7 +2,6 @@ package wsilva.com.br.mobileos.activity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,16 +11,17 @@ import wsilva.com.br.mobileos.R;
 import wsilva.com.br.mobileos.business.Fachada;
 import wsilva.com.br.mobileos.core.activity.CoreFragmentActivity;
 import wsilva.com.br.mobileos.core.util.Util;
+import wsilva.com.br.mobileos.entity.os.MaterialUtilizadoVO;
 import wsilva.com.br.mobileos.entity.os.OrdemServicoVO;
-import wsilva.com.br.mobileos.fragment.OrdemServicoExecucaoEncerramentoFragment;
-import wsilva.com.br.mobileos.fragment.OrdemServicoExecucaoInicioFragment;
-import wsilva.com.br.mobileos.interfaces.IOrdemServicoExecucaoInicio;
+import wsilva.com.br.mobileos.fragment.OrdemServicoDadosValaFragment;
+import wsilva.com.br.mobileos.fragment.OrdemServicoMaterialUtilizadoFragment;
+import wsilva.com.br.mobileos.interfaces.IOrdemServicoMaterialUtilizado;
 import wsilva.com.br.mobileos.pageadapter.OrdemServicoPagerAdapter;
 
 /**
  * Created by wellingtonasilva on 03/10/15.
  */
-public class OrdemServicoExecucaoInicio extends CoreFragmentActivity implements IOrdemServicoExecucaoInicio
+public class OrdemServicoMaterialUtilizado extends CoreFragmentActivity implements IOrdemServicoMaterialUtilizado
 {
     OrdemServicoVO ordemServico;
 
@@ -35,20 +35,19 @@ public class OrdemServicoExecucaoInicio extends CoreFragmentActivity implements 
     }
 
     @Override
-    public void onSalvar(OrdemServicoVO vo)
+    public void onSalvar(OrdemServicoVO ordemServico, MaterialUtilizadoVO materialUtilizado)
     {
-        Log.w("$$$", "OrdemServicoExecucaoInicio>onSalvar");
-        if (Fachada.iniciarOrdemServico(OrdemServicoExecucaoInicio.this, vo))
+        Log.w("$$$", "OrdemServicoMaterialUtilizado>onSalvar");
+        if (Fachada.inserirMaterialUtilizado(OrdemServicoMaterialUtilizado.this, ordemServico,
+                materialUtilizado))
         {
-            Util.createAlertDialog(OrdemServicoExecucaoInicio.this,
+            Util.createAlertDialog(OrdemServicoMaterialUtilizado.this,
                     getResources().getText(R.string.app_processo_realizado_sucesso).toString(),
                     R.string.app_name,
                     R.string.app_ok, R.string.app_cancelar,
-                    new DialogInterface.OnClickListener()
-                    {
+                    new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialogInterface, int i)
-                        {
+                        public void onClick(DialogInterface dialogInterface, int i) {
                             finish();
                         }
                     }, null);
@@ -94,7 +93,7 @@ public class OrdemServicoExecucaoInicio extends CoreFragmentActivity implements 
                 }
             });
 
-            OrdemServicoExecucaoInicioFragment fragment = new OrdemServicoExecucaoInicioFragment();
+            OrdemServicoMaterialUtilizadoFragment fragment = new OrdemServicoMaterialUtilizadoFragment();
             fragment.setListener(this);
             fragment.setArguments(savedInstanceState);
             getSupportFragmentManager().beginTransaction().add(R.id.pager, fragment).commit();
@@ -108,7 +107,7 @@ public class OrdemServicoExecucaoInicio extends CoreFragmentActivity implements 
 
     protected void doOK()
     {
-        OrdemServicoExecucaoInicioFragment fragment =  (OrdemServicoExecucaoInicioFragment)
+        OrdemServicoMaterialUtilizadoFragment fragment =  (OrdemServicoMaterialUtilizadoFragment)
                 getSupportFragmentManager().findFragmentById(R.id.pager);
         if (fragment!=null)
         {
@@ -119,6 +118,6 @@ public class OrdemServicoExecucaoInicio extends CoreFragmentActivity implements 
     protected void alterarSubtitulo()
     {
         TextView lblSubtitulo = (TextView) findViewById(R.id.lblSubtitulo);
-        lblSubtitulo.setText(getResources().getText(R.string.lbl_os_iniciar_titulo).toString());
+        lblSubtitulo.setText(getResources().getText(R.string.lbl_material_utilizado_titulo).toString());
     }
 }

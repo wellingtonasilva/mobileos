@@ -24,6 +24,7 @@ public class FotoDAO extends BasicDAO<FotoVO>
 	public static final String COL_DESCRICAOEQUIPEEXECUCAO="descricaoequipeexecucao";
 	public static final String COL_INDICADORENVIO="icenvio";
 	public static final String COL_NUMEROFOTO="nnfoto";
+	public static final String COL_FILENAME="dsfilename";
 	public static final String TABLE_NAME="foto";	
 	public static final String CREATE_TABLE=
 				"CREATE TABLE " + TABLE_NAME + "("
@@ -39,7 +40,8 @@ public class FotoDAO extends BasicDAO<FotoVO>
 			+ 	COL_IDEQUIPEEXECUCAO 		+ " INTEGER,"
 			+ 	COL_DESCRICAOEQUIPEEXECUCAO + " TEXT,"
 			+ 	COL_INDICADORENVIO			+ " INTEGER,"
-			+ 	COL_NUMEROFOTO				+ " INTEGER"
+			+ 	COL_NUMEROFOTO				+ " INTEGER,"
+			+ 	COL_FILENAME 				+ " TEXT"
 			+ 	");";
 	
 	public FotoDAO(Context context) 
@@ -147,6 +149,7 @@ public class FotoDAO extends BasicDAO<FotoVO>
 		values.put(COL_DESCRICAOEQUIPEEXECUCAO, vo.descricaoEquipeExecucao);
 		values.put(COL_INDICADORENVIO, vo.indicadorEnvio);
 		values.put(COL_NUMEROFOTO, vo.numeroFoto);
+		values.put(COL_FILENAME, vo.filename);
 		
 		return values;
 	}
@@ -212,6 +215,7 @@ public class FotoDAO extends BasicDAO<FotoVO>
 		vo.descricaoEquipeExecucao = cursor.getString(cursor.getColumnIndex(COL_DESCRICAOEQUIPEEXECUCAO));
 		vo.indicadorEnvio = cursor.getInt(cursor.getColumnIndex(COL_INDICADORENVIO));
 		vo.numeroFoto = cursor.getInt(cursor.getColumnIndex(COL_NUMEROFOTO));
+		vo.filename = cursor.getString(cursor.getColumnIndex(COL_FILENAME));
 		
 		return vo;
 	}

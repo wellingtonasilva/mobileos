@@ -151,6 +151,19 @@
                 android:text="@string/app_salvar"
                 android:textColor="@android:color/black"
                 android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btnNovo"
+                style="@style/ButtonTemplate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@mipmap/ic_action_new"
+                android:text="@string/app_novo"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:visibility="gone"
+                />
         </LinearLayout>
     </LinearLayout>
 

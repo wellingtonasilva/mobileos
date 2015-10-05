@@ -221,6 +221,7 @@
 
     <!-- Iniciar Ordem de Serviço -->
     <string name="lbl_os_iniciar_titulo">Iniciar Execução da Ordem de Serviço</string>
+    <string name="lbl_os_finalizar_titulo">Finalizar Execução da Ordem de Serviço</string>
 
     <!-- Religação -->
     <string name="lbl_os_religacao_titulo">Religação</string>
@@ -261,5 +262,6 @@
 
     <string name="lbl_os_corte_titulo">Dados do Corte</string>
     <string name="lbl_os_ligacao_nova_titulo">Ligacao Nova</string>
+    <string name="app_processo_realizado_sucesso">Processo realizado com sucesso.</string>
 
 </resources>

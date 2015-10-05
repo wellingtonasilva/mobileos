@@ -56,7 +56,8 @@ public class ListaOrdemServicoDadosValaAdapter extends ArrayAdapter<ValaVO>
 		ValaVO vo=items.get(position);
 		if (vo!=null)
 		{
-			viewHolder.numeroOS.setText(String.valueOf(vo.numeroOS));
+			viewHolder.numeroOS.setText(resources.getText(R.string.lbl_interrupcao_numero_os).toString()
+					+ " " + String.valueOf(vo.numeroOS));
 			viewHolder.numeroVala.setText(resources.getText(R.string.lbl_dados_vala_numero_vala).toString()
 					+ ": " +  String.valueOf(vo.numeroVala));
 			viewHolder.largura.setText(resources.getText(R.string.lbl_dados_vala_numero_vala).toString()

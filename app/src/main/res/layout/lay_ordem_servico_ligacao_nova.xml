@@ -14,7 +14,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:text="No. OS"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/background_holo_dark"
@@ -111,12 +110,15 @@
             android:text="Tipo de Serviço"
             android:textColor="@color/background_holo_dark"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone"
+            />
 
         <Spinner
             android:id="@+id/spiOsLigacaoNovaTipoServico"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             />
 
         <CheckBox
@@ -126,7 +128,9 @@
             android:text="Gerar Nova Ordem de Serviço"
             android:textColor="@color/background_holo_dark"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone"
+            />
 
     </LinearLayout>
 </ScrollView>

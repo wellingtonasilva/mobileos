@@ -2,7 +2,6 @@ package wsilva.com.br.mobileos.activity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,15 +12,17 @@ import wsilva.com.br.mobileos.business.Fachada;
 import wsilva.com.br.mobileos.core.activity.CoreFragmentActivity;
 import wsilva.com.br.mobileos.core.util.Util;
 import wsilva.com.br.mobileos.entity.os.OrdemServicoVO;
+import wsilva.com.br.mobileos.entity.os.ValaVO;
+import wsilva.com.br.mobileos.fragment.OrdemServicoDadosValaFragment;
 import wsilva.com.br.mobileos.fragment.OrdemServicoExecucaoEncerramentoFragment;
 import wsilva.com.br.mobileos.fragment.OrdemServicoExecucaoInicioFragment;
-import wsilva.com.br.mobileos.interfaces.IOrdemServicoExecucaoInicio;
+import wsilva.com.br.mobileos.interfaces.IOrdemServicoDadosVala;
 import wsilva.com.br.mobileos.pageadapter.OrdemServicoPagerAdapter;
 
 /**
  * Created by wellingtonasilva on 03/10/15.
  */
-public class OrdemServicoExecucaoInicio extends CoreFragmentActivity implements IOrdemServicoExecucaoInicio
+public class OrdemServicoDadosVala extends CoreFragmentActivity implements IOrdemServicoDadosVala
 {
     OrdemServicoVO ordemServico;
 
@@ -32,27 +33,6 @@ public class OrdemServicoExecucaoInicio extends CoreFragmentActivity implements 
         setContentView(R.layout.lay_template_fragment_dialog);
 
         init(savedInstanceState);
-    }
-
-    @Override
-    public void onSalvar(OrdemServicoVO vo)
-    {
-        Log.w("$$$", "OrdemServicoExecucaoInicio>onSalvar");
-        if (Fachada.iniciarOrdemServico(OrdemServicoExecucaoInicio.this, vo))
-        {
-            Util.createAlertDialog(OrdemServicoExecucaoInicio.this,
-                    getResources().getText(R.string.app_processo_realizado_sucesso).toString(),
-                    R.string.app_name,
-                    R.string.app_ok, R.string.app_cancelar,
-                    new DialogInterface.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i)
-                        {
-                            finish();
-                        }
-                    }, null);
-        }
     }
 
     protected void init(Bundle savedInstanceState)
@@ -94,10 +74,29 @@ public class OrdemServicoExecucaoInicio extends CoreFragmentActivity implements 
                 }
             });
 
-            OrdemServicoExecucaoInicioFragment fragment = new OrdemServicoExecucaoInicioFragment();
+            OrdemServicoDadosValaFragment fragment = new OrdemServicoDadosValaFragment();
             fragment.setListener(this);
             fragment.setArguments(savedInstanceState);
             getSupportFragmentManager().beginTransaction().add(R.id.pager, fragment).commit();
+        }
+    }
+
+    @Override
+    public void onSalvar(OrdemServicoVO ordemServico, ValaVO vala)
+    {
+        Log.w("$$$", "OrdemServicoDadosVala>onSalvar");
+        if (Fachada.inserirVala(OrdemServicoDadosVala.this, ordemServico, vala))
+        {
+            Util.createAlertDialog(OrdemServicoDadosVala.this,
+                    getResources().getText(R.string.app_processo_realizado_sucesso).toString(),
+                    R.string.app_name,
+                    R.string.app_ok, R.string.app_cancelar,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                        }
+                    }, null);
         }
     }
 
@@ -108,7 +107,7 @@ public class OrdemServicoExecucaoInicio extends CoreFragmentActivity implements 
 
     protected void doOK()
     {
-        OrdemServicoExecucaoInicioFragment fragment =  (OrdemServicoExecucaoInicioFragment)
+        OrdemServicoDadosValaFragment fragment =  (OrdemServicoDadosValaFragment)
                 getSupportFragmentManager().findFragmentById(R.id.pager);
         if (fragment!=null)
         {
@@ -119,6 +118,6 @@ public class OrdemServicoExecucaoInicio extends CoreFragmentActivity implements 
     protected void alterarSubtitulo()
     {
         TextView lblSubtitulo = (TextView) findViewById(R.id.lblSubtitulo);
-        lblSubtitulo.setText(getResources().getText(R.string.lbl_os_iniciar_titulo).toString());
+        lblSubtitulo.setText(getResources().getText(R.string.lbl_vala_inserir_vala).toString());
     }
 }

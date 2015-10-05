@@ -16,10 +16,13 @@ import wsilva.com.br.mobileos.dao.os.RedeDiametroDAO;
 import wsilva.com.br.mobileos.dao.os.RedeMaterialDAO;
 import wsilva.com.br.mobileos.dao.os.RedeTipoDAO;
 import wsilva.com.br.mobileos.entity.os.OrdemServicoVO;
+import wsilva.com.br.mobileos.interfaces.IOrdemServicoDadosRede;
+import wsilva.com.br.mobileos.interfaces.IOrdemServicoMaterialUtilizado;
 import wsilva.com.br.mobileos.pageadapter.OrdemServicoPagerAdapter;
 
 public class OrdemServicoDadosRedeFragment extends Fragment
 {
+    IOrdemServicoDadosRede listener;
     OrdemServicoVO ordemServico;
     Spinner spiDadosRedeCausa=null;
     Spinner spiDadosRedeRedeRamal=null;
@@ -39,11 +42,16 @@ public class OrdemServicoDadosRedeFragment extends Fragment
         return root;
     }
 
+    public void setListener(IOrdemServicoDadosRede listener)
+    {
+        this.listener = listener;
+    }
+
     protected void init(View root, Bundle arguments)
     {
         if (arguments!=null)
         {
-            ordemServico = (OrdemServicoVO) arguments.getSerializable(OrdemServicoPagerAdapter.KEY_ORDEM_SERVICO);
+            ordemServico = (OrdemServicoVO) arguments.getSerializable(OrdemServicoPagerAdapter.TEMPLATE_SELECTED_ITEM);
         }
         spiDadosRedeCausa=(Spinner) root.findViewById(R.id.spiDadosRedeCausa);
         spiDadosRedeRedeRamal=(Spinner) root.findViewById(R.id.spiDadosRedeRedeRamal);
@@ -139,4 +147,64 @@ public class OrdemServicoDadosRedeFragment extends Fragment
             txtDadosRedeLeitura.setText(String.valueOf(ordemServico.leitura));
         }
     }
+
+    public void salvar()
+    {
+        if (listener != null)
+        {
+            View view = getView();
+            //
+            EditText txtDadosRedeProfundidade=(EditText) view.findViewById(R.id.txtDadosRedeProfundidade);
+            EditText txtDadosRedePressao=(EditText) view.findViewById(R.id.txtDadosRedePressao);
+            EditText txtDadosRedeLacreAnterior=(EditText) view.findViewById(R.id.txtDadosRedeLacreAnterior);
+            EditText txtDadosRedeLacreNovo=(EditText) view.findViewById(R.id.txtDadosRedeLacreNovo);
+            EditText txtDadosRedeNumeroHidrometro=(EditText) view.findViewById(R.id.txtDadosRedeNumeroHidrometro);
+            EditText txtDadosRedeLeitura=(EditText) view.findViewById(R.id.txtDadosRedeLeitura);
+            //Agente Externo
+            ordemServico.idAgenteExterno = Util.getItemId(spiDadosRedeAgenteExterno,
+                    AgenteExternoDAO.COL_IDAGENTEEXTERNO, spiDadosRedeAgenteExterno.getSelectedItemPosition());
+            ordemServico.agenteExterno = Util.getItemDescricao(spiDadosRedeAgenteExterno,
+                    AgenteExternoDAO.COL_AGENTEEXTERNO,spiDadosRedeAgenteExterno.getSelectedItemPosition());
+            //Causa do Vazamento
+            ordemServico.idCausaRede = Util.getItemId(spiDadosRedeCausa,
+                    RedeCausaVazamentoDAO.COL_IDCAUSAVAZAMENTO);
+            ordemServico.descricaoCausaRede = Util.getItemDescricao(spiDadosRedeCausa,
+                    RedeCausaVazamentoDAO.COL_DESCRICAOCAUSAVAZAMENTO);
+            //Tipo de Rede/Ramal
+            ordemServico.tipoRede = Util.getItemId(spiDadosRedeRedeRamal, RedeTipoDAO.COL_IDREDETIPO);
+            ordemServico.descricaoTipoRede = Util.getItemDescricao(spiDadosRedeRedeRamal,
+                    RedeTipoDAO.COL_DESCRICAOREDETIPO);
+            //Di�metro
+            ordemServico.idDiametroRede = Util.getItemId(spiDadosRedeDiametroRede,
+                    RedeDiametroDAO.COL_IDREDEDIAMETRO);
+            ordemServico.descricaoDiametroRede = Util.getItemDescricao(spiDadosRedeDiametroRede,
+                    RedeDiametroDAO.COL_DESRICAOREDEDIAMETRO);
+            //Material
+            ordemServico.idMaterialRede = Util.getItemId(spiDadosRedeMaterialRede,
+                    RedeMaterialDAO.COL_IDREDEMATERIAL);
+            ordemServico.descricaoMaterialRede = Util.getItemDescricao(spiDadosRedeMaterialRede,
+                    RedeMaterialDAO.COL_DESCRICAOREDEMATERIAL);
+            //Profundidade
+            ordemServico.profundidadeRede = txtDadosRedeProfundidade.getText().toString();
+            //Pressão
+            ordemServico.pressaoRede = txtDadosRedePressao.getText().toString();
+            //Lacre Anterior
+            if (txtDadosRedeLacreAnterior.getText().toString().length() > 0) {
+                ordemServico.numeroLacreAnterior = Integer.parseInt(txtDadosRedeLacreAnterior.getText().toString());
+            }
+            //Lacre Novo
+            if (txtDadosRedeLacreNovo.getText().toString().length() > 0) {
+                ordemServico.numeroLocreNovo = Integer.parseInt(txtDadosRedeLacreNovo.getText().toString());
+            }
+            //Numero do Hidrômetro
+            ordemServico.numeroHidrometro = txtDadosRedeNumeroHidrometro.getText().toString();
+            //Leitura
+            if (txtDadosRedeLeitura.getText().toString().length() > 0) {
+                ordemServico.leitura = Integer.parseInt(txtDadosRedeLeitura.getText().toString());
+            }
+        }
+
+        listener.onSalvar(ordemServico);
+    }
+
 }

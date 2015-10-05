@@ -5,20 +5,25 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 
 import wsilva.com.br.mobileos.R;
+import wsilva.com.br.mobileos.core.util.Util;
+import wsilva.com.br.mobileos.dao.os.HidrometroLocalInstalacaoDAO;
+import wsilva.com.br.mobileos.dao.os.HidrometroProtecaoDAO;
+import wsilva.com.br.mobileos.dao.os.ReligacaoTipoDAO;
 import wsilva.com.br.mobileos.entity.os.OrdemServicoVO;
 import wsilva.com.br.mobileos.entity.os.ValaVO;
 import wsilva.com.br.mobileos.pageadapter.OrdemServicoPagerAdapter;
 
-public class OrdemServicoLigacaoNovaFragment extends Fragment
+public class OrdemServicoRemanejamentoFragment extends Fragment
 {
     OrdemServicoVO ordemServico;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View root = inflater.inflate(R.layout.lay_ordem_servico_ligacao_nova, container, false);
+        View root = inflater.inflate(R.layout.lay_ordem_servico_remanejamento, container, false);
         //Argumentos
         Bundle bundle = getArguments();
         //Configuracao inicial

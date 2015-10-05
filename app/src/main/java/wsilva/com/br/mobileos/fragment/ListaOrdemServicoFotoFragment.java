@@ -40,24 +40,13 @@ public class ListaOrdemServicoFotoFragment extends Fragment
     {
         if (arguments!=null)
         {
-            ordemServico = (OrdemServicoVO) arguments.getSerializable(OrdemServicoPagerAdapter.KEY_ORDEM_SERVICO);
+            ordemServico = (OrdemServicoVO) arguments.getSerializable(OrdemServicoPagerAdapter.TEMPLATE_SELECTED_ITEM);
         }
 
         doPovoaTela(root, ordemServico);
 
         FotoDAO dao = new FotoDAO(getActivity());
-        dao.removerTodos();
-        if (dao.quantidadeRegistros() ==0)
-        {
-            dao.inserir(new FotoVO(9999, "Foto 1", "Foto 1", new Date(), "14:00"));
-            dao.inserir(new FotoVO(9999, "Foto 2", "Foto 2", new Date(), "14:00"));
-            dao.inserir(new FotoVO(9999, "Foto 3", "Foto 3", new Date(), "14:00"));
-            dao.inserir(new FotoVO(9999, "Foto 4", "Foto 4", new Date(), "14:00"));
-            dao.inserir(new FotoVO(9999, "Foto 5", "Foto 5", new Date(), "14:00"));
-            dao.inserir(new FotoVO(9999, "Foto 6", "Foto 6", new Date(), "14:00"));
-        }
-
-        doListar(root, dao.listar());
+        doListar(root, dao.listarPorOrdemServico(ordemServico.numeroOS));
     }
 
     protected void doPovoaTela(View view, OrdemServicoVO vo)

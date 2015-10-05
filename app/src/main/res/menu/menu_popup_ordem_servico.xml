@@ -6,4 +6,28 @@
     <item android:id="@+id/mnuOrdemServicoEncerramento"
         android:title="@string/lbl_encerrar"
         />
+    <item android:id="@+id/mnuOrdemServicoVala"
+        android:title="@string/lbl_vala"
+        />
+    <item android:id="@+id/mnuOrdemServicoMaterialUtilizado"
+        android:title="@string/lbl_material_utilizado_titulo"
+        />
+    <item android:id="@+id/mnuOrdemServicoCorte"
+        android:title="@string/lbl_os_corte_titulo"
+        />
+    <item android:id="@+id/mnuOrdemServicoInstalacaoHM"
+        android:title="@string/lbl_tipo_instalacao_hidrometro"
+        />
+    <item android:id="@+id/mnuOrdemServicoSubstituicaoHM"
+        android:title="@string/app_subtitulo"
+        />
+    <item android:id="@+id/mnuOrdemServicoLigacaoNova"
+        android:title="@string/lbl_os_ligacao_nova_titulo"
+        />
+    <item android:id="@+id/mnuOrdemServicoReligacao"
+        android:title="@string/lbl_os_religacao_titulo"
+        />
+    <item android:id="@+id/mnuOrdemServicoRemanejamento"
+        android:title="@string/lbl_dados_os_remanejamento_titulo"
+        />
 </menu>

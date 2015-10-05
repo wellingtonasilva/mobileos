@@ -56,7 +56,8 @@ public class ListaOrdemServicoMaterialUtilizadoAdapter extends ArrayAdapter<Mate
 		MaterialUtilizadoVO vo=items.get(position);
 		if (vo!=null)
 		{
-			viewHolder.numeroOS.setText(String.valueOf(vo.numeroOS));
+			viewHolder.numeroOS.setText(resources.getText(R.string.lbl_interrupcao_numero_os).toString()
+					+ " " + String.valueOf(vo.numeroOS));
 			viewHolder.descricaoMaterial.setText(resources.getText(R.string.lbl_material_utilizado_descricao).toString()
 					+ ": " +  String.valueOf(vo.descricaoMateriall));
 			viewHolder.quantidade.setText(resources.getText(R.string.lbl_material_utilizado_quantidade).toString()

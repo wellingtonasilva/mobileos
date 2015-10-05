@@ -32,7 +32,7 @@ public class OrdemServicoFragment extends Fragment
     {
         if (arguments!=null)
         {
-            ordemServico = (OrdemServicoVO) arguments.getSerializable(OrdemServicoPagerAdapter.KEY_ORDEM_SERVICO);
+            ordemServico = (OrdemServicoVO) arguments.getSerializable(OrdemServicoPagerAdapter.TEMPLATE_SELECTED_ITEM);
         }
 
         doPovoaTela(root, ordemServico);

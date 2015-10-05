@@ -14,7 +14,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:text="@string/lbl_no_os"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/background_holo_dark"

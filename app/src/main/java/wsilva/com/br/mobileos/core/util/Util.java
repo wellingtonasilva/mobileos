@@ -17,6 +17,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -25,6 +26,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.widget.Adapter;
@@ -244,6 +246,7 @@ public class Util
         return simpleCursorAdapter;
     }
 
+
     public static int getItemId(Spinner spinner, String column)
 	{
 		int position=spinner.getSelectedItemPosition();
@@ -376,6 +379,31 @@ public class Util
             }
         });
 		//Cria Alerta
+		AlertDialog dialog = builder.create();
+		dialog.show();
+	}
+
+	public static void createAlertDialog(Context context, String dialogMessage,
+										 int dialogTitle, int dialogOK, int dialogCancel,
+										 DialogInterface.OnClickListener onPositiveButtonClickListener,
+										 DialogInterface.OnClickListener onNegativeButtonClickListener)
+	{
+		Resources resources = context.getResources();
+		// Cria Builder
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		// Configura Message
+		builder.setMessage(dialogMessage);
+		builder.setTitle(resources.getText(dialogTitle));
+		if (onPositiveButtonClickListener!=null)
+		{
+			builder.setPositiveButton(resources.getText(dialogOK), onPositiveButtonClickListener);
+		}
+		if (onNegativeButtonClickListener!=null)
+		{
+			builder.setNegativeButton(resources.getText(dialogCancel), onNegativeButtonClickListener);
+		}
+
+		// Cria Alerta
 		AlertDialog dialog = builder.create();
 		dialog.show();
 	}
@@ -578,5 +606,32 @@ public class Util
 			e.printStackTrace();
 		}
 		return bolReturn;
+	}
+
+	public static File createImageFile() throws IOException
+	{
+		// Create an image file name
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+		String imageFileName = "JPEG_" + timeStamp + "_";
+		File storageDir = Environment.getExternalStoragePublicDirectory(
+				Environment.DIRECTORY_PICTURES);
+		File image = File.createTempFile(
+				imageFileName,  /* prefix */
+				".jpg",         /* suffix */
+				storageDir      /* directory */
+		);
+
+		// Save a file: path for use with ACTION_VIEW intents
+		//mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+		return image;
+	}
+
+	public static void galleryAddPic(Context context, String currentPhotoPath)
+	{
+		Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+		File f = new File(currentPhotoPath);
+		Uri contentUri = Uri.fromFile(f);
+		mediaScanIntent.setData(contentUri);
+		context.sendBroadcast(mediaScanIntent);
 	}
 }

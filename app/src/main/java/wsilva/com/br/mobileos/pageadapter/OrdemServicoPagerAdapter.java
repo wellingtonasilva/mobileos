@@ -29,7 +29,8 @@ public class OrdemServicoPagerAdapter extends FragmentPagerAdapter
     public static final int TAB_ORDEM_SERVICO_CORTE     = 5;
     public static final int TAB_ORDEM_SERVICO_INST_HM   = 6;
     public static final int TAB_ORDEM_SERVICO_LIG_NOVA  = 7;
-    public static final String KEY_ORDEM_SERVICO            = "KEY_ORDEM_SERVICO";
+    public static final String TEMPLATE_SELECTED_ITEM   = "TEMPLATE_SELECTED_ITEM";
+    public static final String KEY_ORDEM_VALA           = "KEY_ORDEM_SERVICO_VALA";
 
     Resources resources;
     OrdemServicoVO ordemServico;
@@ -45,7 +46,7 @@ public class OrdemServicoPagerAdapter extends FragmentPagerAdapter
     public Fragment getItem(int position)
     {
         Bundle bundle = new Bundle();
-        bundle.putSerializable(KEY_ORDEM_SERVICO, ordemServico);
+        bundle.putSerializable(TEMPLATE_SELECTED_ITEM, ordemServico);
 
         switch (position)
         {

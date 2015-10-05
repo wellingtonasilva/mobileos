@@ -20,6 +20,7 @@ public class FotoVO extends EntityVO
 	public int indicadorEnvio;
 	public int numeroFoto;
 	public byte[] image;
+	public String filename;
 	
 	public FotoVO() {
 	}

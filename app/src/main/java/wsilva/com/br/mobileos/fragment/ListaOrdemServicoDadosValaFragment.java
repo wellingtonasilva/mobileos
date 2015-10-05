@@ -39,21 +39,12 @@ public class ListaOrdemServicoDadosValaFragment extends Fragment
     {
         if (arguments!=null)
         {
-            ordemServico = (OrdemServicoVO) arguments.getSerializable(OrdemServicoPagerAdapter.KEY_ORDEM_SERVICO);
+            ordemServico = (OrdemServicoVO) arguments.getSerializable(OrdemServicoPagerAdapter.TEMPLATE_SELECTED_ITEM);
         }
 
         ValaDAO dao = new ValaDAO(getActivity());
-        dao.removerTodos();
-        if (dao.quantidadeRegistros() == 0)
-        {
-            dao.inserir(new ValaVO(9999, 1, 1.0,2.0,3.0));
-            dao.inserir(new ValaVO(9999, 2, 1.0,2.0,3.0));
-            dao.inserir(new ValaVO(9999, 3, 1.0,2.0,3.0));
-            dao.inserir(new ValaVO(9999, 4, 1.0,2.0,3.0));
-            dao.inserir(new ValaVO(9999, 5, 1.0,2.0,3.0));
-        }
 
-        doListar(root, dao.listar());
+        doListar(root, dao.listarPorOrdemServico(ordemServico.numeroOS));
     }
 
     protected void doPovoaTela(View view, OrdemServicoVO vo)

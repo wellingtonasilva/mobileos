@@ -37,23 +37,12 @@ public class ListaOrdemServicoMaterialUtilizadoFragment extends Fragment
     {
         if (arguments!=null)
         {
-            ordemServico = (OrdemServicoVO) arguments.getSerializable(OrdemServicoPagerAdapter.KEY_ORDEM_SERVICO);
+            ordemServico = (OrdemServicoVO) arguments.getSerializable(OrdemServicoPagerAdapter.TEMPLATE_SELECTED_ITEM);
         }
 
         doPovoaTela(root, ordemServico);
         MaterialUtilizadoDAO dao = new MaterialUtilizadoDAO(getActivity());
-        dao.removerTodos();
-        if (dao.quantidadeRegistros() ==0)
-        {
-            dao.inserir(new MaterialUtilizadoVO(9999, "Unidade", "ADAPT. FoFo FF JE DE 107,2MMX133,2MM", 1.0 ));
-            dao.inserir(new MaterialUtilizadoVO(9999, "Unidade", "ADAPT. FoFo FF JE DE 107,2MMX133,2MM", 2.0));
-            dao.inserir(new MaterialUtilizadoVO(9999, "Unidade", "ADAPT. FoFo FF JE DE 107,2MMX133,2MM", 3.0));
-            dao.inserir(new MaterialUtilizadoVO(9999, "Unidade", "ADAPT. FoFo FF JE DE 107,2MMX133,2MM", 4.0));
-            dao.inserir(new MaterialUtilizadoVO(9999, "Unidade", "ADAPT. FoFo FF JE DE 107,2MMX133,2MM", 5.0));
-            dao.inserir(new MaterialUtilizadoVO(9999, "Unidade", "ADAPT. FoFo FF JE DE 107,2MMX133,2MM", 6.0));
-        }
-
-        doListar(root, dao.listar());
+        doListar(root, dao.listarPorOrdemServico(ordemServico.numeroOS));
     }
 
     protected void doPovoaTela(View view, OrdemServicoVO vo)

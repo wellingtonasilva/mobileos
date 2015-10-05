@@ -57,6 +57,30 @@
         <activity
             android:name=".activity.OrdemServicoExecucaoEncerramento"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OrdemServicoMaterialUtilizado"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OrdemServicoCorte"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OrdemServicoInstalacaoHM"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OrdemServicoSubstituicaoHM"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OrdemServicoLigacaoNova"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OrdemServicoReligacao"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OrdemServicoRemanejamento"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OrdemServicoDadosVala"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <service
             android:name=".services.ImportacaoService"
             android:exported="false" >
