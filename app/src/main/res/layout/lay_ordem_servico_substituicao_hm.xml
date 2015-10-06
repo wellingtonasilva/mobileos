@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No. OS"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtOsSubstituicaoHMNumeroOs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:focusable="false"
+            android:inputType="number" >
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No. Hidrômetro Atual"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtOsSubstituicaoHMNumeroHM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" >
+        </EditText>
+
+        <!-- 		Tipo de Medição         -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de Medição Atual"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spiOSSubstituicaoHMTipoMedicaoAtual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!--         Data Retirada -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data Retirada"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtOsSubstituicaoHMDataRetirada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:focusable="false"
+            android:inputType="text" >
+        </EditText>
+
+        <!--         Leiturada Retirada -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Leitura Retirada"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtOsSubstituicaoHMLeituraRetirada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" >
+        </EditText>
+
+        <!--         Situação do Hidrômetro -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Situação do Hidrômetro"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spiOSSubstituicaoHMSituacaoHM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!--         Local Armazenagem Hidrômetro -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Local Armazenagem"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spiOSSubstituicaoHMLocalArmazenagem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!--         Número Hidrômetro Novo -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No. Novo Hidrômetro"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            />
+        <EditText
+            android:id="@+id/txtOsSubstituicaoHMNovoHidrometro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" >
+        </EditText>
+
+        <!--         Data instalação novo Hidrômetro -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data Instalação Novo Hidrômetro"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/txtOsSubstituicaoHMDataInstalacaoNovoHM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:focusable="false"
+            android:inputType="text" >
+        </EditText>
+        <!-- 	Hora -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hora Instalação Novo Hidrômetro"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/txtOsSubstituicaoHMHoraInstalacaoNovoHM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:focusable="false"
+            android:inputType="text" >
+        </EditText>
+
+
+        <!-- Local Instalação -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Local Instalação"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spiOSSubstituicaoHMLocalInstalacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Proteçõ do Hidrômetro -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Proteção do Hidrômetro"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spiOSSubstituicaoHMProtecao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- 	Tipo Instalação de Hidrômetro         -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo Substituição Hidrômetro"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spiOSSubstituicaoHMTipoSubstituicao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Leitura na Instalação"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtOsSubstituicaoHMLeituraInstalacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" >
+        </EditText>
+
+        <!-- Selo -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No. Selo"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/txtOsSubstituicaoHMNumeroLacre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" >
+        </EditText>
+
+        <!-- Matricula do funcionario -->
+
+        <!-- Número do Hidrômetro -->
+
+        <!--         <TextView -->
+        <!--             android:id="@+id/TextView01" -->
+        <!--             android:layout_width="wrap_content" -->
+        <!--             android:layout_height="wrap_content" -->
+        <!--             android:text="Matrícula Funcionário" -->
+        <!--             android:textAppearance="?android:attr/textAppearanceMedium" -->
+        <!--             android:textColor="@color/background_holo_dark" -->
+        <!--             android:textSize="14sp" -->
+        <!--             android:textStyle="bold" /> -->
+
+        <!--         <EditText -->
+        <!--             android:id="@+id/EditText01" -->
+        <!--             android:layout_width="match_parent" -->
+        <!--             android:layout_height="wrap_content" -->
+        <!--             android:editable="false" -->
+        <!--             android:ems="10" -->
+        <!--             android:focusable="false" -->
+        <!--             android:inputType="text" /> -->
+
+        <CheckBox
+            android:id="@+id/chkOsSubstituicaoHMTrocaRegistro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Troca Registro"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/chkOsSubstituicaoHMTrocaProtecao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Troca Proteção"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/chkOsSubstituicaoHMComCavalete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Com Cavalete"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/background_holo_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>
+
