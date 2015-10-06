@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background_holo_light"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/llblListaInterrupcaoLinha1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="@string/lbl_label"
+        android:textColor="@color/background_holo_dark"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/llblListaInterrupcaoLinha2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="@string/lbl_label"
+        android:textColor="@color/background_holo_dark"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/lblListaInterrupcaoLinha3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="@string/lbl_label"
+        android:textColor="@color/background_holo_dark"
+        android:textSize="14sp" />
+	
+	<TextView
+        android:id="@+id/lblListaInterrupcaoLinha4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="@string/lbl_label"
+        android:textColor="@color/background_holo_dark"
+        android:textSize="14sp" />    
+
+</LinearLayout>

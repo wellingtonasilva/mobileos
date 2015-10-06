@@ -132,24 +132,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
-            >
+            android:layout_weight="1">
         </EditText>
-
-        <Button
-            android:id="@+id/btnInterrupcaoOK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lbl_ok"
-            android:textColor="@color/background_holo_dark"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/btnInterrupcaoCancela"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lbl_cancelar"
-            android:textColor="@color/background_holo_dark"
-            android:textSize="14sp" />
 
     </LinearLayout>
 </ScrollView>

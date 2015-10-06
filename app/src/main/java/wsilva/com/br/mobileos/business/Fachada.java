@@ -2,10 +2,12 @@ package wsilva.com.br.mobileos.business;
 
 import android.content.Context;
 
+import wsilva.com.br.mobileos.dao.ocorrencia.InterrupcaoDAO;
 import wsilva.com.br.mobileos.dao.os.FotoDAO;
 import wsilva.com.br.mobileos.dao.os.MaterialUtilizadoDAO;
 import wsilva.com.br.mobileos.dao.os.OrdemServicoDAO;
 import wsilva.com.br.mobileos.dao.os.ValaDAO;
+import wsilva.com.br.mobileos.entity.ocorrencia.InterrupcaoVO;
 import wsilva.com.br.mobileos.entity.os.FotoVO;
 import wsilva.com.br.mobileos.entity.os.MaterialUtilizadoVO;
 import wsilva.com.br.mobileos.entity.os.OrdemServicoVO;
@@ -54,4 +56,18 @@ public class Fachada {
         FotoDAO fotoDAO = new FotoDAO(context);
         return fotoDAO.inserir(foto) > 0;
     }
+
+
+    public static boolean inserirOcorrencia(Context context, InterrupcaoVO interrupcao)
+    {
+        InterrupcaoDAO dao = new InterrupcaoDAO(context);
+        return dao.inserir(interrupcao) > 0;
+    }
+
+    public static boolean salvarOcorrencia(Context context, InterrupcaoVO interrupcao)
+    {
+        InterrupcaoDAO dao = new InterrupcaoDAO(context);
+        return dao.atualizar(interrupcao);
+    }
+
 }

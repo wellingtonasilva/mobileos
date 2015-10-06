@@ -81,6 +81,15 @@
         <activity
             android:name=".activity.OrdemServicoDadosVala"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OcorrenciaLista"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OcorrenciaInicio"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.OcorrenciaFim"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <service
             android:name=".services.ImportacaoService"
             android:exported="false" >
